@@ -1,0 +1,3319 @@
+\documentclass[11pt]{article}
+	\setcounter{section}{-1}
+
+    \usepackage[breakable]{tcolorbox}
+    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+    
+    \usepackage{iftex}
+    \ifPDFTeX
+    	\usepackage[T1]{fontenc}
+    	\usepackage{mathpazo}
+    \else
+    	\usepackage{fontspec}
+    \fi
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % Maintain compatibility with old templates. Remove in nbconvert 6.0
+    \let\Oldincludegraphics\includegraphics
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionFormat{nocaption}{}
+    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+    \usepackage{float}
+    \floatplacement{figure}{H} % forces figures to be placed at the correct location
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range
+    \makeatletter % fix for old versions of grffile with XeLaTeX
+    \@ifpackagelater{grffile}{2019/11/01}
+    {
+      % Do nothing on new versions
+    }
+    {
+      \def\Gread@@xetex#1{%
+        \IfFileExists{"\Gin@base".bb}%
+        {\Gread@eps{\Gin@base.bb}}%
+        {\Gread@@xetex@aux#1}%
+      }
+    }
+    \makeatother
+    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    % The default LaTeX title has an obnoxious amount of whitespace. By default,
+    % titling removes some of it. It also provides customization options.
+    \usepackage{titling}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % common color for the border for error outputs.
+    \definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{INTRODUCTION TO PROGRAMMING REVIEW by @htnm}
+    
+    
+    
+    
+    
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % For linebreaks inside Verbatim environment from package fancyvrb. 
+    \makeatletter
+        \newbox\Wrappedcontinuationbox 
+        \newbox\Wrappedvisiblespacebox 
+        \newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}} 
+        \newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}} 
+        \newcommand*\Wrappedcontinuationindent {3ex } 
+        \newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox} 
+        % Take advantage of the already applied Pygments mark-up to insert 
+        % potential linebreaks for TeX processing. 
+        %        {, <, #, %, $, ' and ": go to next line. 
+        %        _, }, ^, &, >, - and ~: stay at end of broken line. 
+        % Use of \textquotesingle for straight quote. 
+        \newcommand*\Wrappedbreaksatspecials {% 
+            \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}% 
+            \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}% 
+            \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}% 
+            \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}% 
+            \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}% 
+            \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}% 
+            \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}% 
+            \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}% 
+            \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}% 
+            \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}% 
+            \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}% 
+            \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}% 
+            \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}% 
+            \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}% 
+        } 
+        % Some characters . , ; ? ! / are not pygmentized. 
+        % This macro makes them "active" and they will insert potential linebreaks 
+        \newcommand*\Wrappedbreaksatpunct {% 
+            \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}% 
+            \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}% 
+            \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}% 
+            \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}% 
+            \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}% 
+            \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}% 
+            \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}% 
+            \catcode`\.\active
+            \catcode`\,\active 
+            \catcode`\;\active
+            \catcode`\:\active
+            \catcode`\?\active
+            \catcode`\!\active
+            \catcode`\/\active 
+            \lccode`\~`\~ 	
+        }
+    \makeatother
+
+    \let\OriginalVerbatim=\Verbatim
+    \makeatletter
+    \renewcommand{\Verbatim}[1][1]{%
+        %\parskip\z@skip
+        \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+        \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+        \def\FancyVerbFormatLine ##1{\hsize\linewidth
+            \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+                \doublehyphendemerits\z@\finalhyphendemerits\z@
+                \strut ##1\strut}%
+        }%
+        % If the linebreak is at a space, the latter will be displayed as visible
+        % space at end of first line, and a continuation symbol starts next line.
+        % Stretch/shrink are however usually zero for typewriter font.
+        \def\FV@Space {%
+            \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+            \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+            {\kern\fontdimen2\font}%
+        }%
+        
+        % Allow breaks at special characters using \PYG... macros.
+        \Wrappedbreaksatspecials
+        % Breaks at punctuation characters . , ; ? ! and / need catcode=\active 	
+        \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+    }
+    \makeatother
+
+    % Exact colors from NB
+    \definecolor{incolor}{HTML}{303F9F}
+    \definecolor{outcolor}{HTML}{D84315}
+    \definecolor{cellborder}{HTML}{CFCFCF}
+    \definecolor{cellbackground}{HTML}{F7F7F7}
+    
+    % prompt
+    \makeatletter
+    \newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+    \makeatother
+    \newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+    }
+    
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+\begin{document}
+    
+    \maketitle
+    \tableofcontents
+    
+
+    
+    \hypertarget{introduction-to-programming-review}{%
+\section{\texorpdfstring{\textbf{INTRODUCTION TO PROGRAMMING
+REVIEW}}{INTRODUCTION TO PROGRAMMING REVIEW}}\label{introduction-to-programming-review}}
+
+\textbf{\emph{Written by Hoang Tran Nhat Minh,}}
+
+Hanoi University of Science and Technology,
+
+Data Science and Artificial Intelligence - K65.
+
+\textbf{Guided by Dr.~Dinh Viet Sang.}
+
+    \hypertarget{preface}{%
+\subsection{PREFACE}\label{preface}}
+
+    \textbf{Thank you, my teacher, Dr.~Dinh Viet Sang, I cannot learn
+programming in Python that much without you. This notebook uses your
+lectures as a guidance.}
+
+\emph{Dear Data Science \& AI - K65,}
+
+This is my last notebook in order to prepare for the final exam on
+Introduction to Programming. If you find this notebook helpful, thanks
+for reading it. Some might find this one not that helpful, I highly
+appreciate every line of text you read, including this one.
+
+If you find any mistake, feedback and I will try to fix it ASAP.
+
+Thank y'all for supporting me all the time, good luck on all of your
+exams.
+
+Best wishes,
+
+\emph{Hoang Tran Nhat Minh.}
+
+    \hypertarget{my-codes-for-all-exercises-and-this-notebook}{%
+\subsection{MY CODES FOR ALL EXERCISES AND THIS
+NOTEBOOK}\label{my-codes-for-all-exercises-and-this-notebook}}
+
+    SOME OF THE FOLLOWING CONTENTS MIGHT BE ADJUSTED OVER TIME.
+
+MY CODES FOR ALL EXERCISES:
+
+\url{https://drive.google.com/drive/folders/1_a7_Ng4pxP_acvmSfeJDmFlpJkbV07X1?usp=sharing}
+
+THIS NOTEBOOK:
+
+\url{https://colab.research.google.com/drive/1mjtoDbqNHKB2bAb6rTUU8hiJRfUX3Ryt?usp=sharing}
+
+    \hypertarget{chapter-1-introduction}{%
+\section{CHAPTER 1: INTRODUCTION}\label{chapter-1-introduction}}
+
+    \hypertarget{constants}{%
+\subsection{CONSTANTS}\label{constants}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} CONSTANTS}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hello World}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mf}{12.3}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello World
+12.3
+    \end{Verbatim}
+
+    \hypertarget{variables}{%
+\subsection{VARIABLES}\label{variables}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} VARIABLES}
+\PY{n}{x} \PY{o}{=} \PY{l+m+mf}{13.4}
+\PY{n}{y} \PY{o}{=} \PY{l+m+mf}{4.3}
+\PY{n}{x} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hello}\PY{l+s+s1}{\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello
+4.3
+    \end{Verbatim}
+
+    \hypertarget{numeric-operators}{%
+\subsection{NUMERIC OPERATORS}\label{numeric-operators}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} NUMERIC OPERATORS}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{*}\PY{o}{*} \PY{l+m+mf}{3.5}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{19} \PY{o}{/} \PY{l+m+mi}{5}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{19} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{5}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{19} \PY{o}{\PYZpc{}} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+279.5084971874737
+3.8
+3
+4
+    \end{Verbatim}
+
+    \hypertarget{scientific-notation}{%
+\subsection{SCIENTIFIC NOTATION}\label{scientific-notation}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{4}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SCIENTIFIC NOTATION}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mf}{1.234e2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mf}{1.234E+2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mf}{1.234e\PYZhy{}3}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+123.4
+123.4
+0.001234
+    \end{Verbatim}
+
+    \hypertarget{int-and-float}{%
+\subsection{INT AND FLOAT}\label{int-and-float}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{5}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} INT AND FLOAT}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{l+m+mf}{5.3}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{/} \PY{l+m+mi}{5}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{+} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.3
+1.0
+8
+    \end{Verbatim}
+
+    \hypertarget{types}{%
+\subsection{TYPES}\label{types}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{6}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TYPES}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{+} \PY{l+m+mi}{6}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ there}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{l+m+mf}{3.5}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{float}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+9
+hello there
+<class 'float'>
+<class 'str'>
+3.0
+45
+8
+    \end{Verbatim}
+
+    \hypertarget{input-type-differences}{%
+\subsection{(INPUT) TYPE DIFFERENCES}\label{input-type-differences}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{7}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TYPE DIFFERENCES}
+\PY{n}{a} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{a} \PY{o}{*} \PY{l+m+mi}{5}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a = 8
+88888
+40
+    \end{Verbatim}
+
+    \hypertarget{input-file-name}{%
+\subsection{(INPUT) FILE NAME}\label{input-file-name}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{8}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} FILE NAME}
+\PY{n}{name} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}/content/sample\PYZus{}data/README.md}
+\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Name = /content/sample\_data/README.md
+This directory includes a few sample datasets to get you started.
+
+*   `california\_housing\_data*.csv` is California housing data from the 1990 US
+    Census; more information is available at:
+    https://developers.google.com/machine-learning/crash-course/california-
+housing-data-description
+
+*   `mnist\_*.csv` is a small sample of the
+    [MNIST database](https://en.wikipedia.org/wiki/MNIST\_database), which is
+    described at: http://yann.lecun.com/exdb/mnist/
+
+*   `anscombe.json` contains a copy of
+    [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe\%27s\_quartet); it
+    was originally described in
+
+    Anscombe, F. J. (1973). 'Graphs in Statistical Analysis'. American
+    Statistician. 27 (1): 17-21. JSTOR 2682899.
+
+    and our copy was prepared by the
+    [vega\_datasets library](https://github.com/altair-viz/vega\_datasets/blob/4f6
+7bdaad10f45e3549984e17e1b3088c731503d/vega\_datasets/\_data/anscombe.json).
+
+    \end{Verbatim}
+
+    \hypertarget{chapter-2-control-flow}{%
+\section{CHAPTER 2: CONTROL FLOW}\label{chapter-2-control-flow}}
+
+    \hypertarget{comparison-operators}{%
+\subsection{COMPARISON OPERATORS}\label{comparison-operators}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{9}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} COMPARISON OPERATORS}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{==} \PY{l+m+mi}{4}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{!=} \PY{l+m+mi}{4}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{\PYZlt{}} \PY{l+m+mi}{4}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{4}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+True
+True
+False
+    \end{Verbatim}
+
+    \hypertarget{logic-operators}{%
+\subsection{LOGIC OPERATORS}\label{logic-operators}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{10}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LOGIC OPERATORS}
+\PY{n+nb}{print}\PY{p}{(}\PY{o+ow}{not} \PY{k+kc}{False}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{k+kc}{True} \PY{o+ow}{and} \PY{k+kc}{False}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{k+kc}{True} \PY{o+ow}{or} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+False
+True
+    \end{Verbatim}
+
+    \hypertarget{input-branching}{%
+\subsection{(INPUT) BRANCHING}\label{input-branching}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{11}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} BRANCHING}
+\PY{n}{a} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n}{b} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{k}{if} \PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{b}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{larger}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{elif} \PY{n}{a} \PY{o}{==} \PY{n}{b}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{equal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{less}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a = 3
+b = 5
+less
+    \end{Verbatim}
+
+    \hypertarget{chapter-3-functions}{%
+\section{CHAPTER 3: FUNCTIONS}\label{chapter-3-functions}}
+
+    \hypertarget{function-example}{%
+\subsection{FUNCTION EXAMPLE}\label{function-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{12}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} FUNCTION EXAMPLE}
+
+\PY{c+c1}{\PYZsh{}   name    parameter(s)}
+\PY{k}{def} \PY{n+nf}{two\PYZus{}time}\PY{p}{(}\PY{n}{number}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} docstring}
+    \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{    2 times a number}
+\PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+    \PY{c+c1}{\PYZsh{} body}
+    \PY{n}{doubled} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{number}
+    \PY{c+c1}{\PYZsh{} returns (if not, it is a void function)}
+    \PY{k}{return} \PY{n}{doubled}
+\PY{c+c1}{\PYZsh{} function call, pass argument(s) to parameter(s)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{two\PYZus{}time}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{two\PYZus{}time}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}doc\PYZus{}\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+16
+
+    2 times a number
+
+    \end{Verbatim}
+
+    \hypertarget{common-built-in-python-functions}{%
+\subsection{COMMON BUILT-IN PYTHON
+FUNCTIONS}\label{common-built-in-python-functions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{13}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} COMMON BUILT\PYZhy{}IN PYTHON FUNCTIONS}
+\PY{c+c1}{\PYZsh{} previous ones: input(), type(), float(),...}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8
+3
+    \end{Verbatim}
+
+    \hypertarget{pass-by-object-reference}{%
+\subsection{PASS-BY-OBJECT-REFERENCE}\label{pass-by-object-reference}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{14}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} PASS\PYZhy{}BY\PYZhy{}OBJECT\PYZhy{}REFERENCE}
+\PY{c+c1}{\PYZsh{} Immutable objects: int, float, complex, string, tuple, frozen set, bytes}
+\PY{c+c1}{\PYZsh{} Mutable objects: list, dict, set, byte array}
+
+\PY{k}{def} \PY{n+nf}{change\PYZus{}num}\PY{p}{(}\PY{n}{num}\PY{p}{)}\PY{p}{:}
+    \PY{n}{num} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{a} \PY{o}{=} \PY{l+m+mi}{4}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\PY{n}{change\PYZus{}num}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{change\PYZus{}lst}\PY{p}{(}\PY{n}{lst}\PY{p}{)}\PY{p}{:}
+    \PY{n}{lst}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{changed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\PY{n}{change\PYZus{}lst}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4
+4
+['original']
+['original', 'changed']
+    \end{Verbatim}
+
+    \hypertarget{scope}{%
+\subsection{SCOPE}\label{scope}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{15}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SCOPE}
+\PY{k}{def} \PY{n+nf}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+    \PY{n}{x} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{In f:    x =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{x}\PY{p}{)}
+\PY{n}{x} \PY{o}{=} \PY{l+m+mi}{0}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{First:   x =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{After f: x =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+First:   x = 0
+In f:    x = 1
+After f: x = 0
+    \end{Verbatim}
+
+    \hypertarget{functions-as-arguments}{%
+\subsection{FUNCTIONS AS ARGUMENTS}\label{functions-as-arguments}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{16}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} FUNCTIONS AS ARGUMENTS}
+\PY{k}{def} \PY{n+nf}{triple}\PY{p}{(}\PY{n}{num}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{l+m+mi}{3} \PY{o}{*} \PY{n}{num}
+\PY{k}{def} \PY{n+nf}{square}\PY{p}{(}\PY{n}{num}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{num} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+
+\PY{k}{def} \PY{n+nf}{fx\PYZus{}plus\PYZus{}gy}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{g}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{n}{g}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{fx\PYZus{}plus\PYZus{}gy}\PY{p}{(}\PY{n}{triple}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{square}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{*} \PY{l+m+mi}{5} \PY{o}{+} \PY{l+m+mi}{8} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+79
+79
+    \end{Verbatim}
+
+    \hypertarget{default-parameter-value}{%
+\subsection{DEFAULT PARAMETER VALUE}\label{default-parameter-value}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{17}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} DEFAULT PARAMETER VALUE}
+\PY{k}{def} \PY{n+nf}{tong}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{n}{a} \PY{o}{+} \PY{n}{b} \PY{o}{+} \PY{n}{c}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tong}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 1 + 2 + 3}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tong}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 1 + 4 + 3}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tong}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 0 + 3 + 6}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6
+8
+9
+    \end{Verbatim}
+
+    \hypertarget{lambda-function}{%
+\subsection{LAMBDA FUNCTION}\label{lambda-function}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{18}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LAMBDA FUNCTION}
+\PY{n}{tong} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{n}{y}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tong}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{:} \PY{n}{x} \PY{o}{*} \PY{n}{y}\PY{p}{)}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8
+18
+    \end{Verbatim}
+
+    \hypertarget{lambda-example}{%
+\subsubsection{LAMBDA EXAMPLE}\label{lambda-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{19}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LAMBDA EXAMPLE}
+\PY{k}{def} \PY{n+nf}{multiply\PYZus{}by}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{*} \PY{n}{n}
+
+\PY{n}{double} \PY{o}{=} \PY{n}{multiply\PYZus{}by}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} multiply\PYZus{}by(2) \PYZhy{}\PYZgt{}  lambda x: x * 2}
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZgt{} a doubling function}
+\PY{n}{triple} \PY{o}{=} \PY{n}{multiply\PYZus{}by}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{double}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{triple}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+32
+12
+    \end{Verbatim}
+
+    \hypertarget{test-without-lambda}{%
+\subsubsection{TEST: WITHOUT LAMBDA}\label{test-without-lambda}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{20}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TEST: WITHOUT LAMBDA}
+\PY{k}{def} \PY{n+nf}{multiply\PYZus{}by}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{k}{def} \PY{n+nf}{multi}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{x} \PY{o}{*} \PY{n}{n}
+    \PY{k}{return} \PY{n}{multi}
+
+\PY{n}{double} \PY{o}{=} \PY{n}{multiply\PYZus{}by}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} multiply\PYZus{}by(2) \PYZhy{}\PYZgt{} function: multi, where multi return the doubled argument}
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZgt{} a doubling function}
+\PY{n}{triple} \PY{o}{=} \PY{n}{multiply\PYZus{}by}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{double}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{triple}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+32
+12
+    \end{Verbatim}
+
+    \hypertarget{lambda-example}{%
+\subsubsection{LAMBDA EXAMPLE}\label{lambda-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{21}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LAMBDA EXAMPLE}
+\PY{n}{x\PYZus{}plus\PYZus{}fx} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{f}\PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}plus\PYZus{}fx}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} x + f(x) = x + x ** 2}
+\PY{c+c1}{\PYZsh{} 3 + f(3) = 3 + 3 ** 2}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+12
+    \end{Verbatim}
+
+    \hypertarget{recursion-examples}{%
+\subsection{RECURSION EXAMPLES}\label{recursion-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{22}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} RECURSION EXAMPLES}
+\PY{k}{def} \PY{n+nf}{pr}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{! = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{! * }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{n} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{0! = 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k}{return} \PY{l+m+mi}{1}
+    \PY{n}{pr}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+    \PY{k}{return} \PY{n}{factorial}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{n}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{factorial}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+7! = 6! * 7
+6! = 5! * 6
+5! = 4! * 5
+4! = 3! * 4
+3! = 2! * 3
+2! = 1! * 2
+1! = 0! * 1
+0! = 1
+5040
+    \end{Verbatim}
+
+    \hypertarget{factorial-recursion-in-short}{%
+\subsubsection{FACTORIAL RECURSION IN
+SHORT}\label{factorial-recursion-in-short}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{23}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} FACTORIAL RECURSION IN SHORT}
+\PY{n}{factorial} \PY{o}{=} \PY{k}{lambda} \PY{n}{n}\PY{p}{:} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{n} \PY{o}{==} \PY{l+m+mi}{0} \PY{k}{else} \PY{n}{factorial}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{*} \PY{n}{n}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{factorial}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5040
+    \end{Verbatim}
+
+    \hypertarget{fibonacci-recursion-in-short}{%
+\subsubsection{FIBONACCI RECURSION IN
+SHORT}\label{fibonacci-recursion-in-short}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{24}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} FIBONACCI RECURSION IN SHORT}
+\PY{n}{fib} \PY{o}{=} \PY{k}{lambda} \PY{n}{n}\PY{p}{:} \PY{n}{n} \PY{k}{if} \PY{n}{n} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{1} \PY{k}{else} \PY{n}{fib}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{fib}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{o}{*}\PY{p}{[}\PY{n}{fib}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377
+    \end{Verbatim}
+
+    \hypertarget{input-warning-wall-of-code-tower-of-hanoi-traditional-recursion-problem}{%
+\subsubsection{(INPUT) (WARNING: WALL-OF-CODE) TOWER OF HANOI:
+TRADITIONAL RECURSION
+PROBLEM}\label{input-warning-wall-of-code-tower-of-hanoi-traditional-recursion-problem}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{25}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TOWER OF HANOI: TRADITIONAL RECURSION PROBLEM}
+\PY{c+c1}{\PYZsh{} EXPLICITLY VISUALIZED CODE}
+\PY{k}{def} \PY{n+nf}{hanoi\PYZus{}tower}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}run and return number of transfers as text\PYZsq{}\PYZsq{}\PYZsq{}}
+    \PY{k}{def} \PY{n+nf}{transfer}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{,} \PY{n}{mid}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{n}{n} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+            \PY{k}{nonlocal} \PY{n}{count}
+            \PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{map\PYZus{}ind} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{*}\PY{l+m+mi}{18} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Step }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{count}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{map\PYZus{}ind}\PY{p}{[}\PY{n}{start}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ \PYZhy{}\PYZgt{} }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{map\PYZus{}ind}\PY{p}{[}\PY{n}{end}\PY{p}{]}\PY{p}{)}
+            \PY{n}{move}\PY{p}{(}\PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{)}
+            \PY{n}{print\PYZus{}board}\PY{p}{(}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{transfer}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{start}\PY{p}{,} \PY{n}{mid}\PY{p}{,} \PY{n}{end}\PY{p}{)}
+            \PY{n}{transfer}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{start}\PY{p}{,} \PY{n}{end}\PY{p}{,} \PY{n}{mid}\PY{p}{)}
+            \PY{n}{transfer}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{mid}\PY{p}{,} \PY{n}{end}\PY{p}{,} \PY{n}{start}\PY{p}{)}
+    \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{n}{transfer}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+    \PY{k}{return} \PY{n}{count}
+
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{a =                     }
+\PY{l+s+sd}{      0  1  2  3                    }
+
+\PY{l+s+sd}{0     4  3  2  1                    }
+\PY{l+s+sd}{1     0  0  0  0                    }
+\PY{l+s+sd}{2     0  0  0  0}
+
+\PY{l+s+sd}{printed :}
+\PY{l+s+sd}{                A  B  C}
+
+\PY{l+s+sd}{                1  .  .}
+\PY{l+s+sd}{                2  .  .}
+\PY{l+s+sd}{                3  .  .}
+\PY{l+s+sd}{                4  .  .}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{k}{def} \PY{n+nf}{print\PYZus{}board}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}print current board\PYZsq{}\PYZsq{}\PYZsq{}}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|  A  B  C  |}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+    \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|  }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+            \PY{n}{character} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{a}\PY{p}{[}\PY{n}{row}\PY{p}{]}\PY{p}{[}\PY{n}{col}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0} \PY{k}{else} \PY{n}{a}\PY{p}{[}\PY{n}{row}\PY{p}{]}\PY{p}{[}\PY{n}{col}\PY{p}{]}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{character}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{  }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{end} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{|}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+
+\PY{k}{def} \PY{n+nf}{move}\PY{p}{(}\PY{n}{row\PYZus{}start}\PY{p}{,} \PY{n}{row\PYZus{}end}\PY{p}{)}\PY{p}{:}
+    \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}make a move\PYZsq{}\PYZsq{}\PYZsq{}}
+    \PY{k}{def} \PY{n+nf}{col\PYZus{}lastnonenull}\PY{p}{(}\PY{n}{row}\PY{p}{)}\PY{p}{:}
+        \PY{k}{for} \PY{n}{col\PYZus{}ind} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{a}\PY{p}{[}\PY{n}{row}\PY{p}{]}\PY{p}{[}\PY{n}{col\PYZus{}ind}\PY{p}{]} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{return} \PY{n}{col\PYZus{}ind}
+            \PY{c+c1}{\PYZsh{} return n \PYZhy{} 1}
+    \PY{k}{def} \PY{n+nf}{col\PYZus{}firstnull}\PY{p}{(}\PY{n}{row}\PY{p}{)}\PY{p}{:}
+        \PY{k}{for} \PY{n}{col\PYZus{}ind} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{a}\PY{p}{[}\PY{n}{row}\PY{p}{]}\PY{p}{[}\PY{n}{col\PYZus{}ind}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{return} \PY{n}{col\PYZus{}ind}
+            \PY{c+c1}{\PYZsh{} return 0}
+    \PY{n}{a}\PY{p}{[}\PY{n}{row\PYZus{}end}\PY{p}{]}\PY{p}{[}\PY{n}{col\PYZus{}firstnull}\PY{p}{(}\PY{n}{row\PYZus{}end}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{a}\PY{p}{[}\PY{n}{row\PYZus{}start}\PY{p}{]}\PY{p}{[}\PY{n}{col\PYZus{}lastnonenull}\PY{p}{(}\PY{n}{row\PYZus{}start}\PY{p}{)}\PY{p}{]}
+    \PY{n}{a}\PY{p}{[}\PY{n}{row\PYZus{}start}\PY{p}{]}\PY{p}{[}\PY{n}{col\PYZus{}lastnonenull}\PY{p}{(}\PY{n}{row\PYZus{}start}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+
+\PY{c+c1}{\PYZsh{} MAIN:}
+
+\PY{c+c1}{\PYZsh{} input n}
+\PY{n}{n} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} initialize list of list, n = 4, }
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{a =}
+\PY{l+s+sd}{      0  1  2  3}
+\PY{l+s+sd}{      }
+\PY{l+s+sd}{0     4  3  2  1}
+\PY{l+s+sd}{1     0  0  0  0}
+\PY{l+s+sd}{2     0  0  0  0}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{p}{[}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{n}{i} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{]}\PY{p}{]}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+    \PY{n}{a}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+    
+\PY{c+c1}{\PYZsh{} print the initialized board}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\PY{n}{print\PYZus{}board}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} run, print the board every move and return the result}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Number of transfers: }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{hanoi\PYZus{}tower}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} n SHOULD BE LESS THAN 5}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+n = 3
+
+|  A  B  C  |
+|  1  .  .  |
+|  2  .  .  |
+|  3  .  .  |
+                  Step 1: A -> C
+|  A  B  C  |
+|  .  .  .  |
+|  2  .  .  |
+|  3  .  1  |
+                  Step 2: A -> B
+|  A  B  C  |
+|  .  .  .  |
+|  .  .  .  |
+|  3  2  1  |
+                  Step 3: C -> B
+|  A  B  C  |
+|  .  .  .  |
+|  .  1  .  |
+|  3  2  .  |
+                  Step 4: A -> C
+|  A  B  C  |
+|  .  .  .  |
+|  .  1  .  |
+|  .  2  3  |
+                  Step 5: B -> A
+|  A  B  C  |
+|  .  .  .  |
+|  .  .  .  |
+|  1  2  3  |
+                  Step 6: B -> C
+|  A  B  C  |
+|  .  .  .  |
+|  .  .  2  |
+|  1  .  3  |
+                  Step 7: A -> C
+|  A  B  C  |
+|  .  .  1  |
+|  .  .  2  |
+|  .  .  3  |
+
+Number of transfers: 7
+    \end{Verbatim}
+
+    \hypertarget{chapter-4-strings}{%
+\section{CHAPTER 4: STRINGS}\label{chapter-4-strings}}
+
+    \hypertarget{string-examples}{%
+\subsection{STRING EXAMPLES}\label{string-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{26}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} STRING EXAMPLES}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+abc
+    \end{Verbatim}
+
+    \hypertarget{len-of-a-string}{%
+\subsection{\texorpdfstring{\texttt{len()} OF A
+STRING}{len() OF A STRING}}\label{len-of-a-string}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{27}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LEN OF A STRING}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{this is a string}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+16
+    \end{Verbatim}
+
+    \hypertarget{loop-over-a-string}{%
+\subsection{LOOP OVER A STRING}\label{loop-over-a-string}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{28}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LOOP OVER A STRING}
+\PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hi there?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{c}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+h
+i
+
+t
+h
+e
+r
+e
+?
+    \end{Verbatim}
+
+    \hypertarget{slicing-a-string}{%
+\subsection{SLICING A STRING}\label{slicing-a-string}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{29}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SLICING A STRING}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mnpq}\PY{l+s+s1}{\PYZsq{}}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello from the other side}\PY{l+s+s1}{\PYZsq{}}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+c
+npq
+hello
+    \end{Verbatim}
+
+    \hypertarget{string-formatting-operator}{%
+\subsection{\texorpdfstring{STRING FORMATTING OPERATOR
+\texttt{\%}}{STRING FORMATTING OPERATOR \%}}\label{string-formatting-operator}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{30}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} STRING FORMATTING OPERATOR \PYZpc{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ is a metal}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{num} \PY{o}{=} \PY{l+m+mi}{7}
+\PY{n+nb}{print}\PY{p}{(} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ is a color of }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ main colors in a rainbow!}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{color}\PY{p}{,} \PY{n}{num}\PY{p}{)} \PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} \PYZpc{}s string | \PYZpc{}c char | \PYZpc{}d decimal | \PYZpc{}i integer | \PYZpc{}f float}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+gold is a metal
+yellow is a color of 7 main colors in a rainbow!
+    \end{Verbatim}
+
+    \hypertarget{string-formatting-operator-example}{%
+\subsubsection{\texorpdfstring{STRING FORMATTING OPERATOR \texttt{\%}
+EXAMPLE}{STRING FORMATTING OPERATOR \% EXAMPLE}}\label{string-formatting-operator-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{31}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} STRING FORMATTING OPERATOR \PYZpc{} EXAMPLE}
+\PY{c+c1}{\PYZsh{} https://docs.python.org/3/library/string.html}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}.2f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{l+m+mf}{3.895}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3.90
+    \end{Verbatim}
+
+    \hypertarget{in-operator}{%
+\subsection{\texorpdfstring{\texttt{in}
+OPERATOR}{in OPERATOR}}\label{in-operator}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{32}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} in OPERATOR}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{e}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+    \end{Verbatim}
+
+    \hypertarget{string-comparison}{%
+\subsection{STRING COMPARISON}\label{string-comparison}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{33}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} STRING COMPARISON}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abc}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZgt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{def}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abc}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZgt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{axyz}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZlt{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+False
+True
+    \end{Verbatim}
+
+    \hypertarget{the-directory-function-dir}{%
+\subsection{\texorpdfstring{THE DIRECTORY FUNCTION
+\texttt{dir()}}{THE DIRECTORY FUNCTION dir()}}\label{the-directory-function-dir}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{34}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} THE DIRECTORY FUNCTION dir()}
+\PY{n}{s} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{????}\PY{l+s+s1}{\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{...}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{o}{*}\PY{n+nb}{dir}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{30}\PY{p}{:}\PY{l+m+mi}{38}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{...}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{and a lot more!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\ldots} \_\_sizeof\_\_ \_\_str\_\_ \_\_subclasshook\_\_ capitalize casefold center count encode
+{\ldots}
+and a lot more!
+    \end{Verbatim}
+
+    \hypertarget{important-functions-and-methods}{%
+\subsection{IMPORTANT FUNCTIONS AND
+METHODS}\label{important-functions-and-methods}}
+
+    \hypertarget{capitalize-center}{%
+\subsubsection{\texorpdfstring{\texttt{capitalize()},
+\texttt{center()}}{capitalize(), center()}}\label{capitalize-center}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{35}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} capitalize(), center()}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{center}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{center}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Hello
+    hello
+*******hello********
+    \end{Verbatim}
+
+    \hypertarget{endswith-startswith}{%
+\subsubsection{\texorpdfstring{\texttt{endswith()},
+\texttt{startswith()}}{endswith(), startswith()}}\label{endswith-startswith}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{36}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} endswith(), startswith()}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}      01234}
+\PY{c+c1}{\PYZsh{} search from 1 to 3 = \PYZsq{}ell\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{startswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{e}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}      01234}
+\PY{c+c1}{\PYZsh{} search from 1 to 3 = \PYZsq{}ell\PYZsq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+False
+
+True
+True
+    \end{Verbatim}
+
+    \hypertarget{find}{%
+\subsubsection{\texorpdfstring{\texttt{find()}}{find()}}\label{find}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{37}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} find()}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}      01234}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+3
+    \end{Verbatim}
+
+    \hypertarget{lstrip-rstrip-strip}{%
+\subsubsection{\texorpdfstring{\texttt{lstrip()}, \texttt{rstrip()},
+\texttt{strip()}}{lstrip(), rstrip(), strip()}}\label{lstrip-rstrip-strip}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{38}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} lstrip(), rstrip(), strip()}
+\PY{k}{def} \PY{n+nf}{pr}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{s}\PY{p}{)}
+
+\PY{n}{pr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{    hello        }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{lstrip}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{pr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{***\PYZus{}\PYZus{}   hello \PYZus{}\PYZus{}*****  }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{lstrip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{pr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{    hello        }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{rstrip}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{pr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{***\PYZus{}\PYZus{}   hello \PYZus{}\PYZus{}*****  }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{rstrip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{pr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{    hello        }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{pr}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{***\PYZus{}\PYZus{}   hello \PYZus{}\PYZus{}*****  }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+"hello        "
+"\_\_   hello \_\_*****  "
+
+"    hello"
+"***\_\_   hello \_\_*****  "
+
+"hello"
+"\_\_   hello \_\_*****  "
+
+    \end{Verbatim}
+
+    \hypertarget{join}{%
+\subsubsection{\texorpdfstring{\texttt{join()}}{join()}}\label{join}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{39}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} join()}
+\PY{n}{wrdlst} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{side}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{wrdlst}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{wrdset} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{other}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{side}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{wrdset}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+hello\_from\_the\_other\_side
+other-from-hello-the-side
+    \end{Verbatim}
+
+    \hypertarget{replace}{%
+\subsubsection{\texorpdfstring{\texttt{replace()}}{replace()}}\label{replace}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{40}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} replace()}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello, long time no see}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello, long time no see}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{*}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} only the 2 first ones are replaced }
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+he**o, *ong time no see
+he**o, long time no see
+    \end{Verbatim}
+
+    \hypertarget{lower-upper}{%
+\subsubsection{\texorpdfstring{\texttt{lower()},
+\texttt{upper()}}{lower(), upper()}}\label{lower-upper}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{41}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} lower(), upper()}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hELlO}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hELlO}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{upper}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+hello
+HELLO
+    \end{Verbatim}
+
+    \hypertarget{chapter-5-lists-sets-dictionaries-and-tuples}{%
+\section{CHAPTER 5: LISTS, SETS, DICTIONARIES AND
+TUPLES}\label{chapter-5-lists-sets-dictionaries-and-tuples}}
+
+    \hypertarget{lists}{%
+\subsection{LISTS}\label{lists}}
+
+    \hypertarget{list-example}{%
+\subsubsection{LIST EXAMPLE}\label{list-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{42}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LIST EXAMPLE}
+\PY{n}{lst} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{]}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['a', 8, 'bc', 'd', [15, 6]]
+    \end{Verbatim}
+
+    \hypertarget{loop-a-list}{%
+\subsubsection{LOOP A LIST}\label{loop-a-list}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{43}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LIST LOOPS}
+\PY{k}{for} \PY{n}{ele} \PY{o+ow}{in} \PY{n}{lst}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{ele}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a
+8
+bc
+d
+[15, 6]
+    \end{Verbatim}
+
+    \hypertarget{lists-are-mutable}{%
+\subsubsection{LISTS ARE MUTABLE}\label{lists-are-mutable}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{44}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LISTS ARE MUTABLE}
+\PY{n}{lst}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZca{}\PYZus{}\PYZca{}}\PY{l+s+s1}{\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6]]
+    \end{Verbatim}
+
+    \hypertarget{len-of-a-list}{%
+\subsubsection{\texorpdfstring{\texttt{len()} OF A
+LIST}{len() OF A LIST}}\label{len-of-a-list}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{45}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} len OF A LIST}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{lst}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}len\PYZus{}\PYZus{}}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5
+5
+    \end{Verbatim}
+
+    \hypertarget{the-range-function}{%
+\subsubsection{\texorpdfstring{THE \texttt{range()}
+FUNCTION}{THE range() FUNCTION}}\label{the-range-function}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{46}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} THE range() FUNCTION}
+\PY{n+nb}{print}\PY{p}{(}\PY{o}{*}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{o}{*}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{o}{*}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{o}{*}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0 1 2 3 4 5 6 7
+3 4 5 6 7
+3 6
+8 6 4
+    \end{Verbatim}
+
+    \hypertarget{concatenating-lists-using}{%
+\subsubsection{\texorpdfstring{CONCATENATING LISTS USING
+\texttt{+}}{CONCATENATING LISTS USING +}}\label{concatenating-lists-using}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{47}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} CONCATENATING LISTS USING +}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst} \PY{o}{+} \PY{p}{[}\PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6]]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6], 7, 3, 'h']
+    \end{Verbatim}
+
+    \hypertarget{list-slicing}{%
+\subsubsection{LIST SLICING}\label{list-slicing}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{48}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LIST SLICING}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6]]
+['\^{}\_\^{}', 8, 'bc']
+d
+    \end{Verbatim}
+
+    \hypertarget{list-methods-and-functions}{%
+\subsubsection{LIST METHODS AND
+FUNCTIONS}\label{list-methods-and-functions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{49}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LIST METHODS AND FUNCTIONS}
+\PY{k}{for} \PY{n}{met} \PY{o+ow}{in} \PY{n+nb}{dir}\PY{p}{(}\PY{n}{lst}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{34}\PY{p}{:}\PY{p}{]}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{met}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\_\_subclasshook\_\_
+append
+clear
+copy
+count
+extend
+index
+insert
+pop
+remove
+reverse
+sort
+    \end{Verbatim}
+
+    \hypertarget{append}{%
+\paragraph{\texorpdfstring{\texttt{append()}}{append()}}\label{append}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{50}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} append()}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{n}{lst}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+\PY{n}{new\PYZus{}lst}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{appended string}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6], 'appended string']
+    \end{Verbatim}
+
+    \hypertarget{in-operator}{%
+\paragraph{\texorpdfstring{\texttt{in}
+OPERATOR}{in OPERATOR}}\label{in-operator}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{51}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} in OPERATOR}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{8} \PY{o+ow}{in} \PY{n}{lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{9} \PY{o+ow}{in} \PY{n}{lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZca{}\PYZus{}\PYZca{}}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZca{}\PYZus{}\PYZca{}}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+False
+True
+False
+    \end{Verbatim}
+
+    \hypertarget{max-min-sum}{%
+\paragraph{\texorpdfstring{\texttt{max()}, \texttt{min()},
+\texttt{sum()}}{max(), min(), sum()}}\label{max-min-sum}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{52}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} max(), min(), sum()}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{69}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{max}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{min}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+69
+6
+84
+    \end{Verbatim}
+
+    \hypertarget{sort-sorted}{%
+\paragraph{\texorpdfstring{\texttt{sort()},
+\texttt{sorted()}}{sort(), sorted()}}\label{sort-sorted}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{53}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} sort(), sorted()}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{69}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\PY{n}{new\PYZus{}lst}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{reverse} \PY{o}{=} \PY{k+kc}{True}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{\PYZpc{}} \PY{l+m+mi}{8}\PY{p}{)}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{6 \PYZpc{} 8 = 6}
+\PY{l+s+sd}{69 \PYZpc{} 8 = 5}
+\PY{l+s+sd}{9 \PYZpc{} 8 = 1}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[6, 9, 69]
+[6, 69, 9]
+    \end{Verbatim}
+
+    \hypertarget{del-pop-remove}{%
+\paragraph{\texorpdfstring{\texttt{del}, \texttt{pop()},
+\texttt{remove()}}{del, pop(), remove()}}\label{del-pop-remove}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{54}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} del, pop(), remove()}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{n}{lst}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+
+\PY{k}{del} \PY{n}{new\PYZus{}lst}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+
+\PY{n}{new\PYZus{}lst}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+
+\PY{n}{new\PYZus{}lst}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bc}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6]]
+['\^{}\_\^{}', 8, 'bc', 'd']
+['\^{}\_\^{}', 8, 'bc']
+['\^{}\_\^{}', 8]
+    \end{Verbatim}
+
+    \hypertarget{reverse}{%
+\paragraph{\texorpdfstring{\texttt{reverse()}}{reverse()}}\label{reverse}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{55}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} reverse()}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{n}{lst}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+
+\PY{n}{new\PYZus{}lst}\PY{o}{.}\PY{n}{reverse}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\^{}\_\^{}', 8, 'bc', 'd', [15, 6]]
+[[15, 6], 'd', 'bc', 8, '\^{}\_\^{}']
+    \end{Verbatim}
+
+    \hypertarget{lists-and-strings}{%
+\subsubsection{LISTS AND STRINGS}\label{lists-and-strings}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{56}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LISTS AND STRINGS}
+\PY{n}{s} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{this one! is a string}\PY{l+s+s1}{\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hi}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{there}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['t', 'h', 'i', 's', ' ', 'o', 'n', 'e', '!', ' ', 'i', 's', ' ', 'a', ' ', 's',
+'t', 'r', 'i', 'n', 'g']
+['this', 'one!', 'is', 'a', 'string']
+['this one', ' is a string']
+hi-there-?
+    \end{Verbatim}
+
+    \hypertarget{aliases}{%
+\subsubsection{ALIASES}\label{aliases}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{57}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} ALIASES}
+\PY{n}{lst\PYZus{}a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
+\PY{n}{lst\PYZus{}b} \PY{o}{=} \PY{n}{lst\PYZus{}a}
+
+\PY{n}{lst\PYZus{}b}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst\PYZus{}a}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 3, 4, '?']
+    \end{Verbatim}
+
+    \hypertarget{mutation-and-iteration}{%
+\subsubsection{MUTATION AND ITERATION}\label{mutation-and-iteration}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{58}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} MUTATION AND ITERATION}
+\PY{n}{lst\PYZus{}a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{]}
+\PY{n}{lst\PYZus{}b} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{c+c1}{\PYZsh{} trying to remove values in lst\PYZus{}a which are already in lst\PYZus{}b }
+\PY{k}{for} \PY{n}{num} \PY{o+ow}{in} \PY{n}{lst\PYZus{}a}\PY{p}{:}
+    \PY{k}{if} \PY{n}{num} \PY{o+ow}{in} \PY{n}{lst\PYZus{}b}\PY{p}{:}
+        \PY{n}{lst\PYZus{}a}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{n}{num}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{lst\PYZus{}a}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} avoid mutating the list while iterating over it}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 4]
+    \end{Verbatim}
+
+    \hypertarget{list-arguments}{%
+\subsubsection{LIST ARGUMENTS}\label{list-arguments}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{59}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LIST ARGUMENTS}
+\PY{k}{def} \PY{n+nf}{delete\PYZus{}last}\PY{p}{(}\PY{n}{a\PYZus{}lst}\PY{p}{)}\PY{p}{:}
+    \PY{k}{del} \PY{n}{a\PYZus{}lst}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{c+c1}{\PYZsh{} this function mutates the global list}
+
+\PY{k}{def} \PY{n+nf}{wrong\PYZus{}delete\PYZus{}last}\PY{p}{(}\PY{n}{a\PYZus{}lst}\PY{p}{)}\PY{p}{:}
+    \PY{n}{a\PYZus{}lst} \PY{o}{=} \PY{n}{a\PYZus{}lst}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{List in wrong one:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{a\PYZus{}lst}\PY{p}{)}
+    \PY{c+c1}{\PYZsh{} this one doesn\PYZsq{}t, a\PYZus{}lst now becomes a local variable}
+
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{n}{delete\PYZus{}last}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{]}
+\PY{n}{wrong\PYZus{}delete\PYZus{}last}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{new\PYZus{}lst}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 3, 6]
+List in wrong one: [1, 3, 6]
+[1, 3, 6, 9]
+    \end{Verbatim}
+
+    \hypertarget{mapreduce-and-list-comprehension}{%
+\subsubsection{MapReduce AND LIST
+COMPREHENSION}\label{mapreduce-and-list-comprehension}}
+
+    \hypertarget{map}{%
+\paragraph{\texorpdfstring{\texttt{map()}}{map()}}\label{map}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{60}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} map()}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{new\PYZus{}lst}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[4, 6, 9, 11, 12, 13]
+    \end{Verbatim}
+
+    \hypertarget{reduce}{%
+\paragraph{\texorpdfstring{\texttt{reduce()}}{reduce()}}\label{reduce}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{61}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} reduce()}
+\PY{k+kn}{from} \PY{n+nn}{functools} \PY{k+kn}{import} \PY{n}{reduce}
+\PY{n}{new\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{reduce}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{n}{y}\PY{p}{,} \PY{n}{new\PYZus{}lst}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{reduce}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{n}{y}\PY{p}{,} \PY{n}{new\PYZus{}lst}\PY{p}{,} \PY{l+m+mi}{3000}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{}                                         initializer}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+11
+3011
+    \end{Verbatim}
+
+    \hypertarget{mapreduce-application-count-number-of-a-word}{%
+\paragraph{MapReduce APPLICATION: COUNT NUMBER OF A
+WORD}\label{mapreduce-application-count-number-of-a-word}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{62}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} MapReduce APPLICATION: COUNT NUMBER OF A WORD}
+\PY{c+c1}{\PYZsh{} count the number of the word \PYZdq{}the\PYZdq{}/\PYZdq{}The\PYZdq{} in a sentence}
+\PY{n}{text} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The word }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{deep}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ in }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{deep learning}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{ refers to the number of layers through which the data is transformed. More precisely, deep learning systems have a substantial credit assignment path (CAP) depth. The CAP is the chain of transformations from input to output. CAPs describe potentially causal connections between input and output. For a feedforward neural network, the depth of the CAPs is that of the network and is the number of hidden layers plus one (as the output layer is also parameterized). For recurrent neural networks, in which a signal may propagate through a layer more than once, the CAP depth is potentially unlimited.[2] No universally agreed\PYZhy{}upon threshold of depth divides shallow learning from deep learning, but most researchers agree that deep learning involves CAP depth higher than 2. CAP of depth 2 has been shown to be a universal approximator in the sense that it can emulate any function.[15] Beyond that, more layers do not add to the function approximator ability of the network. Deep models (CAP \PYZgt{} 2) are able to extract better features than shallow models and hence, extra layers help in learning the features effectively.}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{ifThe} \PY{o}{=} \PY{k}{lambda} \PY{n}{word}\PY{p}{:} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{k}{else} \PY{l+m+mi}{0}
+\PY{n}{sumof2} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{n}{y}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{ifThe}\PY{p}{,} \PY{n}{text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{reduce}\PY{p}{(}\PY{n}{sumof2}\PY{p}{,} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n}{ifThe}\PY{p}{,} \PY{n}{text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+0]
+15
+    \end{Verbatim}
+
+    \hypertarget{list-comprehension}{%
+\paragraph{LIST COMPREHENSION}\label{list-comprehension}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{63}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LIST COMPREHENSION}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{[}\PY{n}{c} \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello there}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{n}{cnt\PYZus{}lst} \PY{o}{=} \PY{p}{[} \PY{n}{word} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)} \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cnt\PYZus{}lst}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{cnt\PYZus{}lst}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{cnt\PYZus{}lst\PYZus{}2} \PY{o}{=} \PY{p}{[} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{word} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{k}{else} \PY{l+m+mi}{0} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)} \PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{cnt\PYZus{}lst\PYZus{}2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['h', 'e', 'l', 'l', 'o', ' ', 't', 'h', 'e', 'r', 'e']
+
+['The', 'the', 'the', 'The', 'the', 'the', 'the', 'the', 'the', 'the', 'the',
+'the', 'the', 'the', 'the']
+15
+[1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+0]
+    \end{Verbatim}
+
+    \hypertarget{sets}{%
+\subsection{SETS}\label{sets}}
+
+    \hypertarget{set-examples}{%
+\subsubsection{SET EXAMPLES}\label{set-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{64}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SET EXAMPLES}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{\PYZcb{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{8, 3, 4\}
+\{'l', 'e', 'h', 'o'\}
+    \end{Verbatim}
+
+    \hypertarget{set-operations}{%
+\subsubsection{SET OPERATIONS}\label{set-operations}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{65}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SET OPERATIONS}
+\PY{n}{A} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+\PY{n}{B} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{B}\PY{p}{)} \PY{c+c1}{\PYZsh{} in A, not in B}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{A} \PY{o}{|} \PY{n}{B}\PY{p}{)} \PY{c+c1}{\PYZsh{} in any of A or B (bitwise or)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{A} \PY{o}{\PYZam{}} \PY{n}{B}\PY{p}{)} \PY{c+c1}{\PYZsh{} in both A and B (bitwise and)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{A} \PY{o}{\PYZca{}} \PY{n}{B}\PY{p}{)} \PY{c+c1}{\PYZsh{} in A or B, not both (bitwise xor)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{0, 1\}
+\{0, 1, 2, 3, 4, 5\}
+\{2, 3\}
+\{0, 1, 4, 5\}
+    \end{Verbatim}
+
+    \hypertarget{set-comprehension}{%
+\subsubsection{SET COMPREHENSION}\label{set-comprehension}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{66}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SET COMPREHENSION}
+\PY{c+c1}{\PYZsh{} set of all end\PYZhy{}of\PYZhy{}sentence words}
+\PY{n+nb}{print}\PY{p}{(} \PY{p}{\PYZob{}}\PY{n}{word} \PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)} \PY{k}{if} \PY{n}{word}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{\PYZcb{}} \PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'effectively.', 'transformed.', 'output.', '2.', 'network.', 'parameterized).',
+'depth.'\}
+    \end{Verbatim}
+
+    \hypertarget{dictionaries}{%
+\subsection{DICTIONARIES}\label{dictionaries}}
+
+    \hypertarget{dictionary-examples}{%
+\subsubsection{DICTIONARY EXAMPLES}\label{dictionary-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{67}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} DICTIONARY EXAMPLES}
+\PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{8}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{!?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mnpq}\PY{l+s+s1}{\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{8: 'b', '?': 'a'\}
+b
+a
+\{8: 'b', '?': 'a', '!?': 'mnpq'\}
+    \end{Verbatim}
+
+    \hypertarget{in-operator}{%
+\subsubsection{in OPERATOR}\label{in-operator}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{68}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} in OPERATOR}
+\PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{8}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{d}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{d}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{8: 'b', '?': 'a'\}
+True
+False
+    \end{Verbatim}
+
+    \hypertarget{get-method}{%
+\subsubsection{\texorpdfstring{\texttt{get()}
+METHOD}{get() METHOD}}\label{get-method}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{69}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} get() METHOD}
+\PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{8}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{} not equivalent to d[\PYZsq{}m\PYZsq{}] = 5}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{8: 'b', '?': 'a'\}
+b
+None
+5
+\{8: 'b', '?': 'a'\}
+    \end{Verbatim}
+
+    \hypertarget{application-counting-words}{%
+\subsubsection{APPLICATION: COUNTING
+WORDS}\label{application-counting-words}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{70}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} APPLICATION: COUNTING WORDS}
+\PY{n}{counted} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+\PY{k}{for} \PY{n}{word} \PY{o+ow}{in} \PY{n}{text}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{n}{counted}\PY{p}{[}\PY{n}{word}\PY{p}{]} \PY{o}{=} \PY{n}{counted}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{n}{word}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{counted}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{'The': 2, 'word': 1, '"deep"': 1, 'in': 4, '"deep': 1, 'learning"': 1,
+'refers': 1, 'to': 5, 'the': 13, 'number': 2, 'of': 8, 'layers': 4, 'through':
+2, 'which': 2, 'data': 1, 'is': 6, 'transformed.': 1, 'More': 1, 'precisely,':
+1, 'deep': 3, 'learning': 4, 'systems': 1, 'have': 1, 'a': 5, 'substantial': 1,
+'credit': 1, 'assignment': 1, 'path': 1, '(CAP)': 1, 'depth.': 1, 'CAP': 4,
+'chain': 1, 'transformations': 1, 'from': 2, 'input': 2, 'output.': 2, 'CAPs':
+2, 'describe': 1, 'potentially': 2, 'causal': 1, 'connections': 1, 'between': 1,
+'and': 3, 'For': 2, 'feedforward': 1, 'neural': 2, 'network,': 1, 'depth': 5,
+'that': 3, 'network': 1, 'hidden': 1, 'plus': 1, 'one': 1, '(as': 1, 'output':
+1, 'layer': 2, 'also': 1, 'parameterized).': 1, 'recurrent': 1, 'networks,': 1,
+'signal': 1, 'may': 1, 'propagate': 1, 'more': 2, 'than': 3, 'once,': 1,
+'unlimited.[2]': 1, 'No': 1, 'universally': 1, 'agreed-upon': 1, 'threshold': 1,
+'divides': 1, 'shallow': 2, 'learning,': 1, 'but': 1, 'most': 1, 'researchers':
+1, 'agree': 1, 'involves': 1, 'higher': 1, '2.': 1, '2': 1, 'has': 1, 'been': 1,
+'shown': 1, 'be': 1, 'universal': 1, 'approximator': 2, 'sense': 1, 'it': 1,
+'can': 1, 'emulate': 1, 'any': 1, 'function.[15]': 1, 'Beyond': 1, 'that,': 1,
+'do': 1, 'not': 1, 'add': 1, 'function': 1, 'ability': 1, 'network.': 1, 'Deep':
+1, 'models': 2, '(CAP': 1, '>': 1, '2)': 1, 'are': 1, 'able': 1, 'extract': 1,
+'better': 1, 'features': 2, 'hence,': 1, 'extra': 1, 'help': 1, 'effectively.':
+1\}
+    \end{Verbatim}
+
+    \hypertarget{loop-over-a-dictionary}{%
+\subsubsection{LOOP OVER A DICTIONARY}\label{loop-over-a-dictionary}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{71}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LOOP OVER A DICTIONARY}
+\PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{8}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{:} \PY{l+m+mi}{15}\PY{p}{\PYZcb{}}
+\PY{k}{for} \PY{n}{key} \PY{o+ow}{in} \PY{n}{d}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{d}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8 b
+? a
+! b
+10 15
+    \end{Verbatim}
+
+    \hypertarget{lists-of-keys-and-values}{%
+\subsubsection{LISTS OF KEYS AND
+VALUES}\label{lists-of-keys-and-values}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{72}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LISTS OF KEYS AND VALUES}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[8, '?', '!', 10]
+['b', 'a', 'b', 15]
+[(8, 'b'), ('?', 'a'), ('!', 'b'), (10, 15)]
+    \end{Verbatim}
+
+    \hypertarget{two-iteration-variables}{%
+\subsubsection{TWO ITERATION VARIABLES}\label{two-iteration-variables}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{73}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TWO ITERATION VARIABLES}
+\PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{d}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+8 b
+? a
+! b
+10 15
+    \end{Verbatim}
+
+    \hypertarget{dictionary-comprehension}{%
+\subsubsection{DICTIONARY
+COMPREHENSION}\label{dictionary-comprehension}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{74}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} DICTIONARY COMPREHENSION}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{o}{*} \PY{l+m+mi}{8} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{\PYZcb{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\{2: 16, 3: 24, 4: 32, 5: 40, 6: 48, 7: 56\}
+    \end{Verbatim}
+
+    \hypertarget{memoized-recursion-fibonacci-example}{%
+\subsubsection{MEMOIZED RECURSION: FIBONACCI
+EXAMPLE}\label{memoized-recursion-fibonacci-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{75}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} MEMOIZED RECURSION: FIBONACCI EXAMPLE}
+\PY{n}{res} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{0}\PY{p}{:} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}
+\PY{k}{def} \PY{n+nf}{fib}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{n} \PY{o+ow}{in} \PY{n}{res}\PY{p}{:}
+        \PY{k}{return} \PY{n}{res}\PY{p}{[}\PY{n}{n}\PY{p}{]}
+    \PY{n}{res}\PY{p}{[}\PY{n}{n}\PY{p}{]} \PY{o}{=} \PY{n}{fib}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{fib}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{k}{return} \PY{n}{res}\PY{p}{[}\PY{n}{n}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{fib}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+377
+    \end{Verbatim}
+
+    \hypertarget{memoized-recursion-longest-increasing-subsequence-example}{%
+\paragraph{MEMOIZED RECURSION: LONGEST INCREASING SUBSEQUENCE
+EXAMPLE}\label{memoized-recursion-longest-increasing-subsequence-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{76}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} MEMOIZED RECURSION: LONGEST INCREASING SUBSEQUENCE EXAMPLE}
+\PY{k+kn}{from} \PY{n+nn}{random} \PY{k+kn}{import} \PY{n}{randint}
+\PY{n}{num\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{]}
+ 
+\PY{n}{res} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mi}{0}\PY{p}{:} \PY{l+m+mi}{1}\PY{p}{\PYZcb{}}
+\PY{k}{def} \PY{n+nf}{lis\PYZus{}including}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+    \PY{k}{if} \PY{n}{i} \PY{o+ow}{in} \PY{n}{res}\PY{p}{:}
+        \PY{k}{return} \PY{n}{res}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+    \PY{n}{max\PYZus{}lis} \PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{n}{num\PYZus{}list}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{num\PYZus{}list}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{:}
+            \PY{n}{max\PYZus{}lis} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{max\PYZus{}lis}\PY{p}{,} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{lis\PYZus{}including}\PY{p}{(}\PY{n}{j}\PY{p}{)}\PY{p}{)}
+    \PY{n}{res}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{max\PYZus{}lis}
+    \PY{k}{return} \PY{n}{max\PYZus{}lis}
+ 
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{  i   num\PYZus{}list[i]    lis\PYZus{}including(i)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZpc{}3i}\PY{l+s+si}{\PYZpc{}13i}\PY{l+s+si}{\PYZpc{}20i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n}{num\PYZus{}list}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{lis\PYZus{}including}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Result =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{max}\PY{p}{(}\PY{p}{[}\PY{n}{lis\PYZus{}including}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  i   num\_list[i]    lis\_including(i)
+  0           19                   1
+  1           51                   2
+  2           58                   3
+  3           58                   3
+  4            3                   1
+  5           99                   4
+  6            0                   1
+  7           58                   3
+  8           63                   4
+  9           53                   3
+ 10           90                   5
+ 11           48                   2
+ 12           44                   2
+ 13           25                   2
+ 14           51                   3
+Result = 5
+    \end{Verbatim}
+
+    \hypertarget{tuples}{%
+\subsection{TUPLES}\label{tuples}}
+
+    \hypertarget{tuple-examples}{%
+\subsubsection{TUPLE EXAMPLES}\label{tuple-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{77}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TUPLE EXAMPLES}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} Warning: Tuple of 1 element must have a comma}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3, 5, 7)
+(1,)
+1
+    \end{Verbatim}
+
+    \hypertarget{tuples-are-immutable}{%
+\subsubsection{TUPLES ARE IMMUTABLE}\label{tuples-are-immutable}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{78}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TUPLES ARE IMMUTABLE}
+\PY{n}{tup} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} tup[0] = 0}
+\PY{c+c1}{\PYZsh{} TypeError: \PYZsq{}tuple\PYZsq{} object does not support item assignment}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{tup}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3, 4, 7)
+    \end{Verbatim}
+
+    \hypertarget{tuple-directories}{%
+\subsubsection{TUPLE DIRECTORIES}\label{tuple-directories}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{79}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TUPLE DIRECTORIES}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{dir}\PY{p}{(}\PY{n+nb}{tuple}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['\_\_subclasshook\_\_', 'count', 'index']
+    \end{Verbatim}
+
+    \hypertarget{tuples-and-assignment}{%
+\subsubsection{TUPLES AND ASSIGNMENT}\label{tuples-and-assignment}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{80}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TUPLES AND ASSIGNMENT}
+\PY{n}{a}\PY{p}{,} \PY{n}{b} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a = }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{b = }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{)}
+\PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{9}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x = }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{y = }\PY{l+s+si}{\PYZpc{}i}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a = 3
+b = 5
+x = 6
+y = 9
+    \end{Verbatim}
+
+    \hypertarget{tuple-as-return-values}{%
+\subsubsection{TUPLE AS RETURN VALUES}\label{tuple-as-return-values}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{81}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TUPLE AS RETURN VALUES}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{divmod}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{32}\PY{p}{)}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{max\PYZus{}and\PYZus{}index}\PY{p}{(}\PY{n}{lst}\PY{p}{)}\PY{p}{:}
+    \PY{n}{index} \PY{o}{=} \PY{l+m+mi}{0}
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{:}
+        \PY{k}{if} \PY{n}{lst}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{lst}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{:}
+            \PY{n}{index} \PY{o}{=} \PY{n}{i}
+    \PY{k}{return} \PY{n}{lst}\PY{p}{[}\PY{n}{index}\PY{p}{]}\PY{p}{,} \PY{n}{index}
+
+
+\PY{k+kn}{from} \PY{n+nn}{random} \PY{k+kn}{import} \PY{n}{randint}
+\PY{n}{num\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{num\PYZus{}list}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{max\PYZus{}and\PYZus{}index}\PY{p}{(}\PY{n}{num\PYZus{}list}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(3, 4)
+[22, 29, 94, 93, 53, 28, 65, 55, 34, 99, 12, 36, 87, 59, 58]
+(99, 9)
+    \end{Verbatim}
+
+    \hypertarget{lists-and-tuples}{%
+\subsubsection{LISTS AND TUPLES}\label{lists-and-tuples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{82}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LISTS AND TUPLES}
+\PY{n}{z} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+\PY{n}{z} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{)}
+\PY{n}{z} \PY{o}{=} \PY{n+nb}{zip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{abcde}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\PY{k}{for} \PY{n}{pair} \PY{o+ow}{in} \PY{n}{z}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{pair}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<zip object at 0x7f361026d500>
+[('a', 3), ('b', 4), ('c', 5), ('d', 6), ('e', 7)]
+('a', 3)
+('b', 4)
+('c', 5)
+('d', 6)
+('e', 7)
+    \end{Verbatim}
+
+    \hypertarget{enumerate}{%
+\paragraph{\texorpdfstring{\texttt{enumerate()}}{enumerate()}}\label{enumerate}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{83}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} enumerate()}
+\PY{k}{for} \PY{n}{ind}\PY{p}{,} \PY{n}{c} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cdef}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{ind}\PY{p}{,} \PY{n}{c}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0 c
+1 d
+2 e
+3 f
+    \end{Verbatim}
+
+    \hypertarget{dictionaries-and-tuples}{%
+\subsubsection{DICTIONARIES AND TUPLES}\label{dictionaries-and-tuples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{84}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} DICTIONARIES AND TUPLES}
+\PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{7}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{l} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{l}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+dict\_items([('h', 4), ('t', 5), ('n', 6), ('m', 7)])
+\{8: 'h', 7: 't', 6: 'n', 5: 'm'\}
+    \end{Verbatim}
+
+    \hypertarget{tuple-comparison}{%
+\subsubsection{TUPLE COMPARISON}\label{tuple-comparison}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{85}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TUPLE COMPARISON}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{p}{)} \PY{o}{\PYZlt{}} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Alpha}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Beta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Alpha}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Alpha}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+True
+False
+
+True
+False
+    \end{Verbatim}
+
+    \hypertarget{sorting-example-sort-by-value-not-key}{%
+\subsubsection{SORTING EXAMPLE: SORT BY VALUE, NOT
+KEY}\label{sorting-example-sort-by-value-not-key}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{86}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SORTING EXAMPLE: SORT BY VALUE, NOT KEY}
+\PY{n}{d} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{h}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{m}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{7}\PY{p}{\PYZcb{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sort by key:          }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{*}\PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sort by value, \PYZsh{}1 way:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{*}\PY{n+nb}{sorted}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{d}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{value\PYZus{}key\PYZus{}list} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{n}{value}\PY{p}{,} \PY{n}{key}\PY{p}{)} \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{d}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\PY{n}{sorted\PYZus{}value\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)} \PY{k}{for} \PY{n}{value}\PY{p}{,} \PY{n}{key} \PY{o+ow}{in} \PY{n}{value\PYZus{}key\PYZus{}list}\PY{p}{]}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sort by value, \PYZsh{}2 way:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{o}{*}\PY{n}{sorted\PYZus{}value\PYZus{}list}\PY{p}{)} 
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Sort by key:           ('h', 4) ('m', 7) ('n', 6) ('t', 5)
+Sort by value, \#1 way: ('h', 4) ('t', 5) ('n', 6) ('m', 7)
+Sort by value, \#2 way: ('h', 4) ('t', 5) ('n', 6) ('m', 7)
+    \end{Verbatim}
+
+    \hypertarget{chapter-6-modules}{%
+\section{CHAPTER 6: MODULES}\label{chapter-6-modules}}
+
+    \hypertarget{import-example}{%
+\subsection{\texorpdfstring{\texttt{import}
+EXAMPLE}{import EXAMPLE}}\label{import-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{87}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} import EXAMPLE}
+\PY{k+kn}{import} \PY{n+nn}{math}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{k+kn}{from} \PY{n+nn}{math} \PY{k+kn}{import} \PY{n}{sqrt}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+\PY{k+kn}{from} \PY{n+nn}{random} \PY{k+kn}{import} \PY{o}{*}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2.8284271247461903
+2.8284271247461903
+3
+    \end{Verbatim}
+
+    \hypertarget{preparation}{%
+\subsection{(preparation)}\label{preparation}}
+
+    \hypertarget{preparation-mount}{%
+\subsubsection{(preparation) mount}\label{preparation-mount}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{88}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} (preparation) mount}
+\PY{k+kn}{from} \PY{n+nn}{google}\PY{n+nn}{.}\PY{n+nn}{colab} \PY{k+kn}{import} \PY{n}{drive}
+\PY{n}{drive}\PY{o}{.}\PY{n}{mount}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/content/gdrive}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Mounted at /content/gdrive
+    \end{Verbatim}
+
+    \hypertarget{preparation-append-path}{%
+\subsubsection{(preparation) append
+path}\label{preparation-append-path}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{89}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} (preparation) append path}
+\PY{o}{!}ls /content/gdrive/MyDrive/Colab\PY{l+s+se}{\PYZbs{} }Notebooks/hello.py
+\PY{o}{!}cat /content/gdrive/MyDrive/Colab\PY{l+s+se}{\PYZbs{} }Notebooks/hello.py
+\PY{k+kn}{import} \PY{n+nn}{sys}
+\PY{n}{sys}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/content/gdrive/MyDrive/Colab Notebooks}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+'/content/gdrive/MyDrive/Colab Notebooks/hello.py'
+if \_\_name\_\_ == '\_\_main\_\_':
+    print('Hello?')
+    \end{Verbatim}
+
+    \hypertarget{modules-as-scripts}{%
+\subsection{MODULES AS SCRIPTS}\label{modules-as-scripts}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{90}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} MODULES AS SCRIPTS}
+\PY{n}{hello\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/content/gdrive/MyDrive/Colab Notebooks/hello.py}\PY{l+s+s1}{\PYZsq{}}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Script in }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{hello.py}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{hello\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+
+\PY{o}{!} python \PY{l+s+s1}{\PYZsq{}/content/gdrive/MyDrive/Colab Notebooks/hello.py\PYZsq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Script in "hello.py":
+---------------------------------
+if \_\_name\_\_ == '\_\_main\_\_':
+    print('Hello?')
+---------------------------------
+Hello?
+    \end{Verbatim}
+
+    \hypertarget{name__}{%
+\subsection{\texorpdfstring{\texttt{\_\_name\_\_}}{\_\_name\_\_}}\label{name__}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{91}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}name\PYZus{}\PYZus{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{before import}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k+kn}{import} \PY{n+nn}{hello}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{after import}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{hello}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}name\PYZus{}\PYZus{}}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+before import
+after import
+hello
+    \end{Verbatim}
+
+    \hypertarget{sys.argv}{%
+\subsection{\texorpdfstring{\texttt{sys.argv{[}{]}}}{sys.argv{[}{]}}}\label{sys.argv}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{92}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} sys.argv[]}
+\PY{n}{sum\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/content/gdrive/MyDrive/Colab Notebooks/sumof2module.py}\PY{l+s+s1}{\PYZsq{}}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Script in }\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{sumof2module.py}\PY{l+s+s1}{\PYZdq{}}\PY{l+s+s1}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{sum\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\PY{o}{!} python \PY{l+s+s1}{\PYZsq{}/content/gdrive/MyDrive/Colab Notebooks/sumof2module.py\PYZsq{}} \PY{l+m}{8} \PY{l+m}{9}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Script in "sumof2module.py":
+---------------------------------
+if \_\_name\_\_ == '\_\_main\_\_':
+    import sys
+    print(int(sys.argv[1]) + int(sys.argv[2]))
+---------------------------------
+17
+    \end{Verbatim}
+
+    \hypertarget{useful-modules-basic-examples}{%
+\subsection{USEFUL MODULES: BASIC
+EXAMPLES}\label{useful-modules-basic-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{93}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USEFUL MODULES: BASIC EXAMPLES}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{} Find out more in: (ctrl + click to open)}
+\PY{l+s+sd}{https://docs.python.org/3/library/random.html}
+\PY{l+s+sd}{https://docs.python.org/3/library/datetime.html}
+\PY{l+s+sd}{https://docs.python.org/3/library/math.html}
+\PY{l+s+sd}{https://numpy.org/doc/}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+
+\PY{k+kn}{import} \PY{n+nn}{random} 
+\PY{k+kn}{import} \PY{n+nn}{datetime} 
+\PY{k+kn}{import} \PY{n+nn}{math}
+\PY{k+kn}{import} \PY{n+nn}{numpy}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{o}{.}\PY{n}{now}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{math}\PY{o}{.}\PY{n}{factorial}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+
+\PY{n}{np\PYZus{}arr} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{np\PYZus{}arr}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} print values which are \PYZgt{} 1.5}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{np\PYZus{}arr}\PY{p}{[}\PY{n}{np\PYZus{}arr} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1.5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2021-07-06 05:33:41.722809
+40320
+[2.80954616 2.6487932  0.76794196 2.57954541 2.10164417 1.11323107]
+[2.80954616 2.6487932  2.57954541 2.10164417]
+    \end{Verbatim}
+
+    \hypertarget{pickle-module}{%
+\subsection{\texorpdfstring{\texttt{pickle}
+MODULE}{pickle MODULE}}\label{pickle-module}}
+
+    \hypertarget{import-pickle}{%
+\subsubsection{\texorpdfstring{IMPORT
+\texttt{pickle}}{IMPORT pickle}}\label{import-pickle}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{94}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} IMPORT pickle}
+\PY{k+kn}{import} \PY{n+nn}{pickle} \PY{k}{as} \PY{n+nn}{pkl}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{dump}{%
+\subsubsection{\texorpdfstring{\texttt{dump()}}{dump()}}\label{dump}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{95}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} dump()}
+\PY{n}{sample\PYZus{}pkl\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/content/gdrive/MyDrive/Colab Notebooks/sample\PYZus{}pkl.pkl}\PY{l+s+s1}{\PYZsq{}}
+\PY{n}{lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{]}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{sample\PYZus{}pkl\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} \PYZsq{}wb\PYZsq{} = write byte, see more below, in Chapter 7: FILES}
+    \PY{n}{pkl}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{lst}\PY{p}{,} \PY{n}{f}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{load}{%
+\subsubsection{\texorpdfstring{\texttt{load()}}{load()}}\label{load}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{96}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} load()}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{sample\PYZus{}pkl\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} \PYZsq{}rb\PYZsq{} = read byte, see more below, in Chapter 7: FILES}
+    \PY{n}{loaded\PYZus{}content} \PY{o}{=} \PY{n}{pkl}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{loaded\PYZus{}content}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[3, 5, 0, 8]
+    \end{Verbatim}
+
+    \hypertarget{chapter-7-files}{%
+\section{CHAPTER 7: FILES}\label{chapter-7-files}}
+
+    \hypertarget{opening-a-file}{%
+\subsection{OPENING A FILE}\label{opening-a-file}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{97}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} OPENING A FILE}
+\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{hello\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} \PYZsq{}r\PYZsq{} reading | \PYZsq{}w\PYZsq{} writing | \PYZsq{}a\PYZsq{} appending | \PYZsq{}r+\PYZsq{} both reading and writing}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{loop-over-a-file}{%
+\subsection{LOOP OVER A FILE}\label{loop-over-a-file}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{98}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} LOOP OVER A FILE}
+\PY{k}{for} \PY{n}{line} \PY{o+ow}{in} \PY{n}{f}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{line}\PY{p}{,} \PY{n}{end} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+if \_\_name\_\_ == '\_\_main\_\_':
+    print('Hello?')
+    \end{Verbatim}
+
+    \hypertarget{read-whole-file}{%
+\subsection{READ WHOLE FILE}\label{read-whole-file}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{99}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} READ WHOLE FILE}
+\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{n}{hello\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+if \_\_name\_\_ == '\_\_main\_\_':
+    print('Hello?')
+    \end{Verbatim}
+
+    \hypertarget{with-block}{%
+\subsection{\texorpdfstring{\texttt{with}
+BLOCK}{with BLOCK}}\label{with-block}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{100}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} with BLOCK}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{hello\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{closed}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+if \_\_name\_\_ == '\_\_main\_\_':
+    print('Hello?')
+True
+    \end{Verbatim}
+
+    \hypertarget{writing-files}{%
+\subsection{WRITING FILES}\label{writing-files}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{101}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} WRITING FILES}
+\PY{n}{write\PYZus{}path} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/content/gdrive/MyDrive/Colab Notebooks/writeout.txt}\PY{l+s+s1}{\PYZsq{}}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{write\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n}{f}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Write this line to the file}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{write\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Write this line to the file
+    \end{Verbatim}
+
+    \hypertarget{current-position}{%
+\subsection{CURRENT POSITION}\label{current-position}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{102}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} CURRENT POSITION}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{write\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{tell}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{tell}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0
+Write this line to the file
+27
+    \end{Verbatim}
+
+    \hypertarget{change-position}{%
+\subsection{CHANGE POSITION}\label{change-position}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{103}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} CHANGE POSITION}
+\PY{c+c1}{\PYZsh{} https://www.tutorialspoint.com/python/file\PYZus{}seek.htm}
+\PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{write\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{tell}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n}{f}\PY{o}{.}\PY{n}{seek}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{tell}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{tell}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0
+13
+ne to the file
+27
+    \end{Verbatim}
+
+    \hypertarget{chapter-8-object-oriented-programming-oop}{%
+\section{CHAPTER 8: OBJECT-ORIENTED PROGRAMMING
+(OOP)}\label{chapter-8-object-oriented-programming-oop}}
+
+    \hypertarget{create-a-new-object-example}{%
+\subsection{CREATE A NEW OBJECT
+EXAMPLE}\label{create-a-new-object-example}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{104}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} CREATE A NEW OBJECT EXAMPLE}
+\PY{c+c1}{\PYZsh{}     name of class (parent class(es))}
+\PY{k}{class} \PY{n+nc}{Complex\PYZus{}number}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}init\PYZus{}\PYZus{} always run right after calling the class}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} real and imaginary are attributes}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{real} \PY{o}{=} \PY{n}{a}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary} \PY{o}{=} \PY{n}{b}
+
+    \PY{c+c1}{\PYZsh{} a method is a function of the class}
+    \PY{k}{def} \PY{n+nf}{modulus}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        \PY{k+kn}{from} \PY{n+nn}{math} \PY{k+kn}{import} \PY{n}{sqrt}
+        \PY{k}{return} \PY{n}{sqrt}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{real} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}str\PYZus{}\PYZus{} is a method which returns (str(an instance))}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}str\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Complex number (}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ + }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{i)}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{real}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}add\PYZus{}\PYZus{} is a method which returns (an instance + another instance)}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}add\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{other}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{Complex\PYZus{}number}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{real} \PY{o}{+} \PY{n}{other}\PY{o}{.}\PY{n}{real}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary} \PY{o}{+} \PY{n}{other}\PY{o}{.}\PY{n}{imaginary}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}sub\PYZus{}\PYZus{} is a method which returns (an instance \PYZhy{} another instance)}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}sub\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{other}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n}{Complex\PYZus{}number}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{real} \PY{o}{\PYZhy{}} \PY{n}{other}\PY{o}{.}\PY{n}{real}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary} \PY{o}{\PYZhy{}} \PY{n}{other}\PY{o}{.}\PY{n}{imaginary}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}eq\PYZus{}\PYZus{} is a method which returns (an instance == another instance)}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}eq\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{other}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{real} \PY{o}{==} \PY{n}{other}\PY{o}{.}\PY{n}{real} \PY{o+ow}{and} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary} \PY{o}{==} \PY{n}{other}\PY{o}{.}\PY{n}{imaginary}
+
+    \PY{c+c1}{\PYZsh{} The most common used methods for a class, in short:}
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}doc\PYZus{}\PYZus{}: docstring  |  \PYZus{}\PYZus{}name\PYZus{}\PYZus{}: name  |  \PYZus{}\PYZus{}del\PYZus{}\PYZus{}: delete}
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}lt\PYZus{}\PYZus{}: \PYZdq{}\PYZlt{}\PYZdq{}  |  \PYZus{}\PYZus{}le\PYZus{}\PYZus{}: \PYZdq{}\PYZlt{}=\PYZdq{}  |  \PYZus{}\PYZus{}ne\PYZus{}\PYZus{}: \PYZdq{}!=\PYZdq{}}
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}gt\PYZus{}\PYZus{}: \PYZdq{}\PYZgt{}\PYZdq{}  |  \PYZus{}\PYZus{}ge\PYZus{}\PYZus{}: \PYZdq{}\PYZgt{}=\PYZdq{}}
+    \PY{c+c1}{\PYZsh{} \PYZus{}\PYZus{}dir\PYZus{}\PYZus{}: dir(an object or an instance)}
+    \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}add\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}sub\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}mul\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}matmul\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}truediv\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}floordiv\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}mod\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}divmod\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}pow\PYZus{}\PYZus{}(self, other[, modulo])}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}lshift\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}rshift\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}and\PYZus{}\PYZus{}(self, other)¶}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}xor\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    object.\PYZus{}\PYZus{}or\PYZus{}\PYZus{}(self, other)}
+\PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+
+    \PY{c+c1}{\PYZsh{} There are so many more methods for a class that you should find them out}
+    \PY{c+c1}{\PYZsh{} yourself, this is the documentation of data model in Python:}
+    \PY{c+c1}{\PYZsh{} https://docs.python.org/3/reference/datamodel.html}
+    
+    \PY{c+c1}{\PYZsh{} I found that the @abstractmethod decorator is not really important for the }
+    \PY{c+c1}{\PYZsh{} final exam, since we didn\PYZsq{}t learn any thing about decorator in Python,}
+    \PY{c+c1}{\PYZsh{} so if you are curious enough, this is the documentation of abc:}
+    \PY{c+c1}{\PYZsh{} https://docs.python.org/3/library/abc.html}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{using-the-object-examples}{%
+\subsubsection{USING THE OBJECT
+EXAMPLES}\label{using-the-object-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{105}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USING THE OBJECT EXAMPLES}
+\PY{n}{z1} \PY{o}{=} \PY{n}{Complex\PYZus{}number}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1}\PY{o}{.}\PY{n}{real}\PY{p}{,} \PY{n}{z1}\PY{o}{.}\PY{n}{imaginary}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1}\PY{o}{.}\PY{n}{modulus}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6 9
+10.816653826391969
+Complex number (6 + 9i)
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{106}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USING THE OBJECT EXAMPLES}
+\PY{n}{z2} \PY{o}{=} \PY{n}{Complex\PYZus{}number}\PY{p}{(}\PY{l+m+mf}{2.8}\PY{p}{,} \PY{l+m+mf}{9.2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z2}\PY{o}{.}\PY{n}{real}\PY{p}{,} \PY{n}{z2}\PY{o}{.}\PY{n}{imaginary}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z2}\PY{o}{.}\PY{n}{modulus}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z2}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2.8 9.2
+9.616652224137045
+Complex number (2.8 + 9.2i)
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{107}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USING THE OBJECT EXAMPLES}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1} \PY{o}{+} \PY{n}{z2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1} \PY{o}{\PYZhy{}} \PY{n}{z2}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} What? Why it is \PYZhy{}0.1999999999999993? Find out at:}
+\PY{c+c1}{\PYZsh{} https://stackoverflow.com/questions/588004/is\PYZhy{}floating\PYZhy{}point\PYZhy{}math\PYZhy{}broken}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Complex number (8.8 + 18.2i)
+Complex number (3.2 + -0.1999999999999993i)
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{108}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USING THE OBJECT EXAMPLES}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1} \PY{o}{==} \PY{n}{z2}\PY{p}{)}
+\PY{n}{z3} \PY{o}{=} \PY{n}{Complex\PYZus{}number}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{)} 
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{z1} \PY{o}{==} \PY{n}{z3}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+True
+    \end{Verbatim}
+
+    \hypertarget{subclass}{%
+\subsection{SUBCLASS}\label{subclass}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{109}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} SUBCLASS}
+\PY{c+c1}{\PYZsh{} You can re\PYZhy{}define any method of Complex\PYZus{}number, or}
+\PY{c+c1}{\PYZsh{} add new methods, new attributes in Imaginary\PYZus{}number}
+\PY{k}{class} \PY{n+nc}{Imaginary\PYZus{}number}\PY{p}{(}\PY{n}{Complex\PYZus{}number}\PY{p}{)}\PY{p}{:}
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{*}\PY{n}{args}\PY{p}{)}\PY{p}{:} 
+        \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{args}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{removed\PYZus{}real\PYZus{}part} \PY{o}{=} \PY{k+kc}{None}
+            \PY{n}{imaginary\PYZus{}part} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{k}{else}\PY{p}{:} \PY{c+c1}{\PYZsh{} len(args) == 2}
+            \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{removed\PYZus{}real\PYZus{}part} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{imaginary\PYZus{}part} \PY{o}{=} \PY{n}{args}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+
+        \PY{c+c1}{\PYZsh{} 2 ways to initialize:}
+        \PY{c+c1}{\PYZsh{} super().\PYZus{}\PYZus{}init\PYZus{}\PYZus{}(0, imaginary\PYZus{}part)}
+        \PY{n}{Complex\PYZus{}number}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{imaginary\PYZus{}part}\PY{p}{)}
+
+    \PY{k}{def} \PY{n+nf+fm}{\PYZus{}\PYZus{}str\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Imaginary number (}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{i)}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{imaginary}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{using-the-subclass-examples}{%
+\subsubsection{USING THE SUBCLASS
+EXAMPLES}\label{using-the-subclass-examples}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{110}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USING THE SUBCLASS EXAMPLES}
+\PY{n}{img1} \PY{o}{=} \PY{n}{Imaginary\PYZus{}number}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{img1}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Removed real part:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{img1}\PY{o}{.}\PY{n}{removed\PYZus{}real\PYZus{}part}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Modulus:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{img1}\PY{o}{.}\PY{n}{modulus}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Imaginary number (8i)
+Removed real part: 3
+Modulus: 8.0
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{111}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} USING THE SUBCLASS EXAMPLES}
+\PY{n}{img2} \PY{o}{=} \PY{n}{Imaginary\PYZus{}number}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{img2}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Removed real part:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{img2}\PY{o}{.}\PY{n}{removed\PYZus{}real\PYZus{}part}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Modulus:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{img2}\PY{o}{.}\PY{n}{modulus}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Imaginary number (4i)
+Removed real part: None
+Modulus: 4.0
+    \end{Verbatim}
+
+    \hypertarget{chapter-9-testing-debugging-exceptions-and-assertions}{%
+\section{CHAPTER 9: TESTING, DEBUGGING, EXCEPTIONS AND
+ASSERTIONS}\label{chapter-9-testing-debugging-exceptions-and-assertions}}
+
+    \hypertarget{testing-and-debugging}{%
+\subsection{TESTING AND DEBUGGING}\label{testing-and-debugging}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{112}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} TESTING AND DEBUGGING}
+\PY{c+c1}{\PYZsh{} By now, you have done this every time an error occurs in your code,}
+\PY{c+c1}{\PYZsh{} so this is pretty both too easy and too hard to be explained}
+\PY{c+c1}{\PYZsh{} in this notebook. Therefore, I will not explain about it here.}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{exceptions}{%
+\subsection{EXCEPTIONS}\label{exceptions}}
+
+    \hypertarget{common-built-in-exceptions}{%
+\subsubsection{COMMON BUILT-IN
+EXCEPTIONS}\label{common-built-in-exceptions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{113}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} COMMON BUILT\PYZhy{}IN EXCEPTIONS}
+\PY{n}{lst} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+\PY{c+c1}{\PYZsh{} print(lst[4])}
+\PY{c+c1}{\PYZsh{} IndexError: list index out of range}
+
+\PY{c+c1}{\PYZsh{} print(int(lst))}
+\PY{c+c1}{\PYZsh{} TypeError: int() argument must be a string, a bytes\PYZhy{}like object or a number, not \PYZsq{}list\PYZsq{}}
+
+\PY{c+c1}{\PYZsh{} print(an\PYZus{}undefined\PYZus{}a\PYZus{}variable)}
+\PY{c+c1}{\PYZsh{} NameError: name \PYZsq{}an\PYZus{}undefined\PYZus{}a\PYZus{}variable\PYZsq{} is not defined}
+
+\PY{c+c1}{\PYZsh{} print(a}
+\PY{c+c1}{\PYZsh{}}
+\PY{c+c1}{\PYZsh{}     print(a}
+\PY{c+c1}{\PYZsh{}            \PYZca{}}
+\PY{c+c1}{\PYZsh{} SyntaxError: unexpected EOF while parsing}
+
+\PY{c+c1}{\PYZsh{} print(lst.mnpq)}
+\PY{c+c1}{\PYZsh{} AttributeError: \PYZsq{}list\PYZsq{} object has no attribute \PYZsq{}mnpq\PYZsq{}}
+
+\PY{c+c1}{\PYZsh{} print(6 / 0)}
+\PY{c+c1}{\PYZsh{} ZeroDivisionError: division by zero}
+
+\PY{c+c1}{\PYZsh{} print(int(\PYZsq{}?\PYZsq{}))}
+\PY{c+c1}{\PYZsh{} ValueError: invalid literal for int() with base 10: \PYZsq{}?\PYZsq{}}
+
+\PY{c+c1}{\PYZsh{} f = open(\PYZsq{}????\PYZsq{})}
+\PY{c+c1}{\PYZsh{} FileNotFoundError: [Errno 2] No such file or directory: \PYZsq{}????\PYZsq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{input-handling-specific-exceptions}{%
+\subsubsection{(INPUT) HANDLING SPECIFIC
+EXCEPTIONS}\label{input-handling-specific-exceptions}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{114}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} HANDLING SPECIFIC EXCEPTIONS}
+\PY{k}{try}\PY{p}{:}
+    \PY{n}{a} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+    \PY{n}{b} \PY{o}{=} \PY{n+nb}{float}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+    \PY{n}{res} \PY{o}{=} \PY{n}{a} \PY{o}{/} \PY{n}{b}
+
+\PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:} \PY{c+c1}{\PYZsh{} Handling a specific exception in try clause}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unable to convert to number}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{except} \PY{n+ne}{ZeroDivisionError}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Unable to divide by 0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{k}{except}\PY{p}{:} \PY{c+c1}{\PYZsh{} Handling any other exception in try clause}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Another error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{k}{else}\PY{p}{:} \PY{c+c1}{\PYZsh{} Only execute if the try clause does not raise any exception}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{res}\PY{p}{)}
+
+\PY{k}{finally}\PY{p}{:} \PY{c+c1}{\PYZsh{} Always execute}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Done}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+    \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{a = sfgopsgspg}
+\PY{l+s+sd}{Unable to convert to number}
+\PY{l+s+sd}{Done}
+
+\PY{l+s+sd}{a = 4}
+\PY{l+s+sd}{b = 0}
+\PY{l+s+sd}{Unable to divide by 0}
+\PY{l+s+sd}{Done}
+
+\PY{l+s+sd}{a = 4}
+\PY{l+s+sd}{b = 8}
+\PY{l+s+sd}{0.5}
+\PY{l+s+sd}{Done}
+\PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a = 4
+b = 8
+0.5
+Done
+    \end{Verbatim}
+
+    \hypertarget{raise-an-exception}{%
+\subsubsection{\texorpdfstring{\texttt{raise} AN
+EXCEPTION}{raise AN EXCEPTION}}\label{raise-an-exception}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{115}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} raise AN EXCEPTION}
+\PY{c+c1}{\PYZsh{} raise ValueError(\PYZsq{}This is a value exception\PYZsq{})}
+
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+\PY{c+c1}{\PYZsh{} ValueError                                Traceback (most recent call last)}
+\PY{c+c1}{\PYZsh{} \PYZlt{}ipython\PYZhy{}input\PYZhy{}116\PYZhy{}d1990690242c\PYZgt{} in \PYZlt{}module\PYZgt{}()}
+\PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZgt{} 1 raise ValueError(\PYZsq{}This is a value exception\PYZsq{})}
+\PY{c+c1}{\PYZsh{}}
+\PY{c+c1}{\PYZsh{} ValueError: This is a value exception}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{input-define-an-exception}{%
+\subsubsection{(INPUT) DEFINE AN
+EXCEPTION}\label{input-define-an-exception}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{116}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} DEFINE AN EXCEPTION}
+\PY{k}{class} \PY{n+nc}{DateFormatError}\PY{p}{(}\PY{n+ne}{Exception}\PY{p}{)}\PY{p}{:}
+    \PY{k}{pass}
+
+\PY{c+c1}{\PYZsh{} Raise the exception if the string is not of the format \PYZsq{}??\PYZhy{}??\PYZhy{}????\PYZsq{}}
+\PY{c+c1}{\PYZsh{} ? is a number, from 0\PYZhy{}9}
+
+\PY{k}{def} \PY{n+nf}{num\PYZus{}args\PYZus{}check}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}
+    \PY{n}{dmy\PYZus{}lst} \PY{o}{=} \PY{n}{date}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{dmy\PYZus{}lst}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+        \PY{k}{return} \PY{k+kc}{True}
+    \PY{k}{return} \PY{k+kc}{False}
+
+\PY{k}{def} \PY{n+nf}{numeric\PYZus{}check}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}
+    \PY{n}{dmy\PYZus{}lst} \PY{o}{=} \PY{n}{date}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{k}{for} \PY{n}{arg} \PY{o+ow}{in} \PY{n}{dmy\PYZus{}lst}\PY{p}{:}
+        \PY{k}{if} \PY{o+ow}{not} \PY{n}{arg}\PY{o}{.}\PY{n}{isnumeric}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{k+kc}{False}
+    \PY{k}{return} \PY{k+kc}{True}
+
+\PY{k}{def} \PY{n+nf}{args\PYZus{}len\PYZus{}check}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}
+    \PY{n}{dmy\PYZus{}lst} \PY{o}{=} \PY{n}{date}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \PY{n}{len\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dmy\PYZus{}lst}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{]}
+    \PY{k}{if} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{len\PYZus{}lst}\PY{p}{)} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{:}
+        \PY{k}{return} \PY{k+kc}{True}
+    \PY{k}{return} \PY{k+kc}{False}
+
+\PY{n}{date} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+
+\PY{k}{if} \PY{o+ow}{not} \PY{n}{num\PYZus{}args\PYZus{}check}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}
+    \PY{k}{raise} \PY{n}{DateFormatError}\PY{p}{(}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{There must be 3 arguments for day\PYZhy{}month\PYZhy{}year, respectively}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{if} \PY{o+ow}{not} \PY{n}{numeric\PYZus{}check}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}
+    \PY{k}{raise} \PY{n}{DateFormatError}\PY{p}{(}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{At least one of 3 arguments is not numeric}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\PY{k}{if} \PY{o+ow}{not} \PY{n}{args\PYZus{}len\PYZus{}check}\PY{p}{(}\PY{n}{date}\PY{p}{)}\PY{p}{:}
+    \PY{k}{raise} \PY{n}{DateFormatError}\PY{p}{(}
+            \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{len() of 3 arguments must be 2, 2, 4, respectively}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The date is: }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{date}\PY{p}{)}
+
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{l+s+sd}{Date = 66\PYZhy{}99\PYZhy{}6969}
+\PY{l+s+sd}{The date is: 66\PYZhy{}99\PYZhy{}6969}
+
+\PY{l+s+sd}{Date = 41\PYZhy{}14\PYZhy{}6161\PYZhy{}3}
+\PY{l+s+sd}{DateFormatError: There must be 3 arguments for day\PYZhy{}month\PYZhy{}year, respectively}
+
+\PY{l+s+sd}{Date = 1\PYZhy{}12\PYZhy{}4251}
+\PY{l+s+sd}{DateFormatError: len() of 3 arguments must be 2, 2, 4, respectively}
+
+\PY{l+s+sd}{Date = 30\PYZhy{}12\PYZhy{}200x}
+\PY{l+s+sd}{DateFormatError: At least one of 3 arguments is not numeric}
+\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+\PY{k}{pass}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Date = 30-12-200x
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}, frame=single, framerule=2mm, rulecolor=\color{outerrorbackground}]
+\textcolor{ansi-red}{---------------------------------------------------------------------------}
+\textcolor{ansi-red}{DateFormatError}                           Traceback (most recent call last)
+\textcolor{ansi-green}{<ipython-input-116-ef183afc2b5a>} in \textcolor{ansi-cyan}{<module>}\textcolor{ansi-blue}{()}
+\textcolor{ansi-green-intense}{\textbf{     33}} \textcolor{ansi-green}{if} \textcolor{ansi-green}{not} numeric\_check\textcolor{ansi-blue}{(}date\textcolor{ansi-blue}{)}\textcolor{ansi-blue}{:}
+\textcolor{ansi-green-intense}{\textbf{     34}}     raise DateFormatError(
+\textcolor{ansi-green}{---> 35}\textcolor{ansi-red}{             'At least one of 3 arguments is not numeric')
+}\textcolor{ansi-green-intense}{\textbf{     36}} \textcolor{ansi-green}{if} \textcolor{ansi-green}{not} args\_len\_check\textcolor{ansi-blue}{(}date\textcolor{ansi-blue}{)}\textcolor{ansi-blue}{:}
+\textcolor{ansi-green-intense}{\textbf{     37}}     raise DateFormatError(
+
+\textcolor{ansi-red}{DateFormatError}: At least one of 3 arguments is not numeric
+    \end{Verbatim}
+
+    \hypertarget{unittest-module}{%
+\subsubsection{\texorpdfstring{\texttt{unittest}
+MODULE}{unittest MODULE}}\label{unittest-module}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} unittest MODULE}
+\PY{c+c1}{\PYZsh{} A module to test your program (in a big project)}
+\PY{c+c1}{\PYZsh{} (I believe) This will not appear in the final test,}
+\PY{c+c1}{\PYZsh{} but this is the documentation for it:}
+\PY{c+c1}{\PYZsh{} https://docs.python.org/3/library/unittest.html}
+\end{Verbatim}
+\end{tcolorbox}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+\end{document}
