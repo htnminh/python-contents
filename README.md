@@ -1,2 +1,2 @@
 # pdf-python-books-docs
-All of my contents in pdf.
+All of my public contents in pdf.
