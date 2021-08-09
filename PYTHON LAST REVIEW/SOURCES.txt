@@ -1,0 +1,13 @@
+SOME OF THE FOLLOWING CONTENTS MIGHT BE ADJUSTED OVER TIME.
+
+Code for all exercises:
+
+https://github.com/htnminh/python-ex-intro-to-prog
+
+Source of this documentation:
+
+https://github.com/htnminh/pdf-python-books-docs/tree/main/PYTHON%20LAST%20REVIEW
+
+Source of this Colab Notebook:
+
+https://colab.research.google.com/drive/1mjtoDbqNHKB2bAb6rTUU8hiJRfUX3Ryt?usp=sharing

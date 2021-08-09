@@ -1,4 +1,0 @@
-	\setcounter{section}{-1}
-\tableofcontents
-% Document title
-    \title{INTRODUCTION TO PROGRAMMING REVIEW by @htnm}
