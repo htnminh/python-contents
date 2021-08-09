@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-
+		\setcounter{section}{-1}
     \usepackage[breakable]{tcolorbox}
     \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
     
@@ -155,7 +155,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{\_htnm\_PYTHON\_LAST\_REVIEW}
+    \title{INTRODUCTION TO PROGRAMMING REVIEW by @htnminh}
     
     
     
@@ -375,8 +375,8 @@
 \begin{document}
     
     \maketitle
-    
-    
+    \tableofcontents
+    \newpage
 
     
     \hypertarget{introduction-to-programming-review}{%
@@ -1502,7 +1502,7 @@ True
 
     \begin{Verbatim}[commandchars=\\\{\}]
 hello\_from\_the\_other\_side
-the-other-from-side-hello
+side-other-the-from-hello
     \end{Verbatim}
 
     \hypertarget{replace}{%
@@ -2058,7 +2058,7 @@ WORD}\label{mapreduce-application-count-number-of-a-word}}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 \{8, 3, 4\}
-\{'l', 'e', 'h', 'o'\}
+\{'l', 'o', 'h', 'e'\}
     \end{Verbatim}
 
     \hypertarget{set-operations}{%
@@ -2097,8 +2097,8 @@ WORD}\label{mapreduce-application-count-number-of-a-word}}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-\{'parameterized).', 'network.', 'transformed.', 'effectively.', '2.', 'output.',
-'depth.'\}
+\{'effectively.', 'output.', 'transformed.', 'network.', 'depth.', '2.',
+'parameterized).'\}
     \end{Verbatim}
 
     \hypertarget{dictionaries}{%
@@ -2338,22 +2338,22 @@ EXAMPLE}\label{memoized-recursion-longest-increasing-subsequence-example}}
 
     \begin{Verbatim}[commandchars=\\\{\}]
   i   num\_list[i]    lis\_including(i)
-  0           18                   1
-  1           12                   1
-  2           29                   2
-  3           82                   3
-  4           66                   3
-  5           90                   4
-  6           43                   3
-  7            6                   1
-  8          100                   5
-  9            0                   1
- 10           31                   3
- 11           97                   5
- 12           84                   4
- 13           89                   5
- 14            9                   2
-Result = 5
+  0           96                   1
+  1            9                   1
+  2           69                   2
+  3           50                   2
+  4           23                   2
+  5           89                   3
+  6           31                   3
+  7           64                   4
+  8           11                   2
+  9           99                   5
+ 10           79                   5
+ 11           98                   6
+ 12           18                   3
+ 13           35                   4
+ 14           55                   5
+Result = 6
     \end{Verbatim}
 
     \hypertarget{tuples}{%
@@ -2459,8 +2459,8 @@ y = 9
 
     \begin{Verbatim}[commandchars=\\\{\}]
 (3, 4)
-[32, 41, 63, 45, 88, 90, 79, 35, 31, 100, 86, 38, 72, 11, 83]
-(100, 9)
+[46, 23, 33, 7, 14, 96, 42, 48, 37, 31, 85, 1, 21, 28, 32]
+(96, 5)
     \end{Verbatim}
 
     \hypertarget{lists-and-tuples}{%
@@ -2481,7 +2481,7 @@ y = 9
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-<zip object at 0x7fb9ea6a24b0>
+<zip object at 0x7f39bfea34b0>
 [('a', 3), ('b', 4), ('c', 5), ('d', 6), ('e', 7)]
 ('a', 3)
 ('b', 4)
@@ -2601,7 +2601,7 @@ EXAMPLE}{import EXAMPLE}}\label{import-example}}
     \begin{Verbatim}[commandchars=\\\{\}]
 2.8284271247461903
 2.8284271247461903
-4
+5
     \end{Verbatim}
 
     \hypertarget{preparation}{%
@@ -2749,10 +2749,10 @@ EXAMPLES}\label{useful-modules-basic-examples}}
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-2021-08-08 15:43:29.936725
+2021-08-09 05:48:01.231481
 40320
-[1.33882977 2.52062707 2.35784056 0.37683892 2.41519137 2.01498214]
-[2.52062707 2.35784056 2.41519137 2.01498214]
+[1.79077237 1.05060928 1.15447232 2.275137   1.86980938 1.18032189]
+[1.79077237 2.275137   1.86980938]
     \end{Verbatim}
 
     \hypertarget{pickle-module}{%
@@ -3365,6 +3365,7 @@ LEARNING}\label{appendix-some-important-modules-for-mathematics-data-science-and
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{115}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} random}
 \PY{c+c1}{\PYZsh{} Documentation: https://docs.python.org/3/library/random.html}
 \PY{k+kn}{import} \PY{n+nn}{random}
 \end{Verbatim}
@@ -3385,8 +3386,8 @@ LEARNING}\label{appendix-some-important-modules-for-mathematics-data-science-and
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-0
-24
+1
+22
     \end{Verbatim}
 
     \hypertarget{sequence}{%
@@ -3406,13 +3407,13 @@ LEARNING}\label{appendix-some-important-modules-for-mathematics-data-science-and
 
     \begin{Verbatim}[commandchars=\\\{\}]
 5
-[0, 3]
+[8, 5]
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{118}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{c+c1}{\PYZsh{} random}
+\PY{c+c1}{\PYZsh{} SEQUENCE}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{seq}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \PY{c+c1}{\PYZsh{} choose two random elements in a sequence}
 \PY{n+nb}{print}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{seq}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{seq}\PY{p}{)}\PY{p}{)}\PY{p}{)}
@@ -3423,7 +3424,7 @@ LEARNING}\label{appendix-some-important-modules-for-mathematics-data-science-and
 
     \begin{Verbatim}[commandchars=\\\{\}]
 [5, 0]
-[3, 0, 5, 8]
+[3, 0, 8, 5]
     \end{Verbatim}
 
     \hypertarget{real-numbers}{%
@@ -3443,8 +3444,8 @@ LEARNING}\label{appendix-some-important-modules-for-mathematics-data-science-and
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-0.609703227592042
-3.717343439662672
+0.15902495606438138
+3.504131258751076
     \end{Verbatim}
 
     \hypertarget{time}{%
@@ -3485,7 +3486,7 @@ after
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-1628437430.4016688
+1628488096.9642045
     \end{Verbatim}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
@@ -3507,10 +3508,10 @@ after
 \end{tcolorbox}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-1628437430.4206786
+1628488096.9813864
 0 1 2 3 4
-1628437430.421016
-0.00033736228942871094
+1628488096.9855316
+0.004145145416259766
     \end{Verbatim}
 
     \hypertarget{math}{%
@@ -4070,10 +4071,6 @@ LEARNING}\label{most-used-modules-for-mathematics-data-science-and-machine-learn
 \item
   Seaborn: \url{https://seaborn.pydata.org/}
 \end{itemize}
-
-Fun fact: If you know how to use about half of the modules above and
-understand their mathematical foundations, you can quit college, right
-now.
 
 
     % Add a bibliography block to the postdoc
