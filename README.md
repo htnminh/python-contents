@@ -2,7 +2,6 @@
 All of my public contents in PDF files.
 
 ## [Introduction to Programming Review](https://github.com/htnminh/pdf-python-books-docs/tree/main/Introduction%20to%20Programming%20Review)
-
 ![](https://github.com/htnminh/pdf-python-books-docs/blob/d930d78b5ee73a05aeaf55f6ae30041e895ad6ae/PYTHON%20LAST%20REVIEW/Capture.PNG)
 ### Chapter 1: Introduction
 Python basic concepts.
@@ -24,3 +23,8 @@ Everything in Python is an Object, try to create your own one.
 Your bugs. Others' bugs. Familiarize yourself with them.
 ### Appendix: Some important Modules for Mathematics, Data Science and Machine Learning
 Get to know the most basic things about your future job.
+
+## [Prac5 REAL ESTATE REGRESSION](https://github.com/htnminh/pdf-python-books-docs/tree/main/Prac5%20REAL%20ESTATE%20REGRESSION)
+Plot differences between Real values and Predicted values using `matplotlib`, based on pre-written codes in Introduction to Programming course.
+
+![](https://github.com/htnminh/pdf-python-books-docs/blob/8bd608697767ad3665689447a2cee1b90db1438e/Prac5%20REAL%20ESTATE%20REGRESSION/Capture.PNG)
