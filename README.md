@@ -2,7 +2,7 @@
 All of my public contents in PDF files.
 
 ## Introduction to Programming Review
-
+![](https://github.com/htnminh/pdf-python-books-docs/blob/7f549bf393aff38b63c79ff156eb47801f69b7d7/PYTHON%20LAST%20REVIEW/Capture.PNG)
 ### Chapter 1: Introduction
 Python basic concepts.
 ### Chapter 2: Control flow
