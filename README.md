@@ -8,15 +8,15 @@ Python basic concepts.
 ### Chapter 2: Control flow
 Comparison operators, Logic operators and Branching in Python.
 ### Chapter 3: Functions
-Common built-in Python functions and ways to create, optimize and use your own ones.
+Common built-in Python Functions and ways to create, optimize and use your own ones.
 ### Chapter 4: Strings
-Work around a text-like type of object in Python.
+Work around a text-like type of Object in Python.
 ### Chapter 5: Lists, Sets, Dictionaries and Tuples
-Four Python's important types of object.
+Four Python's important types of Object.
 ### Chapter 6: Modules
 What things make Python the most popular and powerful programming language? Modules.
 ### Chapter 7: Files
-Reading and Writing files using Python.
+Reading and writing files using Python.
 ### Chapter 8: Object-Oriented Programming
 Everything in Python is an Object, try to create your own one.
 ### Chapter 9: Testing, Debugging, Exceptions and Assertions
