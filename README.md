@@ -22,7 +22,7 @@ Everything in Python is an Object, try to create your own one.
 ### Chapter 9: Testing, Debugging, Exceptions and Assertions
 Your bugs. Others' bugs. Familiarize yourself with them.
 ### Appendix: Some important Modules for Mathematics, Data Science and Machine Learning
-Get to know the most basic things about your future job.
+Get to know the most basic things for your future job.
 
 ## [Prac5 REAL ESTATE REGRESSION](https://github.com/htnminh/pdf-python-books-docs/tree/main/Prac5%20REAL%20ESTATE%20REGRESSION)
 Plot differences between Real values and Predicted values using `matplotlib`, based on pre-written codes in Introduction to Programming course.
