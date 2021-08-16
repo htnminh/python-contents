@@ -1,6 +1,7 @@
-![](https://github.com/htnminh/pdf-python-books-docs/blob/d930d78b5ee73a05aeaf55f6ae30041e895ad6ae/PYTHON%20LAST%20REVIEW/Capture.PNG)
+# [Introduction to Programming Review](https://github.com/htnminh/pdf-python-books-docs/tree/main/Introduction%20to%20Programming%20Review)
+## The most basic concepts of [Python](https://github.com/python) programming language, in easy-to-understand examples.
 ### Chapter 1: Introduction
-Python basic concepts.
+Python's basic concepts.
 ### Chapter 2: Control flow
 Comparison operators, Logic operators and Branching in Python.
 ### Chapter 3: Functions
