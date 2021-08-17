@@ -39,6 +39,27 @@
   - [`tuple()`](#tuple)
   - [`type()`](#type)
   - [`zip()`](#zip)
+- [Built-in Types](#built-in-types)
+  - [String Methods](#string-methods)
+    - [`capitalize()`](#capitalize)
+    - [`center()`](#center)
+    - [`count()`](#count)
+    - [`endswith()`](#endswith)
+    - [`find()`](#find)
+    - [`index()`](#index)
+    - [`join()`](#join)
+    - [`lower()`](#lower)
+    - [`lstrip()`](#lstrip)
+    - [`replace()`](#replace)
+    - [`rfind()`](#rfind)
+    - [`rindex()`](#rindex)
+    - [`rstrip()`](#rstrip)
+    - [`split()`](#split)
+    - [`splitlines()`](#splitlines)
+    - [`startswith()`](#startswith)
+    - [`strip()`](#strip)
+    - [`title()`](#title)
+    - [`upper()`](#upper)
 
 # PYTHON CALL REFERENCE
 **Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
@@ -318,4 +339,128 @@ With one argument, return the type of an object.
 zip(*iterables)
 ```
 Make an iterator that aggregates elements from each of the iterables.
+
+# Built-in Types
+**Doc: <https://docs.python.org/3/library/stdtypes.html>**
+
+## String Methods
+
+### `capitalize()`
+```py
+str.capitalize()
+```
+Return a copy of the string with its first character capitalized and the rest lowercased.
+
+### `center()`
+```py
+str.center(width[, fillchar])
+```
+Return centered in a string of length `width`.
+
+### `count()`
+```py
+str.count(sub[, start[, end]])
+```
+Return the number of non-overlapping occurrences of substring `sub` in the range [`start`, `end`].
+
+### `endswith()`
+```py
+str.endswith(suffix[, start[, end]])
+```
+Return `True` if the string ends with the specified `suffix`, otherwise return `False`.
+
+### `find()`
+```py
+str.find(sub[, start[, end]])
+```
+Return the lowest index in the string where substring `sub` is found within the slice `s[start:end]`, else return `-1`.
+
+### `index()`
+```py
+str.index(sub[, start[, end]])
+```
+Like `find()`, but raise `ValueError` when the substring is not found.
+
+### `join()`
+```py
+str.join(iterable)
+```
+Return a string which is the concatenation of the strings in `iterable`.
+
+### `lower()`
+```py
+str.lower()
+```
+Return a copy of the string with all the cased characters converted to lowercase.
+
+
+### `lstrip()`
+```py
+str.lstrip([chars])
+```
+Return a copy of the string with leading characters removed.
+
+### `replace()`
+```py
+str.replace(old, new[, count])
+```
+Return a copy of the string with all occurrences of substring `old` replaced by `new`.
+
+### `rfind()`
+```py
+str.rfind(sub[, start[, end]])
+```
+Return the highest index in the string where substring `sub` is found, such that `sub` is contained within `s[start:end]`.
+
+### `rindex()`
+```py
+str.rindex(sub[, start[, end]])
+```
+Like `rfind()` but raises `ValueError` when the substring `sub` is not found.
+
+### `rstrip()`
+```py
+str.rstrip([chars])
+```
+Return a copy of the string with trailing characters removed.
+
+### `split()`
+```py
+str.split(sep=None, maxsplit=-1)
+```
+Return a list of the words in the string, using `sep` as the delimiter string.
+
+### `splitlines()`
+```py
+str.splitlines([keepends])
+```
+Return a list of the lines in the string, breaking at line boundaries.
+
+### `startswith()`
+```py
+str.startswith(prefix[, start[, end]])
+```
+Return `True` if string starts with the `prefix`, otherwise return `False`.
+
+### `strip()`
+```py
+str.strip([chars])
+```
+Return a copy of the string with the leading and trailing characters removed.
+
+### `title()`
+```py
+str.title()
+```
+Return a titlecased version of the string where words start with an uppercase character and the remaining characters are lowercase.
+
+### `upper()`
+```py
+str.upper()
+```
+Return a copy of the string with all the cased characters converted to uppercase.
+
+
+
+
 
