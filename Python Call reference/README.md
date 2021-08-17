@@ -1,3 +1,30 @@
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ $$$$$$\   $$$$$$\  $$\   $$\ $$$$$$$$\ $$$$$$$$\ $$\   $$\ $$$$$$$$\  $$$$$$\  
+$$  __$$\ $$  __$$\ $$$\  $$ |\__$$  __|$$  _____|$$$\  $$ |\__$$  __|$$  __$$\ 
+$$ /  \__|$$ /  $$ |$$$$\ $$ |   $$ |   $$ |      $$$$\ $$ |   $$ |   $$ /  \__|
+$$ |      $$ |  $$ |$$ $$\$$ |   $$ |   $$$$$\    $$ $$\$$ |   $$ |   \$$$$$$\  
+$$ |      $$ |  $$ |$$ \$$$$ |   $$ |   $$  __|   $$ \$$$$ |   $$ |    \____$$\ 
+$$ |  $$\ $$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |\$$$ |   $$ |   $$\   $$ |
+\$$$$$$  | $$$$$$  |$$ | \$$ |   $$ |   $$$$$$$$\ $$ | \$$ |   $$ |   \$$$$$$  |
+ \______/  \______/ \__|  \__|   \__|   \________|\__|  \__|   \__|    \______/ 
+                                     
+-->
+
 - [PYTHON CALL REFERENCE](#python-call-reference)
 - [Built-in Functions](#built-in-functions)
   - [`abs()`](#abs)
@@ -40,7 +67,7 @@
   - [`type()`](#type)
   - [`zip()`](#zip)
 - [Built-in Types](#built-in-types)
-  - [String Methods](#string-methods)
+  - [Strings](#strings)
     - [`capitalize()`](#capitalize)
     - [`center()`](#center)
     - [`count()`](#count)
@@ -60,34 +87,126 @@
     - [`strip()`](#strip)
     - [`title()`](#title)
     - [`upper()`](#upper)
+  - [Sets](#sets)
+    - [`issubset()`](#issubset)
+    - [`issuperset()`](#issuperset)
+    - [`union()`](#union)
+    - [`intersection()`](#intersection)
+    - [`difference()`](#difference)
+    - [`symmetric_difference()`](#symmetric_difference)
+    - [`copy()`](#copy)
+    - [`update()`](#update)
+    - [`intersection_update()`](#intersection_update)
+    - [`difference_update()`](#difference_update)
+    - [`symmetric_difference_update()`](#symmetric_difference_update)
+    - [`add()`](#add)
+    - [`remove()`](#remove)
+    - [`discard()`](#discard)
+    - [`pop()`](#pop)
+  - [Tuples](#tuples)
+    - [`count()`](#count-1)
+    - [`index()`](#index-1)
 - [Data Structures](#data-structures)
   - [Lists](#lists)
     - [`append()`](#append)
     - [`extend()`](#extend)
     - [`insert()`](#insert)
-    - [`remove()`](#remove)
-    - [`pop()`](#pop)
-    - [`index()`](#index-1)
-    - [`count()`](#count-1)
+    - [`remove()`](#remove-1)
+    - [`pop()`](#pop-1)
+    - [`index()`](#index-2)
+    - [`count()`](#count-2)
     - [`sort()`](#sort)
     - [`reverse()`](#reverse)
-    - [`copy()`](#copy)
-    - [`()`](#)
-    - [`()`](#-1)
-    - [`()`](#-2)
-    - [`()`](#-3)
-    - [`()`](#-4)
+    - [`copy()`](#copy-1)
+  - [Dictionaries](#dictionaries)
+    - [`iter()`](#iter)
+    - [`copy()`](#copy-2)
+    - [`get()`](#get)
+    - [`items()`](#items)
+    - [`keys()`](#keys)
+    - [`pop()`](#pop-2)
+    - [`popitem()`](#popitem)
+    - [`setdefault()`](#setdefault)
+    - [`update()`](#update-1)
+    - [`values()`](#values)
+- [Modules](#modules)
+  - [`pickle`](#pickle)
+    - [`dump()`](#dump)
+    - [`load()`](#load)
+- [Files](#files)
+  - [`read()`](#read)
+  - [`write()`](#write)
+  - [`tell()`](#tell)
+  - [`seek()`](#seek)
+- [Data model (Dunder or magic methods)](#data-model-dunder-or-magic-methods)
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$\  $$$$$$$$\ $$$$$$$$\ $$$$$$$$\ $$$$$$$\  $$$$$$$$\ $$\   $$\  $$$$$$\  $$$$$$$$\ 
+$$  __$$\ $$  _____|$$  _____|$$  _____|$$  __$$\ $$  _____|$$$\  $$ |$$  __$$\ $$  _____|
+$$ |  $$ |$$ |      $$ |      $$ |      $$ |  $$ |$$ |      $$$$\ $$ |$$ /  \__|$$ |      
+$$$$$$$  |$$$$$\    $$$$$\    $$$$$\    $$$$$$$  |$$$$$\    $$ $$\$$ |$$ |      $$$$$\    
+$$  __$$< $$  __|   $$  __|   $$  __|   $$  __$$< $$  __|   $$ \$$$$ |$$ |      $$  __|   
+$$ |  $$ |$$ |      $$ |      $$ |      $$ |  $$ |$$ |      $$ |\$$$ |$$ |  $$\ $$ |      
+$$ |  $$ |$$$$$$$$\ $$ |      $$$$$$$$\ $$ |  $$ |$$$$$$$$\ $$ | \$$ |\$$$$$$  |$$$$$$$$\ 
+\__|  \__|\________|\__|      \________|\__|  \__|\________|\__|  \__| \______/ \________|
+
+-->
+
 
 # PYTHON CALL REFERENCE
 **Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
 
 Each description only has one sentence, see the documentation for more details.
 
+Some sections are not in alphabetical order.
+
 ***Written by Hoang Tran Nhat Minh,***
 
 Hanoi University of Science and Technology,
 
 Data Science and Artificial Intelligence - K65.
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$$\ $$\   $$\ $$\   $$\  $$$$$$\ $$$$$$$$\ $$$$$$\  $$$$$$\  $$\   $$\  $$$$$$\  
+$$  _____|$$ |  $$ |$$$\  $$ |$$  __$$\\__$$  __|\_$$  _|$$  __$$\ $$$\  $$ |$$  __$$\ 
+$$ |      $$ |  $$ |$$$$\ $$ |$$ /  \__|  $$ |     $$ |  $$ /  $$ |$$$$\ $$ |$$ /  \__|
+$$$$$\    $$ |  $$ |$$ $$\$$ |$$ |        $$ |     $$ |  $$ |  $$ |$$ $$\$$ |\$$$$$$\  
+$$  __|   $$ |  $$ |$$ \$$$$ |$$ |        $$ |     $$ |  $$ |  $$ |$$ \$$$$ | \____$$\ 
+$$ |      $$ |  $$ |$$ |\$$$ |$$ |  $$\   $$ |     $$ |  $$ |  $$ |$$ |\$$$ |$$\   $$ |
+$$ |      \$$$$$$  |$$ | \$$ |\$$$$$$  |  $$ |   $$$$$$\  $$$$$$  |$$ | \$$ |\$$$$$$  |
+\__|       \______/ \__|  \__| \______/   \__|   \______| \______/ \__|  \__| \______/ 
+                                                                                       
+-->
 
 # Built-in Functions
 **Doc: <https://docs.python.org/3/library/functions.html>**
@@ -357,10 +476,66 @@ zip(*iterables)
 ```
 Make an iterator that aggregates elements from each of the iterables.
 
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$$\ $$\     $$\ $$$$$$$\  $$$$$$$$\  $$$$$$\  
+\__$$  __|\$$\   $$  |$$  __$$\ $$  _____|$$  __$$\ 
+   $$ |    \$$\ $$  / $$ |  $$ |$$ |      $$ /  \__|
+   $$ |     \$$$$  /  $$$$$$$  |$$$$$\    \$$$$$$\  
+   $$ |      \$$  /   $$  ____/ $$  __|    \____$$\ 
+   $$ |       $$ |    $$ |      $$ |      $$\   $$ |
+   $$ |       $$ |    $$ |      $$$$$$$$\ \$$$$$$  |
+   \__|       \__|    \__|      \________| \______/ 
+                                                    
+
+-->
+
 # Built-in Types
 **Doc: <https://docs.python.org/3/library/stdtypes.html>**
 
-## String Methods
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ $$$$$$\    $$\               $$\                               
+$$  __$$\   $$ |              \__|                              
+$$ /  \__|$$$$$$\    $$$$$$\  $$\ $$$$$$$\   $$$$$$\   $$$$$$$\ 
+\$$$$$$\  \_$$  _|  $$  __$$\ $$ |$$  __$$\ $$  __$$\ $$  _____|
+ \____$$\   $$ |    $$ |  \__|$$ |$$ |  $$ |$$ /  $$ |\$$$$$$\  
+$$\   $$ |  $$ |$$\ $$ |      $$ |$$ |  $$ |$$ |  $$ | \____$$\ 
+\$$$$$$  |  \$$$$  |$$ |      $$ |$$ |  $$ |\$$$$$$$ |$$$$$$$  |
+ \______/    \____/ \__|      \__|\__|  \__| \____$$ |\_______/ 
+                                            $$\   $$ |          
+                                            \$$$$$$  |          
+                                             \______/           
+-->
+## Strings
 
 ### `capitalize()`
 ```py
@@ -477,9 +652,255 @@ str.upper()
 ```
 Return a copy of the string with all the cased characters converted to uppercase.
 
+<!-- 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ $$$$$$\             $$\               
+$$  __$$\            $$ |              
+$$ /  \__| $$$$$$\ $$$$$$\    $$$$$$$\ 
+\$$$$$$\  $$  __$$\\_$$  _|  $$  _____|
+ \____$$\ $$$$$$$$ | $$ |    \$$$$$$\  
+$$\   $$ |$$   ____| $$ |$$\  \____$$\ 
+\$$$$$$  |\$$$$$$$\  \$$$$  |$$$$$$$  |
+ \______/  \_______|  \____/ \_______/ 
+                                       
+                                       
+-->
+
+
+## Sets
+
+### `issubset()`
+```py
+issubset(other)
+```
+```py
+set <= other
+```
+Test whether every element in the set is in other.
+
+### `issuperset()`
+```py
+issuperset(other)
+```
+```py
+set >= other
+```
+Test whether every element in other is in the set.
+
+### `union()`
+```py
+union(*others)
+```
+```py
+set | other | ...
+```
+Return a new set with elements from the set and all others.
+
+### `intersection()`
+```py
+intersection(*others)
+```
+```py
+set & other & ...
+```
+Return a new set with elements common to the set and all others.
+
+### `difference()`
+```py
+difference(*others)
+```
+```py
+set - other - ...
+```
+Return a new set with elements in the set that are not in the others.
+
+### `symmetric_difference()`
+```py
+symmetric_difference(other)
+```
+```py
+set ^ other
+```
+Return a new set with elements in either the set or other but not both.
+
+### `copy()`
+```py
+copy()
+```
+Return a shallow copy of the set.
+
+### `update()`
+```py
+update(*others)
+```
+```py
+set |= other | ...
+```
+Update the set, adding elements from all others.
+
+### `intersection_update()`
+```py
+intersection_update(*others)
+```
+```py
+set &= other & ...
+```
+Update the set, keeping only elements found in it and all others.
+
+### `difference_update()`
+```py
+difference_update(*others)
+```
+```py
+set -= other | ...
+```
+Update the set, removing elements found in others.
+
+### `symmetric_difference_update()`
+```py
+symmetric_difference_update(other)
+```
+```py
+set ^= other
+```
+Update the set, keeping only elements found in either set, but not in both.
+
+### `add()`
+```py
+add(elem)
+```
+Add element `elem` to the set.
+
+### `remove()`
+```py
+remove(elem)
+```
+Remove element `elem` from the set or raise `KeyError` if `elem` is not contained in the set.
+
+### `discard()`
+```py
+discard(elem)
+```
+Remove element `elem` from the set if it is present.
+
+### `pop()`
+```py
+pop()
+```
+Remove and return an arbitrary element from the set or raises `KeyError` if the set is empty.
+
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$$\                  $$\                     
+\__$$  __|                 $$ |                    
+   $$ |$$\   $$\  $$$$$$\  $$ | $$$$$$\   $$$$$$$\ 
+   $$ |$$ |  $$ |$$  __$$\ $$ |$$  __$$\ $$  _____|
+   $$ |$$ |  $$ |$$ /  $$ |$$ |$$$$$$$$ |\$$$$$$\  
+   $$ |$$ |  $$ |$$ |  $$ |$$ |$$   ____| \____$$\ 
+   $$ |\$$$$$$  |$$$$$$$  |$$ |\$$$$$$$\ $$$$$$$  |
+   \__| \______/ $$  ____/ \__| \_______|\_______/ 
+                 $$ |                              
+                 $$ |                              
+                 \__|                              
+-->
+
+## Tuples
+
+### `count()`
+```py
+count(x)
+```
+Total number of occurrences of `x`.
+
+### `index()`
+```py
+index(x[, i[, j]])
+```
+Index of the first occurrence of `x` (at or after index `i` and before index `j`)
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$\   $$$$$$\ $$$$$$$$\  $$$$$$\         $$$$$$\ $$$$$$$$\ $$$$$$$\  $$\   $$\  $$$$$$\ $$$$$$$$\ 
+$$  __$$\ $$  __$$\\__$$  __|$$  __$$\       $$  __$$\\__$$  __|$$  __$$\ $$ |  $$ |$$  __$$\\__$$  __|
+$$ |  $$ |$$ /  $$ |  $$ |   $$ /  $$ |      $$ /  \__|  $$ |   $$ |  $$ |$$ |  $$ |$$ /  \__|  $$ |   
+$$ |  $$ |$$$$$$$$ |  $$ |   $$$$$$$$ |      \$$$$$$\    $$ |   $$$$$$$  |$$ |  $$ |$$ |        $$ |   
+$$ |  $$ |$$  __$$ |  $$ |   $$  __$$ |       \____$$\   $$ |   $$  __$$< $$ |  $$ |$$ |        $$ |   
+$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$ |      $$\   $$ |  $$ |   $$ |  $$ |$$ |  $$ |$$ |  $$\   $$ |   
+$$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      \$$$$$$  |  $$ |   $$ |  $$ |\$$$$$$  |\$$$$$$  |  $$ |   
+\_______/ \__|  \__|  \__|   \__|  \__|       \______/   \__|   \__|  \__| \______/  \______/   \__|   
+                                                                                                       
+-->
 # Data Structures
 **Doc: <https://docs.python.org/3/tutorial/datastructures.html>**
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$\       $$\             $$\               
+$$ |      \__|            $$ |              
+$$ |      $$\  $$$$$$$\ $$$$$$\    $$$$$$$\ 
+$$ |      $$ |$$  _____|\_$$  _|  $$  _____|
+$$ |      $$ |\$$$$$$\    $$ |    \$$$$$$\  
+$$ |      $$ | \____$$\   $$ |$$\  \____$$\ 
+$$$$$$$$\ $$ |$$$$$$$  |  \$$$$  |$$$$$$$  |
+\________|\__|\_______/    \____/ \_______/ 
+
+-->
 
 ## Lists
 
@@ -541,30 +962,288 @@ Reverse the elements of the list in place.
 ```py
 list.copy()
 ```
-Return a shallow copy of the list. Equivalent to a[:].
+Return a shallow copy of the list.
 
-### `()`
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$\  $$\             $$\     $$\                                         $$\                     
+$$  __$$\ \__|            $$ |    \__|                                        \__|                    
+$$ |  $$ |$$\  $$$$$$$\ $$$$$$\   $$\  $$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\  $$\  $$$$$$\   $$$$$$$\ 
+$$ |  $$ |$$ |$$  _____|\_$$  _|  $$ |$$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$ |$$  __$$\ $$  _____|
+$$ |  $$ |$$ |$$ /        $$ |    $$ |$$ /  $$ |$$ |  $$ | $$$$$$$ |$$ |  \__|$$ |$$$$$$$$ |\$$$$$$\  
+$$ |  $$ |$$ |$$ |        $$ |$$\ $$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ |      $$ |$$   ____| \____$$\ 
+$$$$$$$  |$$ |\$$$$$$$\   \$$$$  |$$ |\$$$$$$  |$$ |  $$ |\$$$$$$$ |$$ |      $$ |\$$$$$$$\ $$$$$$$  |
+\_______/ \__| \_______|   \____/ \__| \______/ \__|  \__| \_______|\__|      \__| \_______|\_______/ 
+                                                                                                                                                                 
+ -->
+
+
+## Dictionaries
+
+### `iter()`
 ```py
+iter(d)
+```
+Return an iterator over the keys of the dictionary, which is a shortcut for `iter(d.keys())`.
+
+### `copy()`
+```py
+copy()
+```
+Return a shallow copy of the dictionary.
+
+### `get()`
+```py
+get(key[, default])
+```
+Return the value for `key` if `key` is in the dictionary, else `default`; if `default` is not given, it defaults to None, so that this method never raises a `KeyError`.
+
+### `items()`
+```py
+items()
+```
+Return a new view of the dictionary’s items (`(key, value)` pairs). 
+
+### `keys()`
+```py
+keys()
+```
+Return a new view of the dictionary’s keys.
+
+### `pop()`
+```py
+pop(key[, default])
+```
+If `key` is in the dictionary, remove it and return its value, else return `default`; if `default` is not given and `key` is not in the dictionary, a `KeyError` is raised.
+
+### `popitem()`
+```py
+popitem()
+```
+Remove and return a `(key, value)` pair from the dictionary, pairs are returned in LIFO (last-in, first-out) order.
+
+> *Changed in version 3.7*: LIFO order is now guaranteed. In prior versions, popitem() would return an arbitrary key/value pair.
+
+### `setdefault()`
+```py
+setdefault(key[, default])
+```
+If `key` is in the dictionary, return its value. If not, insert `key` with a value of `default` and return `default`. `default` defaults to None.
+
+### `update()`
+```py
+update([other])
+```
+Update the dictionary with the key/value pairs from `other`, overwriting existing keys, then return `None`.
+
+### `values()`
+```py
+values()
+```
+Return a new view of the dictionary’s values.
+
+
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$\      $$\  $$$$$$\  $$$$$$$\  $$\   $$\ $$\       $$$$$$$$\  $$$$$$\  
+$$$\    $$$ |$$  __$$\ $$  __$$\ $$ |  $$ |$$ |      $$  _____|$$  __$$\ 
+$$$$\  $$$$ |$$ /  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |      $$ /  \__|
+$$\$$\$$ $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$$$$\    \$$$$$$\  
+$$ \$$$  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$  __|    \____$$\ 
+$$ |\$  /$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |      $$\   $$ |
+$$ | \_/ $$ | $$$$$$  |$$$$$$$  |\$$$$$$  |$$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\__|     \__| \______/ \_______/  \______/ \________|\________| \______/ 
+                                                                         
+-->
+
+# Modules
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          $$\           $$\       $$\           
+          \__|          $$ |      $$ |          
+ $$$$$$\  $$\  $$$$$$$\ $$ |  $$\ $$ | $$$$$$\  
+$$  __$$\ $$ |$$  _____|$$ | $$  |$$ |$$  __$$\ 
+$$ /  $$ |$$ |$$ /      $$$$$$  / $$ |$$$$$$$$ |
+$$ |  $$ |$$ |$$ |      $$  _$$<  $$ |$$   ____|
+$$$$$$$  |$$ |\$$$$$$$\ $$ | \$$\ $$ |\$$$$$$$\ 
+$$  ____/ \__| \_______|\__|  \__|\__| \_______|
+$$ |                                            
+$$ |                                            
+\__|                                            
+
+-->
+
+## `pickle`
+Doc: <https://docs.python.org/3/library/pickle.html>
+
+```py
+import pickle
 ```
 
-
-### `()`
+### `dump()`
 ```py
+pickle.dump(obj, file, protocol=None, *, fix_imports=True, buffer_callback=None)
 ```
+Write the pickled representation of the object `obj` to the open file object `file`.
 
-
-### `()`
+### `load()`
 ```py
+pickle.load(file, *, fix_imports=True, encoding="ASCII", errors="strict", buffers=None)
 ```
+Read the pickled representation of an object from the open file object `file` and return the reconstituted object hierarchy specified therein.
 
 
-### `()`
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  
+$$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ 
+$$ |        $$ |  $$ |      $$ |      $$ /  \__|
+$$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  
+$$  __|     $$ |  $$ |      $$  __|    \____$$\ 
+$$ |        $$ |  $$ |      $$ |      $$\   $$ |
+$$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
+\__|      \______|\________|\________| \______/ 
+                                                                                 
+-->
+
+# Files
+Doc: <https://docs.python.org/3/tutorial/inputoutput.html>
+
+## `read()`
 ```py
+f.read([size])
 ```
+Read a file’s contents, return it as a string (in text mode) or bytes object (in binary mode); when `size` is omitted or negative, the entire contents of the file will be read and returned.
 
-
-### `()`
+## `write()`
 ```py
+f.write(string)
 ```
+Write the contents of `string` to the file, return the number of characters written.
+
+## `tell()`
+```py
+f.tell()
+```
+Return an integer giving the file object’s current position in the file represented as number of bytes from the beginning of the file when in binary mode and an opaque number when in text mode.
+
+## `seek()`
+```py
+f.seek(offset[, whence])
+```
+Change the file object’s position; the position is computed from adding `offset` to a reference point; the reference point is selected by the `whence` argument; a `whence` value of 0 measures from the beginning of the file, 1 uses the current file position, and 2 uses the end of the file as the reference point; `whence` can be omitted and defaults to 0.
+
+<!--
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$$$$$$\   $$$$$$\ $$$$$$$$\  $$$$$$\        $$\      $$\  $$$$$$\  $$$$$$$\  $$$$$$$$\ $$\       
+$$  __$$\ $$  __$$\\__$$  __|$$  __$$\       $$$\    $$$ |$$  __$$\ $$  __$$\ $$  _____|$$ |      
+$$ |  $$ |$$ /  $$ |  $$ |   $$ /  $$ |      $$$$\  $$$$ |$$ /  $$ |$$ |  $$ |$$ |      $$ |      
+$$ |  $$ |$$$$$$$$ |  $$ |   $$$$$$$$ |      $$\$$\$$ $$ |$$ |  $$ |$$ |  $$ |$$$$$\    $$ |      
+$$ |  $$ |$$  __$$ |  $$ |   $$  __$$ |      $$ \$$$  $$ |$$ |  $$ |$$ |  $$ |$$  __|   $$ |      
+$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$ |      $$ |\$  /$$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |      
+$$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      $$ | \_/ $$ | $$$$$$  |$$$$$$$  |$$$$$$$$\ $$$$$$$$\ 
+\_______/ \__|  \__|  \__|   \__|  \__|      \__|     \__| \______/ \_______/ \________|\________|
+
+-->
+
+# Data model (Dunder or magic methods)
+Doc: <https://docs.python.org/3/reference/datamodel.html>
+
+This section is of a table form to avoid confusion and... tiredness.
+
+| This dunder method... | Means |
+|-----------------------|-------|
+|`__doc__`| docstring
+|`__name__`| name
+|
+|`object.__lt__`| `<`
+|`object.__le__`| `<=`
+|`object.__ne__`| `!=`
+|`object.__gt__`| `>`
+|`object.__ge__`| `>=`
+|`object.__dir__`| `dir()`
+|
+|`object.__add__(self, other)`| `+`
+|`object.__sub__(self, other)`| `-`
+|`object.__mul__(self, other)`| `*`
+|`object.__truediv__(self, other)`| `/`
+|`object.__floordiv__(self, other)`| `//`
+|
+|`object.__mod__(self, other)`| `%`
+|`object.__divmod__(self, other)`| `divmod()`
+|`object.__pow__(self, other[, modulo])`| `pow()`, `**`
+|
+|`object.__and__(self, other)`| `&`
+|`object.__xor__(self, other)`| `^`
+|`object.__or__(self, other)`| `\|`
