@@ -133,6 +133,34 @@ $$ |  $$\ $$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |\$$$ |   $$ |   $$\   $$ |
   - [`pickle`](#pickle)
     - [`dump()`](#dump)
     - [`load()`](#load)
+  - [`random`](#random)
+    - [`randrange()`](#randrange)
+    - [`choice()`](#choice)
+    - [`choices()`](#choices)
+    - [`sample()`](#sample)
+    - [`random()`](#random-1)
+    - [`uniform()`](#uniform)
+  - [`time`](#time)
+    - [`sleep()`](#sleep)
+    - [`time()`](#time-1)
+  - [`math`](#math)
+    - [`ceil()`](#ceil)
+    - [`floor()`](#floor)
+    - [`gcd()`](#gcd)
+    - [`isclose()`](#isclose)
+    - [`trunc()`](#trunc)
+    - [`exp()`](#exp)
+    - [`log()`](#log)
+    - [`pow()`](#pow-1)
+    - [`sqrt()`](#sqrt)
+    - [`sin()`](#sin)
+    - [`cos()`](#cos)
+    - [`tan()`](#tan)
+    - [`acos()`](#acos)
+    - [`asin()`](#asin)
+    - [`atan()`](#atan)
+    - [`degrees()`](#degrees)
+    - [`radians()`](#radians)
 - [Files](#files)
   - [`read()`](#read)
   - [`write()`](#write)
@@ -171,9 +199,9 @@ $$ |  $$ |$$$$$$$$\ $$ |      $$$$$$$$\ $$ |  $$ |$$$$$$$$\ $$ | \$$ |\$$$$$$  |
 # PYTHON CALL REFERENCE
 **Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
 
-Each description only has one sentence, see the documentation for more details.
+For quick reference, each description only has one sentence, see the documentations provided for more details.
 
-Some sections are not in alphabetical order.
+Some sections does not fully explain all the parameters provided.
 
 ***Written by Hoang Tran Nhat Minh,***
 
@@ -1086,6 +1114,7 @@ $$ | \_/ $$ | $$$$$$  |$$$$$$$  |\$$$$$$  |$$$$$$$$\ $$$$$$$$\ \$$$$$$  |
 
 # Modules
 
+
 <!-- 
 
 
@@ -1134,6 +1163,262 @@ Write the pickled representation of the object `obj` to the open file object `fi
 pickle.load(file, *, fix_imports=True, encoding="ASCII", errors="strict", buffers=None)
 ```
 Read the pickled representation of an object from the open file object `file` and return the reconstituted object hierarchy specified therein.
+
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                   $$\                         
+                                   $$ |                        
+ $$$$$$\  $$$$$$\  $$$$$$$\   $$$$$$$ | $$$$$$\  $$$$$$\$$$$\  
+$$  __$$\ \____$$\ $$  __$$\ $$  __$$ |$$  __$$\ $$  _$$  _$$\ 
+$$ |  \__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |$$ / $$ / $$ |
+$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ | $$ | $$ |
+$$ |     \$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$ | $$ | $$ |
+\__|      \_______|\__|  \__| \_______| \______/ \__| \__| \__|
+                                                               
+-->
+
+## `random`
+Doc: <https://docs.python.org/3/library/random.html>
+
+
+```py
+import random
+```
+
+### `randrange()`
+```py
+random.randrange(stop)
+```
+```py
+random.randrange(start, stop[, step])
+```
+Return a randomly selected element from `range(start, stop, step)`, which is equivalent to `choice(range(start, stop, step))`, but doesn’t actually build a range object; the positional argument pattern matches that of `range()`.
+
+### `choice()`
+```py
+random.choice(seq)
+```
+Return a random element from the non-empty sequence `seq`; if `seq` is empty, raises `IndexError`.
+
+### `choices()`
+```py
+random.choices(population, weights=None, *, cum_weights=None, k=1)
+```
+Return a `k` sized list of elements chosen from the `population` with replacement; if the `population` is empty, raises IndexError.
+
+### `sample()`
+```py
+random.sample(population, k, *, counts=None)
+```
+Return a `k` length list of unique elements chosen from the `population` sequence or set. 
+
+### `random()`
+```py
+random.random()
+```
+Return the next random floating point number in the range [0.0, 1.0).
+
+### `uniform()`
+```py
+random.uniform(a, b)
+```
+Return a random floating point number `N` such that `a <= N <= b` for `a <= b` and `b <= N <= a` for `b < a`; the end-point value `b` may or may not be included.
+
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $$\     $$\                         
+  $$ |    \__|                        
+$$$$$$\   $$\ $$$$$$\$$$$\   $$$$$$\  
+\_$$  _|  $$ |$$  _$$  _$$\ $$  __$$\ 
+  $$ |    $$ |$$ / $$ / $$ |$$$$$$$$ |
+  $$ |$$\ $$ |$$ | $$ | $$ |$$   ____|
+  \$$$$  |$$ |$$ | $$ | $$ |\$$$$$$$\ 
+   \____/ \__|\__| \__| \__| \_______|
+                                        
+-->
+## `time`
+Doc: <https://docs.python.org/3/library/time.html>
+
+```py
+import time
+```
+
+### `sleep()`
+```py
+time.sleep(secs)
+```
+Suspend execution of the calling thread for the given number of seconds.
+
+### `time()`
+```py
+time.time() → float
+```
+Return the time in seconds since the epoch as a floating point number.
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         $$\     $$\       
+                         $$ |    $$ |      
+$$$$$$\$$$$\   $$$$$$\ $$$$$$\   $$$$$$$\  
+$$  _$$  _$$\  \____$$\\_$$  _|  $$  __$$\ 
+$$ / $$ / $$ | $$$$$$$ | $$ |    $$ |  $$ |
+$$ | $$ | $$ |$$  __$$ | $$ |$$\ $$ |  $$ |
+$$ | $$ | $$ |\$$$$$$$ | \$$$$  |$$ |  $$ |
+\__| \__| \__| \_______|  \____/ \__|  \__|
+
+-->
+## `math`
+Doc: <https://docs.python.org/3/library/math.html>
+
+```py
+import math
+```
+
+### `ceil()`
+```py
+math.ceil(x)
+```
+Return the ceiling of `x`, the smallest integer greater than or equal to `x`.
+
+### `floor()`
+```py
+math.floor(x)
+```
+Return the floor of `x`, the largest integer less than or equal to `x`.
+
+### `gcd()`
+```py
+math.gcd(*integers)
+```
+Return the greatest common divisor of the specified integer arguments. 
+
+### `isclose()`
+```py
+math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)
+```
+Return `True` if the values `a` and `b` are close to each other and `False` otherwise.
+
+### `trunc()`
+```py
+math.trunc(x)
+```
+Return the `Real` value `x` truncated to an `Integral` (usually an integer).
+
+### `exp()`
+```py
+math.exp(x)
+```
+Return `e` raised to the power `x`, where `e` = 2.718281… is the base of natural logarithms.
+
+### `log()`
+```py
+math.log(x[, base])
+```
+With one argument, return the natural logarithm of `x` (to base `e`); with two arguments, return the logarithm of `x` to the given `base`.
+
+### `pow()`
+```py
+math.pow(x, y)
+```
+Return `x` raised to the power `y`.
+
+### `sqrt()`
+```py
+math.sqrt(x)
+```
+Return the square root of x.
+
+### `sin()`
+```py
+math.sin(x)
+```
+Return the sine of `x` radians.
+
+### `cos()`
+```py
+math.cos(x)
+```
+Return the cosine of `x` radians.
+
+### `tan()`
+```py
+math.tan(x)
+```
+Return the tangent of `x` radians.
+
+### `acos()`
+```py
+math.acos(x)
+```
+Return the arc cosine of `x`, in radians.
+
+### `asin()`
+```py
+math.asin(x)
+```
+Return the arc sine of `x`, in radians.
+
+### `atan()`
+```py
+math.atan(x)
+```
+Return the arc tangent of x, in radians.
+
+### `degrees()`
+```py
+math.degrees(x)
+```
+Convert angle `x` from radians to degrees.
+
+### `radians()`
+```py
+math.radians(x)
+```
+Convert angle `x` from degrees to radians.
 
 
 <!--
@@ -1247,3 +1532,4 @@ This section is of a table form to avoid confusion and... tiredness.
 |`object.__and__(self, other)`| `&`
 |`object.__xor__(self, other)`| `^`
 |`object.__or__(self, other)`| `\|`
+
