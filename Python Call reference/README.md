@@ -1226,24 +1226,24 @@ This section is of a table form to avoid confusion and... tiredness.
 |-----------------------|-------|
 |`__doc__`| docstring
 |`__name__`| name
-|
+||
 |`object.__lt__`| `<`
 |`object.__le__`| `<=`
 |`object.__ne__`| `!=`
 |`object.__gt__`| `>`
 |`object.__ge__`| `>=`
 |`object.__dir__`| `dir()`
-|
+||
 |`object.__add__(self, other)`| `+`
 |`object.__sub__(self, other)`| `-`
 |`object.__mul__(self, other)`| `*`
 |`object.__truediv__(self, other)`| `/`
 |`object.__floordiv__(self, other)`| `//`
-|
+||
 |`object.__mod__(self, other)`| `%`
 |`object.__divmod__(self, other)`| `divmod()`
 |`object.__pow__(self, other[, modulo])`| `pow()`, `**`
-|
+||
 |`object.__and__(self, other)`| `&`
 |`object.__xor__(self, other)`| `^`
 |`object.__or__(self, other)`| `\|`
