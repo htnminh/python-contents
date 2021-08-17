@@ -25,157 +25,162 @@ $$ |  $$\ $$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |\$$$ |   $$ |   $$\   $$ |
                                      
 -->
 
-- [PYTHON CALL REFERENCE](#python-call-reference)
-- [Built-in Functions](#built-in-functions)
-  - [`abs()`](#abs)
-  - [`bin()`](#bin)
-  - [`complex()`](#complex)
-  - [`dict()`](#dict)
-  - [`dir()`](#dir)
-  - [`divmod()`](#divmod)
-  - [`enumerate()`](#enumerate)
-  - [`eval()`](#eval)
-  - [`float()`](#float)
-  - [`format()`](#format)
-  - [`frozenset()`](#frozenset)
-  - [`help()`](#help)
-  - [`hex()`](#hex)
-  - [`input()`](#input)
-  - [`int()`](#int)
-  - [`isinstance()`](#isinstance)
-  - [`issubclass()`](#issubclass)
-  - [`len()`](#len)
-  - [`list()`](#list)
-  - [`map()`](#map)
-  - [`max()`](#max)
-  - [`min()`](#min)
-  - [`oct()`](#oct)
-  - [`open()`](#open)
-  - [`ord()`](#ord)
-  - [`pow()`](#pow)
-  - [`print()`](#print)
-  - [`range()`](#range)
-  - [`reversed()`](#reversed)
-  - [`round()`](#round)
-  - [`class()`](#class)
-  - [`slice()`](#slice)
-  - [`sorted()`](#sorted)
-  - [`str()`](#str)
-  - [`sum()`](#sum)
-  - [`super()`](#super)
-  - [`tuple()`](#tuple)
-  - [`type()`](#type)
-  - [`zip()`](#zip)
-- [Built-in Types](#built-in-types)
-  - [Strings](#strings)
-    - [`capitalize()`](#capitalize)
-    - [`center()`](#center)
-    - [`count()`](#count)
-    - [`endswith()`](#endswith)
-    - [`find()`](#find)
-    - [`index()`](#index)
-    - [`join()`](#join)
-    - [`lower()`](#lower)
-    - [`lstrip()`](#lstrip)
-    - [`replace()`](#replace)
-    - [`rfind()`](#rfind)
-    - [`rindex()`](#rindex)
-    - [`rstrip()`](#rstrip)
-    - [`split()`](#split)
-    - [`splitlines()`](#splitlines)
-    - [`startswith()`](#startswith)
-    - [`strip()`](#strip)
-    - [`title()`](#title)
-    - [`upper()`](#upper)
-  - [Sets](#sets)
-    - [`issubset()`](#issubset)
-    - [`issuperset()`](#issuperset)
-    - [`union()`](#union)
-    - [`intersection()`](#intersection)
-    - [`difference()`](#difference)
-    - [`symmetric_difference()`](#symmetric_difference)
-    - [`copy()`](#copy)
-    - [`update()`](#update)
-    - [`intersection_update()`](#intersection_update)
-    - [`difference_update()`](#difference_update)
-    - [`symmetric_difference_update()`](#symmetric_difference_update)
-    - [`add()`](#add)
-    - [`remove()`](#remove)
-    - [`discard()`](#discard)
-    - [`pop()`](#pop)
-  - [Tuples](#tuples)
-    - [`count()`](#count-1)
-    - [`index()`](#index-1)
-- [Data Structures](#data-structures)
-  - [Lists](#lists)
-    - [`append()`](#append)
-    - [`extend()`](#extend)
-    - [`insert()`](#insert)
-    - [`remove()`](#remove-1)
-    - [`pop()`](#pop-1)
-    - [`index()`](#index-2)
-    - [`count()`](#count-2)
-    - [`sort()`](#sort)
-    - [`reverse()`](#reverse)
-    - [`copy()`](#copy-1)
-  - [Dictionaries](#dictionaries)
-    - [`iter()`](#iter)
-    - [`copy()`](#copy-2)
-    - [`get()`](#get)
-    - [`items()`](#items)
-    - [`keys()`](#keys)
-    - [`pop()`](#pop-2)
-    - [`popitem()`](#popitem)
-    - [`setdefault()`](#setdefault)
-    - [`update()`](#update-1)
-    - [`values()`](#values)
-- [Modules](#modules)
-  - [`pickle`](#pickle)
-    - [`dump()`](#dump)
-    - [`load()`](#load)
-  - [`random`](#random)
-    - [`randrange()`](#randrange)
-    - [`choice()`](#choice)
-    - [`choices()`](#choices)
-    - [`sample()`](#sample)
-    - [`random()`](#random-1)
-    - [`uniform()`](#uniform)
-  - [`time`](#time)
-    - [`sleep()`](#sleep)
-    - [`time()`](#time-1)
-  - [`math`](#math)
-    - [`ceil()`](#ceil)
-    - [`floor()`](#floor)
-    - [`gcd()`](#gcd)
-    - [`isclose()`](#isclose)
-    - [`trunc()`](#trunc)
-    - [`exp()`](#exp)
-    - [`log()`](#log)
-    - [`pow()`](#pow-1)
-    - [`sqrt()`](#sqrt)
-    - [`sin()`](#sin)
-    - [`cos()`](#cos)
-    - [`tan()`](#tan)
-    - [`acos()`](#acos)
-    - [`asin()`](#asin)
-    - [`atan()`](#atan)
-    - [`degrees()`](#degrees)
-    - [`radians()`](#radians)
-  - [`numpy`](#numpy)
-    - [`numpy.array`](#numpyarray)
-    - [`numpy.arange`](#numpyarange)
-    - [`numpy.linspace`](#numpylinspace)
-    - [`numpy.eye`](#numpyeye)
-    - [`numpy.diag`](#numpydiag)
-    - [`numpy.zeros`](#numpyzeros)
-    - [`numpy.ones`](#numpyones)
-    - [`numpy.ndarray.shape`](#numpyndarrayshape)
-- [Files](#files)
-  - [`read()`](#read)
-  - [`write()`](#write)
-  - [`tell()`](#tell)
-  - [`seek()`](#seek)
-- [Data model (Dunder or magic methods)](#data-model-dunder-or-magic-methods)
+- [1. PYTHON CALL REFERENCE](#1-python-call-reference)
+- [2. Built-in Functions](#2-built-in-functions)
+  - [2.1. `abs()`](#21-abs)
+  - [2.2. `bin()`](#22-bin)
+  - [2.3. `complex()`](#23-complex)
+  - [2.4. `dict()`](#24-dict)
+  - [2.5. `dir()`](#25-dir)
+  - [2.6. `divmod()`](#26-divmod)
+  - [2.7. `enumerate()`](#27-enumerate)
+  - [2.8. `eval()`](#28-eval)
+  - [2.9. `float()`](#29-float)
+  - [2.10. `format()`](#210-format)
+  - [2.11. `frozenset()`](#211-frozenset)
+  - [2.12. `help()`](#212-help)
+  - [2.13. `hex()`](#213-hex)
+  - [2.14. `input()`](#214-input)
+  - [2.15. `int()`](#215-int)
+  - [2.16. `isinstance()`](#216-isinstance)
+  - [2.17. `issubclass()`](#217-issubclass)
+  - [2.18. `len()`](#218-len)
+  - [2.19. `list()`](#219-list)
+  - [2.20. `map()`](#220-map)
+  - [2.21. `max()`](#221-max)
+  - [2.22. `min()`](#222-min)
+  - [2.23. `oct()`](#223-oct)
+  - [2.24. `open()`](#224-open)
+  - [2.25. `ord()`](#225-ord)
+  - [2.26. `pow()`](#226-pow)
+  - [2.27. `print()`](#227-print)
+  - [2.28. `range()`](#228-range)
+  - [2.29. `reversed()`](#229-reversed)
+  - [2.30. `round()`](#230-round)
+  - [2.31. `class()`](#231-class)
+  - [2.32. `slice()`](#232-slice)
+  - [2.33. `sorted()`](#233-sorted)
+  - [2.34. `str()`](#234-str)
+  - [2.35. `sum()`](#235-sum)
+  - [2.36. `super()`](#236-super)
+  - [2.37. `tuple()`](#237-tuple)
+  - [2.38. `type()`](#238-type)
+  - [2.39. `zip()`](#239-zip)
+- [3. Built-in Types](#3-built-in-types)
+  - [3.1. Strings](#31-strings)
+    - [3.1.1. `capitalize()`](#311-capitalize)
+    - [3.1.2. `center()`](#312-center)
+    - [3.1.3. `count()`](#313-count)
+    - [3.1.4. `endswith()`](#314-endswith)
+    - [3.1.5. `find()`](#315-find)
+    - [3.1.6. `index()`](#316-index)
+    - [3.1.7. `join()`](#317-join)
+    - [3.1.8. `lower()`](#318-lower)
+    - [3.1.9. `lstrip()`](#319-lstrip)
+    - [3.1.10. `replace()`](#3110-replace)
+    - [3.1.11. `rfind()`](#3111-rfind)
+    - [3.1.12. `rindex()`](#3112-rindex)
+    - [3.1.13. `rstrip()`](#3113-rstrip)
+    - [3.1.14. `split()`](#3114-split)
+    - [3.1.15. `splitlines()`](#3115-splitlines)
+    - [3.1.16. `startswith()`](#3116-startswith)
+    - [3.1.17. `strip()`](#3117-strip)
+    - [3.1.18. `title()`](#3118-title)
+    - [3.1.19. `upper()`](#3119-upper)
+  - [3.2. Sets](#32-sets)
+    - [3.2.1. `issubset()`](#321-issubset)
+    - [3.2.2. `issuperset()`](#322-issuperset)
+    - [3.2.3. `union()`](#323-union)
+    - [3.2.4. `intersection()`](#324-intersection)
+    - [3.2.5. `difference()`](#325-difference)
+    - [3.2.6. `symmetric_difference()`](#326-symmetric_difference)
+    - [3.2.7. `copy()`](#327-copy)
+    - [3.2.8. `update()`](#328-update)
+    - [3.2.9. `intersection_update()`](#329-intersection_update)
+    - [3.2.10. `difference_update()`](#3210-difference_update)
+    - [3.2.11. `symmetric_difference_update()`](#3211-symmetric_difference_update)
+    - [3.2.12. `add()`](#3212-add)
+    - [3.2.13. `remove()`](#3213-remove)
+    - [3.2.14. `discard()`](#3214-discard)
+    - [3.2.15. `pop()`](#3215-pop)
+  - [3.3. Tuples](#33-tuples)
+    - [3.3.1. `count()`](#331-count)
+    - [3.3.2. `index()`](#332-index)
+- [4. Data Structures](#4-data-structures)
+  - [4.1. Lists](#41-lists)
+    - [4.1.1. `append()`](#411-append)
+    - [4.1.2. `extend()`](#412-extend)
+    - [4.1.3. `insert()`](#413-insert)
+    - [4.1.4. `remove()`](#414-remove)
+    - [4.1.5. `pop()`](#415-pop)
+    - [4.1.6. `index()`](#416-index)
+    - [4.1.7. `count()`](#417-count)
+    - [4.1.8. `sort()`](#418-sort)
+    - [4.1.9. `reverse()`](#419-reverse)
+    - [4.1.10. `copy()`](#4110-copy)
+  - [4.2. Dictionaries](#42-dictionaries)
+    - [4.2.1. `iter()`](#421-iter)
+    - [4.2.2. `copy()`](#422-copy)
+    - [4.2.3. `get()`](#423-get)
+    - [4.2.4. `items()`](#424-items)
+    - [4.2.5. `keys()`](#425-keys)
+    - [4.2.6. `pop()`](#426-pop)
+    - [4.2.7. `popitem()`](#427-popitem)
+    - [4.2.8. `setdefault()`](#428-setdefault)
+    - [4.2.9. `update()`](#429-update)
+    - [4.2.10. `values()`](#4210-values)
+- [5. Modules](#5-modules)
+  - [5.1. `pickle`](#51-pickle)
+    - [5.1.1. `dump()`](#511-dump)
+    - [5.1.2. `load()`](#512-load)
+  - [5.2. `random`](#52-random)
+    - [5.2.1. `randrange()`](#521-randrange)
+    - [5.2.2. `choice()`](#522-choice)
+    - [5.2.3. `choices()`](#523-choices)
+    - [5.2.4. `sample()`](#524-sample)
+    - [5.2.5. `random()`](#525-random)
+    - [5.2.6. `uniform()`](#526-uniform)
+  - [5.3. `time`](#53-time)
+    - [5.3.1. `sleep()`](#531-sleep)
+    - [5.3.2. `time()`](#532-time)
+  - [5.4. `math`](#54-math)
+    - [5.4.1. `ceil()`](#541-ceil)
+    - [5.4.2. `floor()`](#542-floor)
+    - [5.4.3. `gcd()`](#543-gcd)
+    - [5.4.4. `isclose()`](#544-isclose)
+    - [5.4.5. `trunc()`](#545-trunc)
+    - [5.4.6. `exp()`](#546-exp)
+    - [5.4.7. `log()`](#547-log)
+    - [5.4.8. `pow()`](#548-pow)
+    - [5.4.9. `sqrt()`](#549-sqrt)
+    - [5.4.10. `sin()`](#5410-sin)
+    - [5.4.11. `cos()`](#5411-cos)
+    - [5.4.12. `tan()`](#5412-tan)
+    - [5.4.13. `acos()`](#5413-acos)
+    - [5.4.14. `asin()`](#5414-asin)
+    - [5.4.15. `atan()`](#5415-atan)
+    - [5.4.16. `degrees()`](#5416-degrees)
+    - [5.4.17. `radians()`](#5417-radians)
+  - [5.5. `numpy`](#55-numpy)
+    - [5.5.1. `numpy.array`](#551-numpyarray)
+    - [5.5.2. `numpy.arange`](#552-numpyarange)
+    - [5.5.3. `numpy.linspace`](#553-numpylinspace)
+    - [5.5.4. `numpy.eye`](#554-numpyeye)
+    - [5.5.5. `numpy.diag`](#555-numpydiag)
+    - [5.5.6. `numpy.zeros`](#556-numpyzeros)
+    - [5.5.7. `numpy.ones`](#557-numpyones)
+    - [5.5.8. `numpy.ndarray.shape`](#558-numpyndarrayshape)
+- [6. Files](#6-files)
+  - [6.1. `read()`](#61-read)
+  - [6.2. `write()`](#62-write)
+  - [6.3. `tell()`](#63-tell)
+  - [6.4. `seek()`](#64-seek)
+- [7. Data model (Dunder or magic methods)](#7-data-model-dunder-or-magic-methods)
+- [8. Appendix: `numpy`](#8-appendix-numpy)
+  - [8.1. ARRAY CREATION](#81-array-creation)
+  - [8.2. INDEXING](#82-indexing)
+  - [8.3. BROADCASTING](#83-broadcasting)
+  - [8.4. STRUCTURED ARRAYS](#84-structured-arrays)
 
 <!-- 
 
@@ -205,7 +210,7 @@ $$ |  $$ |$$$$$$$$\ $$ |      $$$$$$$$\ $$ |  $$ |$$$$$$$$\ $$ | \$$ |\$$$$$$  |
 -->
 
 
-# PYTHON CALL REFERENCE
+# 1. PYTHON CALL REFERENCE
 **Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
 
 For quick reference, each description only has one sentence, see the documentations provided for more details.
@@ -245,28 +250,28 @@ $$ |      \$$$$$$  |$$ | \$$ |\$$$$$$  |  $$ |   $$$$$$\  $$$$$$  |$$ | \$$ |\$$
                                                                                        
 -->
 
-# Built-in Functions
+# 2. Built-in Functions
 **Doc: <https://docs.python.org/3/library/functions.html>**
 
-## `abs()`
+## 2.1. `abs()`
 ```py
 abs(x)
 ```
 Return the absolute value of a number.
 
-## `bin()`
+## 2.2. `bin()`
 ```py
 bin(x)
 ```
 Convert an integer number to a binary string prefixed with “`0b`”.
 
-## `complex()`
+## 2.3. `complex()`
 ```py
 class complex([real[, imag]])
 ```
 Return a complex number with the value `real` + `imag`*1j or convert a string or number to a complex number.
 
-## `dict()`
+## 2.4. `dict()`
 ```py
 class dict(**kwarg)
 ```
@@ -278,67 +283,67 @@ class dict(iterable, **kwarg)
 ```
 Create a new dictionary.
 
-## `dir()`
+## 2.5. `dir()`
 ```py
 dir([object])
 ```
 With an argument, attempt to return a list of valid attributes for that `object`.
 
-## `divmod()`
+## 2.6. `divmod()`
 ```py
 divmod(a, b)
 ```
 Take two (non complex) numbers as arguments and return a pair of numbers consisting of their quotient and remainder when using integer division.
 
-## `enumerate()`
+## 2.7. `enumerate()`
 ```py
 enumerate(iterable, start=0)
 ```
 Return an enumerate object.
 
-## `eval()`
+## 2.8. `eval()`
 ```py
 eval(expression[, globals[, locals]])
 ```
 The expression argument is parsed and evaluated as a Python expression (technically speaking, a condition list) using the globals and locals dictionaries as global and local namespace.
 
-## `float()`
+## 2.9. `float()`
 ```py
 class float([x])
 ```
 Return a floating point number constructed from a number or string `x`.
 
-## `format()`
+## 2.10. `format()`
 ```py
 format(value[, format_spec])
 ```
 Convert a value to a “formatted” representation, as controlled by `format_spec`.
 
-## `frozenset()`
+## 2.11. `frozenset()`
 ```py
 class frozenset([iterable])
 ```
 Return a new `frozenset` object, optionally with elements taken from `iterable`. 
 
-## `help()`
+## 2.12. `help()`
 ```py
 help([object])
 ```
 Invoke the built-in help system.
 
-## `hex()`
+## 2.13. `hex()`
 ```py
 hex(x)
 ```
 Convert an integer number to a lowercase hexadecimal string prefixed with “`0x`”.
 
-## `input()`
+## 2.14. `input()`
 ```py
 input([prompt])
 ```
 The function reads a line from input, converts it to a string (stripping a trailing newline), and returns that. 
 
-## `int()`
+## 2.15. `int()`
 ```py
 class int([x])
 ```
@@ -347,38 +352,38 @@ class int(x, base=10)
 ```
 Return an integer object constructed from a number or string `x`, or return `0` if no arguments are given.
 
-## `isinstance()`
+## 2.16. `isinstance()`
 ```py
 isinstance(object, classinfo)
 ```
 Return `True` if the `object` argument is an instance of the `classinfo` argument, or of a (direct, indirect or virtual) subclass thereof.
 
-## `issubclass()`
+## 2.17. `issubclass()`
 ```py
 issubclass(class, classinfo)
 ```
 Return `True` if `class` is a subclass (direct, indirect or virtual) of `classinfo`. 
 
-## `len()`
+## 2.18. `len()`
 ```py
 len(s)
 ```
 Return the length (the number of items) of an object.
 
-## `list()`
+## 2.19. `list()`
 ```py
 class list([iterable])
 ```
 Rather than being a function, `list` is actually a mutable sequence type.
 
 
-## `map()`
+## 2.20. `map()`
 ```py
 map(function, iterable, ...)
 ```
 Return an iterator that applies `function` to every item of `iterable`, yielding the results. 
 
-## `max()`
+## 2.21. `max()`
 ```py
 max(iterable, *[, key, default])
 ```
@@ -388,7 +393,7 @@ max(arg1, arg2, *args[, key])
 Return the largest item in an iterable or the largest of two or more arguments.
 
 
-## `min()`
+## 2.22. `min()`
 ```py
 min(iterable, *[, key, default])
 ```
@@ -397,38 +402,38 @@ min(arg1, arg2, *args[, key])
 ```
 
 
-## `oct()`
+## 2.23. `oct()`
 ```py
 oct(x)
 ```
 Convert an integer number to an octal string prefixed with “`0o`”.
 
 
-## `open()`
+## 2.24. `open()`
 ```py
 open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
 ```
 Open `file` and return a corresponding file object.
 
-## `ord()`
+## 2.25. `ord()`
 ```py
 ord(c)
 ```
 Given a string representing one Unicode character, return an integer representing the Unicode code point of that character.
 
-## `pow()`
+## 2.26. `pow()`
 ```py
 pow(base, exp[, mod])
 ```
 Return `base` to the power `exp`; if mod is present, return base to the power exp, modulo `mod` (computed more efficiently than `pow(base, exp) % mod`). 
 
-## `print()`
+## 2.27. `print()`
 ```py
 print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
 ```
 Print `objects` to the text stream `file`, separated by `sep` and followed by `end`.
 
-## `range()`
+## 2.28. `range()`
 ```py
 class range(stop)
 ```
@@ -437,26 +442,26 @@ class range(start, stop[, step])
 ```
 Rather than being a function, `range` is actually an immutable sequence type.
 
-## `reversed()`
+## 2.29. `reversed()`
 ```py
 reversed(seq)
 ```
 Return a reverse iterator.
 
-## `round()`
+## 2.30. `round()`
 ```py
 round(number[, ndigits])
 ```
 Return `number` rounded to `ndigits` precision after the decimal point. 
 
 
-## `class()`
+## 2.31. `class()`
 ```py
 class set([iterable])
 ```
 Return a new `set` object, optionally with elements taken from `iterable`.
 
-## `slice()`
+## 2.32. `slice()`
 ```py
 class slice(stop)
 ```
@@ -465,13 +470,13 @@ class slice(start, stop[, step])
 ```
 Return a slice object representing the set of indices specified by `range(start, stop, step)`.
 
-## `sorted()`
+## 2.33. `sorted()`
 ```py
 sorted(iterable, *, key=None, reverse=False)
 ```
 Return a new sorted list from the items in `iterable`.
 
-## `str()`
+## 2.34. `str()`
 ```py
 class str(object='')
 ```
@@ -480,25 +485,25 @@ class str(object=b'', encoding='utf-8', errors='strict')
 ```
 Return a `str` version of `object`.
 
-## `sum()`
+## 2.35. `sum()`
 ```py
 sum(iterable, /, start=0)
 ```
 Sums `start` and the items of an `iterable` from left to right and returns the total.
 
-## `super()`
+## 2.36. `super()`
 ```py
 super([type[, object-or-type]])
 ```
 Return a proxy object that delegates method calls to a parent or sibling class of type, useful for accessing inherited methods that have been overridden in a class.
 
-## `tuple()`
+## 2.37. `tuple()`
 ```py
 class tuple([iterable])
 ```
 Rather than being a function, `tuple` is actually an immutable sequence type.
 
-## `type()`
+## 2.38. `type()`
 ```py
 class type(object)
 ```
@@ -507,7 +512,7 @@ class type(name, bases, dict, **kwds)
 ```
 With one argument, return the type of an object. 
 
-## `zip()`
+## 2.39. `zip()`
 ```py
 zip(*iterables)
 ```
@@ -541,7 +546,7 @@ $$$$$$$$\ $$\     $$\ $$$$$$$\  $$$$$$$$\  $$$$$$\
 
 -->
 
-# Built-in Types
+# 3. Built-in Types
 **Doc: <https://docs.python.org/3/library/stdtypes.html>**
 
 <!-- 
@@ -572,118 +577,118 @@ $$\   $$ |  $$ |$$\ $$ |      $$ |$$ |  $$ |$$ |  $$ | \____$$\
                                             \$$$$$$  |          
                                              \______/           
 -->
-## Strings
+## 3.1. Strings
 
-### `capitalize()`
+### 3.1.1. `capitalize()`
 ```py
 str.capitalize()
 ```
 Return a copy of the string with its first character capitalized and the rest lowercased.
 
-### `center()`
+### 3.1.2. `center()`
 ```py
 str.center(width[, fillchar])
 ```
 Return centered in a string of length `width`.
 
-### `count()`
+### 3.1.3. `count()`
 ```py
 str.count(sub[, start[, end]])
 ```
 Return the number of non-overlapping occurrences of substring `sub` in the range [`start`, `end`].
 
-### `endswith()`
+### 3.1.4. `endswith()`
 ```py
 str.endswith(suffix[, start[, end]])
 ```
 Return `True` if the string ends with the specified `suffix`, otherwise return `False`.
 
-### `find()`
+### 3.1.5. `find()`
 ```py
 str.find(sub[, start[, end]])
 ```
 Return the lowest index in the string where substring `sub` is found within the slice `s[start:end]`, else return `-1`.
 
-### `index()`
+### 3.1.6. `index()`
 ```py
 str.index(sub[, start[, end]])
 ```
 Like `find()`, but raise `ValueError` when the substring is not found.
 
-### `join()`
+### 3.1.7. `join()`
 ```py
 str.join(iterable)
 ```
 Return a string which is the concatenation of the strings in `iterable`.
 
-### `lower()`
+### 3.1.8. `lower()`
 ```py
 str.lower()
 ```
 Return a copy of the string with all the cased characters converted to lowercase.
 
 
-### `lstrip()`
+### 3.1.9. `lstrip()`
 ```py
 str.lstrip([chars])
 ```
 Return a copy of the string with leading characters removed.
 
-### `replace()`
+### 3.1.10. `replace()`
 ```py
 str.replace(old, new[, count])
 ```
 Return a copy of the string with all occurrences of substring `old` replaced by `new`.
 
-### `rfind()`
+### 3.1.11. `rfind()`
 ```py
 str.rfind(sub[, start[, end]])
 ```
 Return the highest index in the string where substring `sub` is found, such that `sub` is contained within `s[start:end]`.
 
-### `rindex()`
+### 3.1.12. `rindex()`
 ```py
 str.rindex(sub[, start[, end]])
 ```
 Like `rfind()` but raises `ValueError` when the substring `sub` is not found.
 
-### `rstrip()`
+### 3.1.13. `rstrip()`
 ```py
 str.rstrip([chars])
 ```
 Return a copy of the string with trailing characters removed.
 
-### `split()`
+### 3.1.14. `split()`
 ```py
 str.split(sep=None, maxsplit=-1)
 ```
 Return a list of the words in the string, using `sep` as the delimiter string.
 
-### `splitlines()`
+### 3.1.15. `splitlines()`
 ```py
 str.splitlines([keepends])
 ```
 Return a list of the lines in the string, breaking at line boundaries.
 
-### `startswith()`
+### 3.1.16. `startswith()`
 ```py
 str.startswith(prefix[, start[, end]])
 ```
 Return `True` if string starts with the `prefix`, otherwise return `False`.
 
-### `strip()`
+### 3.1.17. `strip()`
 ```py
 str.strip([chars])
 ```
 Return a copy of the string with the leading and trailing characters removed.
 
-### `title()`
+### 3.1.18. `title()`
 ```py
 str.title()
 ```
 Return a titlecased version of the string where words start with an uppercase character and the remaining characters are lowercase.
 
-### `upper()`
+### 3.1.19. `upper()`
 ```py
 str.upper()
 ```
@@ -718,9 +723,9 @@ $$\   $$ |$$   ____| $$ |$$\  \____$$\
 -->
 
 
-## Sets
+## 3.2. Sets
 
-### `issubset()`
+### 3.2.1. `issubset()`
 ```py
 issubset(other)
 ```
@@ -729,7 +734,7 @@ set <= other
 ```
 Test whether every element in the set is in other.
 
-### `issuperset()`
+### 3.2.2. `issuperset()`
 ```py
 issuperset(other)
 ```
@@ -738,7 +743,7 @@ set >= other
 ```
 Test whether every element in other is in the set.
 
-### `union()`
+### 3.2.3. `union()`
 ```py
 union(*others)
 ```
@@ -747,7 +752,7 @@ set | other | ...
 ```
 Return a new set with elements from the set and all others.
 
-### `intersection()`
+### 3.2.4. `intersection()`
 ```py
 intersection(*others)
 ```
@@ -756,7 +761,7 @@ set & other & ...
 ```
 Return a new set with elements common to the set and all others.
 
-### `difference()`
+### 3.2.5. `difference()`
 ```py
 difference(*others)
 ```
@@ -765,7 +770,7 @@ set - other - ...
 ```
 Return a new set with elements in the set that are not in the others.
 
-### `symmetric_difference()`
+### 3.2.6. `symmetric_difference()`
 ```py
 symmetric_difference(other)
 ```
@@ -774,13 +779,13 @@ set ^ other
 ```
 Return a new set with elements in either the set or other but not both.
 
-### `copy()`
+### 3.2.7. `copy()`
 ```py
 copy()
 ```
 Return a shallow copy of the set.
 
-### `update()`
+### 3.2.8. `update()`
 ```py
 update(*others)
 ```
@@ -789,7 +794,7 @@ set |= other | ...
 ```
 Update the set, adding elements from all others.
 
-### `intersection_update()`
+### 3.2.9. `intersection_update()`
 ```py
 intersection_update(*others)
 ```
@@ -798,7 +803,7 @@ set &= other & ...
 ```
 Update the set, keeping only elements found in it and all others.
 
-### `difference_update()`
+### 3.2.10. `difference_update()`
 ```py
 difference_update(*others)
 ```
@@ -807,7 +812,7 @@ set -= other | ...
 ```
 Update the set, removing elements found in others.
 
-### `symmetric_difference_update()`
+### 3.2.11. `symmetric_difference_update()`
 ```py
 symmetric_difference_update(other)
 ```
@@ -816,25 +821,25 @@ set ^= other
 ```
 Update the set, keeping only elements found in either set, but not in both.
 
-### `add()`
+### 3.2.12. `add()`
 ```py
 add(elem)
 ```
 Add element `elem` to the set.
 
-### `remove()`
+### 3.2.13. `remove()`
 ```py
 remove(elem)
 ```
 Remove element `elem` from the set or raise `KeyError` if `elem` is not contained in the set.
 
-### `discard()`
+### 3.2.14. `discard()`
 ```py
 discard(elem)
 ```
 Remove element `elem` from the set if it is present.
 
-### `pop()`
+### 3.2.15. `pop()`
 ```py
 pop()
 ```
@@ -869,15 +874,15 @@ $$$$$$$$\                  $$\
                  \__|                              
 -->
 
-## Tuples
+## 3.3. Tuples
 
-### `count()`
+### 3.3.1. `count()`
 ```py
 count(x)
 ```
 Total number of occurrences of `x`.
 
-### `index()`
+### 3.3.2. `index()`
 ```py
 index(x[, i[, j]])
 ```
@@ -909,7 +914,7 @@ $$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      \$$$$$$  |  $$ |   $$ |  $$ |\$$$$$
 \_______/ \__|  \__|  \__|   \__|  \__|       \______/   \__|   \__|  \__| \______/  \______/   \__|   
                                                                                                        
 -->
-# Data Structures
+# 4. Data Structures
 **Doc: <https://docs.python.org/3/tutorial/datastructures.html>**
 
 <!-- 
@@ -939,63 +944,63 @@ $$$$$$$$\ $$ |$$$$$$$  |  \$$$$  |$$$$$$$  |
 
 -->
 
-## Lists
+## 4.1. Lists
 
-### `append()`
+### 4.1.1. `append()`
 ```py
 list.append(x)
 ```
 Add an item to the end of the list.
 
-### `extend()`
+### 4.1.2. `extend()`
 ```py
 list.extend(iterable)
 ```
 Extend the list by appending all the items from the iterable.
 
-### `insert()`
+### 4.1.3. `insert()`
 ```py
 list.insert(i, x)
 ```
 Insert an item at a given position.
 
-### `remove()`
+### 4.1.4. `remove()`
 ```py
 list.remove(x)
 ```
 Remove the first item from the list whose value is equal to `x`.
 
-### `pop()`
+### 4.1.5. `pop()`
 ```py
 list.pop([i])
 ```
 Remove the item at the given position in the list, and return it; if no index is specified, it will be the last item in the list.
 
-### `index()`
+### 4.1.6. `index()`
 ```py
 list.index(x[, start[, end]])
 ```
 Return zero-based index in the list of the first item whose value is equal to `x` or raise a `ValueError` if there is no such item.
 
-### `count()`
+### 4.1.7. `count()`
 ```py
 list.count(x)
 ```
 Return the number of times x appears in the list.
 
-### `sort()`
+### 4.1.8. `sort()`
 ```py
 list.sort(*, key=None, reverse=False)
 ```
 Sort the items of the list in place.
 
-### `reverse()`
+### 4.1.9. `reverse()`
 ```py
 list.reverse()
 ```
 Reverse the elements of the list in place.
 
-### `copy()`
+### 4.1.10. `copy()`
 ```py
 list.copy()
 ```
@@ -1029,45 +1034,45 @@ $$$$$$$  |$$ |\$$$$$$$\   \$$$$  |$$ |\$$$$$$  |$$ |  $$ |\$$$$$$$ |$$ |      $$
  -->
 
 
-## Dictionaries
+## 4.2. Dictionaries
 
-### `iter()`
+### 4.2.1. `iter()`
 ```py
 iter(d)
 ```
 Return an iterator over the keys of the dictionary, which is a shortcut for `iter(d.keys())`.
 
-### `copy()`
+### 4.2.2. `copy()`
 ```py
 copy()
 ```
 Return a shallow copy of the dictionary.
 
-### `get()`
+### 4.2.3. `get()`
 ```py
 get(key[, default])
 ```
 Return the value for `key` if `key` is in the dictionary, else `default`; if `default` is not given, it defaults to None, so that this method never raises a `KeyError`.
 
-### `items()`
+### 4.2.4. `items()`
 ```py
 items()
 ```
 Return a new view of the dictionary’s items (`(key, value)` pairs). 
 
-### `keys()`
+### 4.2.5. `keys()`
 ```py
 keys()
 ```
 Return a new view of the dictionary’s keys.
 
-### `pop()`
+### 4.2.6. `pop()`
 ```py
 pop(key[, default])
 ```
 If `key` is in the dictionary, remove it and return its value, else return `default`; if `default` is not given and `key` is not in the dictionary, a `KeyError` is raised.
 
-### `popitem()`
+### 4.2.7. `popitem()`
 ```py
 popitem()
 ```
@@ -1075,19 +1080,19 @@ Remove and return a `(key, value)` pair from the dictionary, pairs are returned 
 
 > *Changed in version 3.7*: LIFO order is now guaranteed. In prior versions, popitem() would return an arbitrary key/value pair.
 
-### `setdefault()`
+### 4.2.8. `setdefault()`
 ```py
 setdefault(key[, default])
 ```
 If `key` is in the dictionary, return its value. If not, insert `key` with a value of `default` and return `default`. `default` defaults to None.
 
-### `update()`
+### 4.2.9. `update()`
 ```py
 update([other])
 ```
 Update the dictionary with the key/value pairs from `other`, overwriting existing keys, then return `None`.
 
-### `values()`
+### 4.2.10. `values()`
 ```py
 values()
 ```
@@ -1121,7 +1126,7 @@ $$ | \_/ $$ | $$$$$$  |$$$$$$$  |\$$$$$$  |$$$$$$$$\ $$$$$$$$\ \$$$$$$  |
                                                                          
 -->
 
-# Modules
+# 5. Modules
 
 
 <!-- 
@@ -1154,20 +1159,20 @@ $$ |
 
 -->
 
-## `pickle`
+## 5.1. `pickle`
 Doc: <https://docs.python.org/3/library/pickle.html>
 
 ```py
 import pickle
 ```
 
-### `dump()`
+### 5.1.1. `dump()`
 ```py
 pickle.dump(obj, file, protocol=None, *, fix_imports=True, buffer_callback=None)
 ```
 Write the pickled representation of the object `obj` to the open file object `file`.
 
-### `load()`
+### 5.1.2. `load()`
 ```py
 pickle.load(file, *, fix_imports=True, encoding="ASCII", errors="strict", buffers=None)
 ```
@@ -1201,7 +1206,7 @@ $$ |     \$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$ | $$ | $$ |
                                                                
 -->
 
-## `random`
+## 5.2. `random`
 Doc: <https://docs.python.org/3/library/random.html>
 
 
@@ -1209,7 +1214,7 @@ Doc: <https://docs.python.org/3/library/random.html>
 import random
 ```
 
-### `randrange()`
+### 5.2.1. `randrange()`
 ```py
 random.randrange(stop)
 ```
@@ -1218,31 +1223,31 @@ random.randrange(start, stop[, step])
 ```
 Return a randomly selected element from `range(start, stop, step)`, which is equivalent to `choice(range(start, stop, step))`, but doesn’t actually build a range object; the positional argument pattern matches that of `range()`.
 
-### `choice()`
+### 5.2.2. `choice()`
 ```py
 random.choice(seq)
 ```
 Return a random element from the non-empty sequence `seq`; if `seq` is empty, raises `IndexError`.
 
-### `choices()`
+### 5.2.3. `choices()`
 ```py
 random.choices(population, weights=None, *, cum_weights=None, k=1)
 ```
 Return a `k` sized list of elements chosen from the `population` with replacement; if the `population` is empty, raises IndexError.
 
-### `sample()`
+### 5.2.4. `sample()`
 ```py
 random.sample(population, k, *, counts=None)
 ```
 Return a `k` length list of unique elements chosen from the `population` sequence or set. 
 
-### `random()`
+### 5.2.5. `random()`
 ```py
 random.random()
 ```
 Return the next random floating point number in the range [0.0, 1.0).
 
-### `uniform()`
+### 5.2.6. `uniform()`
 ```py
 random.uniform(a, b)
 ```
@@ -1275,20 +1280,20 @@ $$$$$$\   $$\ $$$$$$\$$$$\   $$$$$$\
    \____/ \__|\__| \__| \__| \_______|
                                         
 -->
-## `time`
+## 5.3. `time`
 Doc: <https://docs.python.org/3/library/time.html>
 
 ```py
 import time
 ```
 
-### `sleep()`
+### 5.3.1. `sleep()`
 ```py
 time.sleep(secs)
 ```
 Suspend execution of the calling thread for the given number of seconds.
 
-### `time()`
+### 5.3.2. `time()`
 ```py
 time.time() → float
 ```
@@ -1320,110 +1325,110 @@ $$ | $$ | $$ |\$$$$$$$ | \$$$$  |$$ |  $$ |
 \__| \__| \__| \_______|  \____/ \__|  \__|
 
 -->
-## `math`
+## 5.4. `math`
 Doc: <https://docs.python.org/3/library/math.html>
 
 ```py
 import math
 ```
 
-### `ceil()`
+### 5.4.1. `ceil()`
 ```py
 math.ceil(x)
 ```
 Return the ceiling of `x`, the smallest integer greater than or equal to `x`.
 
-### `floor()`
+### 5.4.2. `floor()`
 ```py
 math.floor(x)
 ```
 Return the floor of `x`, the largest integer less than or equal to `x`.
 
-### `gcd()`
+### 5.4.3. `gcd()`
 ```py
 math.gcd(*integers)
 ```
 Return the greatest common divisor of the specified integer arguments. 
 
-### `isclose()`
+### 5.4.4. `isclose()`
 ```py
 math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)
 ```
 Return `True` if the values `a` and `b` are close to each other and `False` otherwise.
 
-### `trunc()`
+### 5.4.5. `trunc()`
 ```py
 math.trunc(x)
 ```
 Return the `Real` value `x` truncated to an `Integral` (usually an integer).
 
-### `exp()`
+### 5.4.6. `exp()`
 ```py
 math.exp(x)
 ```
 Return `e` raised to the power `x`, where `e` = 2.718281… is the base of natural logarithms.
 
-### `log()`
+### 5.4.7. `log()`
 ```py
 math.log(x[, base])
 ```
 With one argument, return the natural logarithm of `x` (to base `e`); with two arguments, return the logarithm of `x` to the given `base`.
 
-### `pow()`
+### 5.4.8. `pow()`
 ```py
 math.pow(x, y)
 ```
 Return `x` raised to the power `y`.
 
-### `sqrt()`
+### 5.4.9. `sqrt()`
 ```py
 math.sqrt(x)
 ```
 Return the square root of x.
 
-### `sin()`
+### 5.4.10. `sin()`
 ```py
 math.sin(x)
 ```
 Return the sine of `x` radians.
 
-### `cos()`
+### 5.4.11. `cos()`
 ```py
 math.cos(x)
 ```
 Return the cosine of `x` radians.
 
-### `tan()`
+### 5.4.12. `tan()`
 ```py
 math.tan(x)
 ```
 Return the tangent of `x` radians.
 
-### `acos()`
+### 5.4.13. `acos()`
 ```py
 math.acos(x)
 ```
 Return the arc cosine of `x`, in radians.
 
-### `asin()`
+### 5.4.14. `asin()`
 ```py
 math.asin(x)
 ```
 Return the arc sine of `x`, in radians.
 
-### `atan()`
+### 5.4.15. `atan()`
 ```py
 math.atan(x)
 ```
 Return the arc tangent of x, in radians.
 
-### `degrees()`
+### 5.4.16. `degrees()`
 ```py
 math.degrees(x)
 ```
 Convert angle `x` from radians to degrees.
 
-### `radians()`
+### 5.4.17. `radians()`
 ```py
 math.radians(x)
 ```
@@ -1457,59 +1462,59 @@ $$ |  $$ |\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |\$$$$$$$ |
 
 -->
 
-## `numpy`
+## 5.5. `numpy`
 Doc: <https://numpy.org/doc/stable/>
 
 I will not copy nor explain their documentation here. In my opinion, the doc of `numpy` is a bit long but it is really clear and specific, and you will have to seek for help on their doc as long as you work on data related fields.
 
-If you are searching for infomation for the final exam, please search at the Appendix.
+If you are searching for infomation for the final exam, please check out some examples in the [Appendix](#8-appendix-numpy).
 
 ```py
 import numpy
 ```
 
-### `numpy.array`
+### 5.5.1. `numpy.array`
 ```py
 numpy.array(object, dtype=None, *, copy=True, order='K', subok=False, ndmin=0, like=None)
 ```
 
-### `numpy.arange`
+### 5.5.2. `numpy.arange`
 ```py
 numpy.arange([start, ]stop, [step, ]dtype=None, *, like=None)
 ```
 
 
-### `numpy.linspace`
+### 5.5.3. `numpy.linspace`
 ```py
 numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
 ```
 
 
-### `numpy.eye`
+### 5.5.4. `numpy.eye`
 ```py
 numpy.eye(N, M=None, k=0, dtype=<class 'float'>, order='C', *, like=None)
 ```
 
 
-### `numpy.diag`
+### 5.5.5. `numpy.diag`
 ```py
 numpy.diag(v, k=0)
 ```
 
 
-### `numpy.zeros`
+### 5.5.6. `numpy.zeros`
 ```py
 numpy.zeros(shape, dtype=float, order='C', *, like=None)
 ```
 
 
-### `numpy.ones`
+### 5.5.7. `numpy.ones`
 ```py
 numpy.ones(shape, dtype=None, order='C', *, like=None)
 ```
 
 
-### `numpy.ndarray.shape`
+### 5.5.8. `numpy.ndarray.shape`
 ```py
 ndarray.shape
 ```
@@ -1541,28 +1546,28 @@ $$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |
                                                                                  
 -->
 
-# Files
+# 6. Files
 Doc: <https://docs.python.org/3/tutorial/inputoutput.html>
 
-## `read()`
+## 6.1. `read()`
 ```py
 f.read([size])
 ```
 Read a file’s contents, return it as a string (in text mode) or bytes object (in binary mode); when `size` is omitted or negative, the entire contents of the file will be read and returned.
 
-## `write()`
+## 6.2. `write()`
 ```py
 f.write(string)
 ```
 Write the contents of `string` to the file, return the number of characters written.
 
-## `tell()`
+## 6.3. `tell()`
 ```py
 f.tell()
 ```
 Return an integer giving the file object’s current position in the file represented as number of bytes from the beginning of the file when in binary mode and an opaque number when in text mode.
 
-## `seek()`
+## 6.4. `seek()`
 ```py
 f.seek(offset[, whence])
 ```
@@ -1595,7 +1600,7 @@ $$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      $$ | \_/ $$ | $$$$$$  |$$$$$$$  |$$
 
 -->
 
-# Data model (Dunder or magic methods)
+# 7. Data model (Dunder or magic methods)
 Doc: <https://docs.python.org/3/reference/datamodel.html>
 
 This section is of a table form to avoid confusion and... tiredness.
@@ -1626,3 +1631,266 @@ This section is of a table form to avoid confusion and... tiredness.
 |`object.__xor__(self, other)`| `^`
 |`object.__or__(self, other)`| `\|`
 
+
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ $$$$$$\  $$$$$$$\  $$$$$$$\  $$$$$$$$\ $$\   $$\ $$$$$$$\  $$$$$$\ $$\   $$\ 
+$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$$\  $$ |$$  __$$\ \_$$  _|$$ |  $$ |
+$$ /  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$$$\ $$ |$$ |  $$ |  $$ |  \$$\ $$  |
+$$$$$$$$ |$$$$$$$  |$$$$$$$  |$$$$$\    $$ $$\$$ |$$ |  $$ |  $$ |   \$$$$  / 
+$$  __$$ |$$  ____/ $$  ____/ $$  __|   $$ \$$$$ |$$ |  $$ |  $$ |   $$  $$<  
+$$ |  $$ |$$ |      $$ |      $$ |      $$ |\$$$ |$$ |  $$ |  $$ |  $$  /\$$\ 
+$$ |  $$ |$$ |      $$ |      $$$$$$$$\ $$ | \$$ |$$$$$$$  |$$$$$$\ $$ /  $$ |
+\__|  \__|\__|      \__|      \________|\__|  \__|\_______/ \______|\__|  \__|
+                                                                              
+(copied from '_htnm_PYTHON_LAST_REVIEW.md', then changed all heading3 to heading2)
+
+-->
+
+# 8. Appendix: `numpy`
+
+```python
+# numpy
+# Documentation: https://numpy.org/doc/
+import numpy as np
+```
+
+## 8.1. ARRAY CREATION
+
+
+```python
+# ARRAY CREATION
+print(np.array( [1, 4, 6, 9] ))
+print(np.array( ((1, 3), (6, 9)) ))
+print(np.array( [(3.2, 2.1), (6.0, 1.3)] ))
+# a list/tuple of lists/tuples of... is allowed
+print()
+
+print(np.array( [6, 9, 3, 0], dtype = float ))
+print(np.array( [(3.2, 2.1), (6.7, 1.3)], dtype = np.int8 ))
+# there are a lot of data types available,
+# check it out in the documentation
+```
+
+    [1 4 6 9]
+    [[1 3]
+     [6 9]]
+    [[3.2 2.1]
+     [6.  1.3]]
+    
+    [6. 9. 3. 0.]
+    [[3 2]
+     [6 1]]
+    
+
+
+```python
+# ARRAY CREATION
+print(np.arange(10))
+print(np.arange(21.2, 8.1, -2.5))
+# floats can be passed to arange 
+print()
+
+print(np.linspace(2.3, 4.8, 5))
+# arrays with a specified number of elements, 
+# and spaced equally between the specified beginning and end values
+```
+
+    [0 1 2 3 4 5 6 7 8 9]
+    [21.2 18.7 16.2 13.7 11.2  8.7]
+    
+    [2.3   2.925 3.55  4.175 4.8  ]
+    
+
+
+```python
+# ARRAY CREATION
+# most types of special two-dimensional matrices in linear algebra
+# can be created using np functions, find out more in the documentation
+print(np.eye(3))
+print(np.diag([3, 4, 5]))
+```
+
+    [[1. 0. 0.]
+     [0. 1. 0.]
+     [0. 0. 1.]]
+    [[3 0 0]
+     [0 4 0]
+     [0 0 5]]
+    
+
+
+```python
+# ARRAY CREATION
+print(np.zeros((2, 3)))
+print()
+print(np.ones((3, 2, 4)))
+```
+
+    [[0. 0. 0.]
+     [0. 0. 0.]]
+    
+    [[[1. 1. 1. 1.]
+      [1. 1. 1. 1.]]
+    
+     [[1. 1. 1. 1.]
+      [1. 1. 1. 1.]]
+    
+     [[1. 1. 1. 1.]
+      [1. 1. 1. 1.]]]
+    
+
+## 8.2. INDEXING
+
+
+```python
+# INDEXING
+np_arr = np.arange(3.3, 12, 1.1)
+print(np_arr)
+print(np_arr[-2])
+print(np_arr[-2:])
+# slicing np array is exactly the same as slicing python list 
+```
+
+    [ 3.3  4.4  5.5  6.6  7.7  8.8  9.9 11. ]
+    9.900000000000002
+    [ 9.9 11. ]
+    
+
+
+```python
+# INDEXING
+print(np_arr.shape)
+np_arr.shape = (2, 4)
+print(np_arr.shape)
+print(np_arr)
+```
+
+    (8,)
+    (2, 4)
+    [[ 3.3  4.4  5.5  6.6]
+     [ 7.7  8.8  9.9 11. ]]
+    
+
+
+```python
+# INDEXING
+print(np_arr[1])
+print(np_arr[1, 2])
+```
+
+    [ 7.7  8.8  9.9 11. ]
+    9.900000000000002
+    
+
+
+```python
+# INDEXING
+print(np.arange(4))
+np_arr_2 = np.arange(1, 8, 2)
+print(np_arr_2)
+print()
+
+index_arr = np.array([1, -1, 3])
+print(index_arr)
+print(np_arr_2[index_arr])
+# a np array can be used to select element
+print()
+
+index_arr_2 = np.array( [[1, 0], [3, 2]] )
+print(index_arr_2)
+print(np_arr_2[index_arr_2])
+print()
+# indexing np arrays which have more dimensions is more complicated,
+# read more in documentation
+```
+
+    [0 1 2 3]
+    [1 3 5 7]
+    
+    [ 1 -1  3]
+    [3 7 7]
+    
+    [[1 0]
+     [3 2]]
+    [[3 1]
+     [7 5]]
+    
+    
+
+
+```python
+# INDEXING
+np_arr_3 = np.arange(9)
+print(np_arr_3)
+index_arr_3 = np_arr_3 % 2 == 0
+print(index_arr_3)
+print(np_arr_3[index_arr_3])
+# in data science, filtering data is very important,
+# so this is a must-have tool
+```
+
+    [0 1 2 3 4 5 6 7 8]
+    [ True False  True False  True False  True False  True]
+    [0 2 4 6 8]
+    
+
+## 8.3. BROADCASTING
+
+
+```python
+# BROADCASTING
+# the term broadcasting describes how np treats arrays 
+# with different shapes during arithmetic operations
+np_arr_a = np.array([6, 8, 9])
+print(np_arr_a)
+np_arr_b = np.ones(3, dtype = np.int8)
+print(np_arr_b)
+print(np_arr_a + np_arr_b)
+```
+
+    [6 8 9]
+    [1 1 1]
+    [ 7  9 10]
+    
+
+
+```python
+# BROADCASTING
+print(np_arr_a + 1)
+# read more about general broadcasting rules for 
+# more-dimensional-arrays in the documentation
+```
+
+    [ 7  9 10]
+    
+
+## 8.4. STRUCTURED ARRAYS
+
+
+```python
+# STRUCTURED ARRAYS
+# there are a lot of concepts for this type of array,
+# the following is only a simple example
+struct_arr = np.array([('Alan', 19, 169.2), ('Paul', 21, 172.3)],
+                      dtype = [('name', 'U10'), ('age', 'i4'), ('height', 'f4')]
+                      )
+print(struct_arr)
+```
+
+    [('Alan', 19, 169.2) ('Paul', 21, 172.3)]
+    
