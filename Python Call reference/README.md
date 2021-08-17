@@ -161,6 +161,15 @@ $$ |  $$\ $$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |\$$$ |   $$ |   $$\   $$ |
     - [`atan()`](#atan)
     - [`degrees()`](#degrees)
     - [`radians()`](#radians)
+  - [`numpy`](#numpy)
+    - [`numpy.array`](#numpyarray)
+    - [`numpy.arange`](#numpyarange)
+    - [`numpy.linspace`](#numpylinspace)
+    - [`numpy.eye`](#numpyeye)
+    - [`numpy.diag`](#numpydiag)
+    - [`numpy.zeros`](#numpyzeros)
+    - [`numpy.ones`](#numpyones)
+    - [`numpy.ndarray.shape`](#numpyndarrayshape)
 - [Files](#files)
   - [`read()`](#read)
   - [`write()`](#write)
@@ -1420,6 +1429,90 @@ math.radians(x)
 ```
 Convert angle `x` from degrees to radians.
 
+<!--
+                                     
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+                                    
+$$$$$$$\  $$\   $$\ $$$$$$\$$$$\   $$$$$$\  $$\   $$\ 
+$$  __$$\ $$ |  $$ |$$  _$$  _$$\ $$  __$$\ $$ |  $$ |
+$$ |  $$ |$$ |  $$ |$$ / $$ / $$ |$$ /  $$ |$$ |  $$ |
+$$ |  $$ |$$ |  $$ |$$ | $$ | $$ |$$ |  $$ |$$ |  $$ |
+$$ |  $$ |\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |\$$$$$$$ |
+\__|  \__| \______/ \__| \__| \__|$$  ____/  \____$$ |
+                                  $$ |      $$\   $$ |
+                                  $$ |      \$$$$$$  |
+                                  \__|       \______/ 
+
+-->
+
+## `numpy`
+Doc: <https://numpy.org/doc/stable/>
+
+I will not copy nor explain their documentation here. In my opinion, the doc of `numpy` is a bit long but it is really clear and specific, and you will have to seek for help on their doc as long as you work on data related fields.
+
+If you are searching for infomation for the final exam, please search at the Appendix.
+
+```py
+import numpy
+```
+
+### `numpy.array`
+```py
+numpy.array(object, dtype=None, *, copy=True, order='K', subok=False, ndmin=0, like=None)
+```
+
+### `numpy.arange`
+```py
+numpy.arange([start, ]stop, [step, ]dtype=None, *, like=None)
+```
+
+
+### `numpy.linspace`
+```py
+numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
+```
+
+
+### `numpy.eye`
+```py
+numpy.eye(N, M=None, k=0, dtype=<class 'float'>, order='C', *, like=None)
+```
+
+
+### `numpy.diag`
+```py
+numpy.diag(v, k=0)
+```
+
+
+### `numpy.zeros`
+```py
+numpy.zeros(shape, dtype=float, order='C', *, like=None)
+```
+
+
+### `numpy.ones`
+```py
+numpy.ones(shape, dtype=None, order='C', *, like=None)
+```
+
+
+### `numpy.ndarray.shape`
+```py
+ndarray.shape
+```
 
 <!--
 
