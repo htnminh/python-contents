@@ -1224,8 +1224,8 @@ This section is of a table form to avoid confusion and... tiredness.
 
 | This dunder method... | Means |
 |-----------------------|-------|
-|`__doc__`| docstring
-|`__name__`| name
+|`object.__doc__`| docstring
+|`object.__name__`| name
 ||
 |`object.__lt__`| `<`
 |`object.__le__`| `<=`
