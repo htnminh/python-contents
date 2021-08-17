@@ -1,14 +1,3 @@
-# PYTHON CALL REFERENCE
-**Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
-
-Each description only has one sentence, see the documentation for more details.
-
-***Written by Hoang Tran Nhat Minh,***
-
-Hanoi University of Science and Technology,
-
-Data Science and Artificial Intelligence - K65.
-
 - [PYTHON CALL REFERENCE](#python-call-reference)
 - [Built-in Functions](#built-in-functions)
   - [`abs()`](#abs)
@@ -50,6 +39,17 @@ Data Science and Artificial Intelligence - K65.
   - [`tuple()`](#tuple)
   - [`type()`](#type)
   - [`zip()`](#zip)
+
+# PYTHON CALL REFERENCE
+**Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
+
+Each description only has one sentence, see the documentation for more details.
+
+***Written by Hoang Tran Nhat Minh,***
+
+Hanoi University of Science and Technology,
+
+Data Science and Artificial Intelligence - K65.
 
 # Built-in Functions
 **Doc: <https://docs.python.org/3/library/functions.html>**
@@ -318,3 +318,4 @@ With one argument, return the type of an object.
 zip(*iterables)
 ```
 Make an iterator that aggregates elements from each of the iterables.
+
