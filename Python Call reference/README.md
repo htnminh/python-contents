@@ -9,8 +9,8 @@ Hanoi University of Science and Technology,
 
 Data Science and Artificial Intelligence - K65.
 
-# Built-in Functions and Methods
-**Doc: <https://docs.python.org/3/library/functions.html#print>**
+# Built-in Functions
+**Doc: <https://docs.python.org/3/library/functions.html
 
 ## `abs()`
 ```py
