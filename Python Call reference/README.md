@@ -60,6 +60,23 @@
     - [`strip()`](#strip)
     - [`title()`](#title)
     - [`upper()`](#upper)
+- [Data Structures](#data-structures)
+  - [Lists](#lists)
+    - [`append()`](#append)
+    - [`extend()`](#extend)
+    - [`insert()`](#insert)
+    - [`remove()`](#remove)
+    - [`pop()`](#pop)
+    - [`index()`](#index-1)
+    - [`count()`](#count-1)
+    - [`sort()`](#sort)
+    - [`reverse()`](#reverse)
+    - [`copy()`](#copy)
+    - [`()`](#)
+    - [`()`](#-1)
+    - [`()`](#-2)
+    - [`()`](#-3)
+    - [`()`](#-4)
 
 # PYTHON CALL REFERENCE
 **Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.**
@@ -461,6 +478,93 @@ str.upper()
 Return a copy of the string with all the cased characters converted to uppercase.
 
 
+# Data Structures
+**Doc: <https://docs.python.org/3/tutorial/datastructures.html>**
 
+## Lists
+
+### `append()`
+```py
+list.append(x)
+```
+Add an item to the end of the list.
+
+### `extend()`
+```py
+list.extend(iterable)
+```
+Extend the list by appending all the items from the iterable.
+
+### `insert()`
+```py
+list.insert(i, x)
+```
+Insert an item at a given position.
+
+### `remove()`
+```py
+list.remove(x)
+```
+Remove the first item from the list whose value is equal to `x`.
+
+### `pop()`
+```py
+list.pop([i])
+```
+Remove the item at the given position in the list, and return it; if no index is specified, it will be the last item in the list.
+
+### `index()`
+```py
+list.index(x[, start[, end]])
+```
+Return zero-based index in the list of the first item whose value is equal to `x` or raise a `ValueError` if there is no such item.
+
+### `count()`
+```py
+list.count(x)
+```
+Return the number of times x appears in the list.
+
+### `sort()`
+```py
+list.sort(*, key=None, reverse=False)
+```
+Sort the items of the list in place.
+
+### `reverse()`
+```py
+list.reverse()
+```
+Reverse the elements of the list in place.
+
+### `copy()`
+```py
+list.copy()
+```
+Return a shallow copy of the list. Equivalent to a[:].
+
+### `()`
+```py
+```
+
+
+### `()`
+```py
+```
+
+
+### `()`
+```py
+```
+
+
+### `()`
+```py
+```
+
+
+### `()`
+```py
+```
 
 
