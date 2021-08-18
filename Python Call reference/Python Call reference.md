@@ -420,7 +420,7 @@ Given a string representing one Unicode character, return an integer representin
 ```py
 pow(base, exp[, mod])
 ```
-Return `base` to the power `exp`; if mod is present, return base to the power exp, modulo `mod` (computed more efficiently than `pow(base, exp) % mod`). 
+Return `base` to the power `exp`; if `mod` is present, return `base` to the power `exp`, modulo `mod` (computed more efficiently than `pow(base, exp) % mod`). 
 
 ## 2.27. `print()`
 ```py
