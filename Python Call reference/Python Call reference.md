@@ -491,7 +491,7 @@ Sums `start` and the items of an `iterable` from left to right and returns the t
 ```py
 super([type[, object-or-type]])
 ```
-Return a proxy object that delegates method calls to a parent or sibling class of type, useful for accessing inherited methods that have been overridden in a class.
+Return a proxy object that delegates method calls to a parent or sibling class of `type`, useful for accessing inherited methods that have been overridden in a class.
 
 ## 2.37. `tuple()`
 ```py
