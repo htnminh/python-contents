@@ -395,6 +395,7 @@ min(iterable, *[, key, default])
 ```py
 min(arg1, arg2, *args[, key])
 ```
+Return the smallest item in an iterable or the smallest of two or more arguments.
 
 
 ## 2.23. `oct()`
