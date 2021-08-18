@@ -210,7 +210,7 @@ $$ |  $$ |$$$$$$$$\ $$ |      $$$$$$$$\ $$ |  $$ |$$$$$$$$\ $$ | \$$ |\$$$$$$  |
 
 For quick reference, each description only has one sentence, see the documentations provided for more details.
 
-Some sections does not fully explain all the parameters provided.
+Some sections do not fully explain all the parameters provided.
 
 ***Written by Hoang Tran Nhat Minh,***
 
