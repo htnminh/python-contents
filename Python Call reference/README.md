@@ -5,7 +5,7 @@
 
 *(Markdown view by GitHub below is highly recommended, since HTML and PDF files are not working properly)*
 
-### [Chapters](https://github.com/htnminh/pdf-python-books-docs/blob/2c3fa42b1ec39dad698d48d4ebe7cca5cdf13787/Python%20Call%20reference/Python%20Call%20reference.md):
+### [Chapters](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md):
 #### - [Built-in Functions](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md#2-built-in-functions)
 #### - [Built-in Types](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md#3-built-in-types)
 #### - [Data Structures](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md#4-data-structures)

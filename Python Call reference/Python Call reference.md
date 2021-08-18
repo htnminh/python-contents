@@ -210,7 +210,7 @@ $$ |  $$ |$$$$$$$$\ $$ |      $$$$$$$$\ $$ |  $$ |$$$$$$$$\ $$ | \$$ |\$$$$$$  |
 
 For quick reference, each description only has one sentence, see the documentations provided for more details.
 
-Some sections does not fully explain all the parameters provided.
+Some sections do not fully explain all the parameters provided.
 
 ***Written by Hoang Tran Nhat Minh,***
 
@@ -395,6 +395,7 @@ min(iterable, *[, key, default])
 ```py
 min(arg1, arg2, *args[, key])
 ```
+Return the smallest item in an iterable or the smallest of two or more arguments.
 
 
 ## 2.23. `oct()`
@@ -490,7 +491,7 @@ Sums `start` and the items of an `iterable` from left to right and returns the t
 ```py
 super([type[, object-or-type]])
 ```
-Return a proxy object that delegates method calls to a parent or sibling class of type, useful for accessing inherited methods that have been overridden in a class.
+Return a proxy object that delegates method calls to a parent or sibling class of `type`, useful for accessing inherited methods that have been overridden in a class.
 
 ## 2.37. `tuple()`
 ```py
