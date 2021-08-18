@@ -176,11 +176,6 @@ $$ |  $$\ $$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |\$$$ |   $$ |   $$\   $$ |
   - [6.3. `tell()`](#63-tell)
   - [6.4. `seek()`](#64-seek)
 - [7. Data model (Dunder or magic methods)](#7-data-model-dunder-or-magic-methods)
-- [8. Appendix: `numpy`](#8-appendix-numpy)
-  - [8.1. ARRAY CREATION](#81-array-creation)
-  - [8.2. INDEXING](#82-indexing)
-  - [8.3. BROADCASTING](#83-broadcasting)
-  - [8.4. STRUCTURED ARRAYS](#84-structured-arrays)
 
 <!-- 
 
@@ -1465,9 +1460,7 @@ $$ |  $$ |\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |\$$$$$$$ |
 ## 5.5. `numpy`
 Doc: <https://numpy.org/doc/stable/>
 
-I will not copy nor explain their documentation here. In my opinion, the doc of `numpy` is a bit long but it is really clear and specific, and you will have to seek for help on their doc as long as you work on data related fields.
-
-If you are searching for infomation for the final exam, please check out some examples in the [Appendix](#8-appendix-numpy).
+I will not copy their documentation here, I will explain things myself instead. In my opinion, the doc of `numpy` is a bit long but it is really clear and specific, and you will have to seek for help on their doc as long as you work on data related fields.
 
 ```py
 import numpy
@@ -1477,47 +1470,49 @@ import numpy
 ```py
 numpy.array(object, dtype=None, *, copy=True, order='K', subok=False, ndmin=0, like=None)
 ```
+Return a `ndarray` object, a list/tuple of lists/tuples of... is allowed for `object`.
 
 ### 5.5.2. `numpy.arange`
 ```py
 numpy.arange([start, ]stop, [step, ]dtype=None, *, like=None)
 ```
-
+Works like `range`, but floats are allowed.
 
 ### 5.5.3. `numpy.linspace`
 ```py
 numpy.linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None, axis=0)
 ```
-
+Array with a specified number of elements, and spaced equally between the specified beginning and end values.
 
 ### 5.5.4. `numpy.eye`
 ```py
 numpy.eye(N, M=None, k=0, dtype=<class 'float'>, order='C', *, like=None)
 ```
-
+Identity-matrix-like `ndarray`.
 
 ### 5.5.5. `numpy.diag`
 ```py
 numpy.diag(v, k=0)
 ```
-
+Diagonal-matrix-like `ndarray`.
 
 ### 5.5.6. `numpy.zeros`
 ```py
 numpy.zeros(shape, dtype=float, order='C', *, like=None)
 ```
-
+Initialize a `ndarray` with full of `0`s.
 
 ### 5.5.7. `numpy.ones`
 ```py
 numpy.ones(shape, dtype=None, order='C', *, like=None)
 ```
-
+Initialize a `ndarray` with full of `1`s.
 
 ### 5.5.8. `numpy.ndarray.shape`
 ```py
 ndarray.shape
 ```
+The shape of a `ndarray` a.k.a how many "rows" are there in each dimension, in tuple form.
 
 <!--
 
@@ -1631,266 +1626,3 @@ This section is of a table form to avoid confusion and... tiredness.
 |`object.__xor__(self, other)`| `^`
 |`object.__or__(self, other)`| `\|`
 
-
-<!--
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- $$$$$$\  $$$$$$$\  $$$$$$$\  $$$$$$$$\ $$\   $$\ $$$$$$$\  $$$$$$\ $$\   $$\ 
-$$  __$$\ $$  __$$\ $$  __$$\ $$  _____|$$$\  $$ |$$  __$$\ \_$$  _|$$ |  $$ |
-$$ /  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$$$\ $$ |$$ |  $$ |  $$ |  \$$\ $$  |
-$$$$$$$$ |$$$$$$$  |$$$$$$$  |$$$$$\    $$ $$\$$ |$$ |  $$ |  $$ |   \$$$$  / 
-$$  __$$ |$$  ____/ $$  ____/ $$  __|   $$ \$$$$ |$$ |  $$ |  $$ |   $$  $$<  
-$$ |  $$ |$$ |      $$ |      $$ |      $$ |\$$$ |$$ |  $$ |  $$ |  $$  /\$$\ 
-$$ |  $$ |$$ |      $$ |      $$$$$$$$\ $$ | \$$ |$$$$$$$  |$$$$$$\ $$ /  $$ |
-\__|  \__|\__|      \__|      \________|\__|  \__|\_______/ \______|\__|  \__|
-                                                                              
-(copied from '_htnm_PYTHON_LAST_REVIEW.md', then changed all heading3 to heading2)
-
--->
-
-# 8. Appendix: `numpy`
-
-```python
-# numpy
-# Documentation: https://numpy.org/doc/
-import numpy as np
-```
-
-## 8.1. ARRAY CREATION
-
-
-```python
-# ARRAY CREATION
-print(np.array( [1, 4, 6, 9] ))
-print(np.array( ((1, 3), (6, 9)) ))
-print(np.array( [(3.2, 2.1), (6.0, 1.3)] ))
-# a list/tuple of lists/tuples of... is allowed
-print()
-
-print(np.array( [6, 9, 3, 0], dtype = float ))
-print(np.array( [(3.2, 2.1), (6.7, 1.3)], dtype = np.int8 ))
-# there are a lot of data types available,
-# check it out in the documentation
-```
-
-    [1 4 6 9]
-    [[1 3]
-     [6 9]]
-    [[3.2 2.1]
-     [6.  1.3]]
-    
-    [6. 9. 3. 0.]
-    [[3 2]
-     [6 1]]
-    
-
-
-```python
-# ARRAY CREATION
-print(np.arange(10))
-print(np.arange(21.2, 8.1, -2.5))
-# floats can be passed to arange 
-print()
-
-print(np.linspace(2.3, 4.8, 5))
-# arrays with a specified number of elements, 
-# and spaced equally between the specified beginning and end values
-```
-
-    [0 1 2 3 4 5 6 7 8 9]
-    [21.2 18.7 16.2 13.7 11.2  8.7]
-    
-    [2.3   2.925 3.55  4.175 4.8  ]
-    
-
-
-```python
-# ARRAY CREATION
-# most types of special two-dimensional matrices in linear algebra
-# can be created using np functions, find out more in the documentation
-print(np.eye(3))
-print(np.diag([3, 4, 5]))
-```
-
-    [[1. 0. 0.]
-     [0. 1. 0.]
-     [0. 0. 1.]]
-    [[3 0 0]
-     [0 4 0]
-     [0 0 5]]
-    
-
-
-```python
-# ARRAY CREATION
-print(np.zeros((2, 3)))
-print()
-print(np.ones((3, 2, 4)))
-```
-
-    [[0. 0. 0.]
-     [0. 0. 0.]]
-    
-    [[[1. 1. 1. 1.]
-      [1. 1. 1. 1.]]
-    
-     [[1. 1. 1. 1.]
-      [1. 1. 1. 1.]]
-    
-     [[1. 1. 1. 1.]
-      [1. 1. 1. 1.]]]
-    
-
-## 8.2. INDEXING
-
-
-```python
-# INDEXING
-np_arr = np.arange(3.3, 12, 1.1)
-print(np_arr)
-print(np_arr[-2])
-print(np_arr[-2:])
-# slicing np array is exactly the same as slicing python list 
-```
-
-    [ 3.3  4.4  5.5  6.6  7.7  8.8  9.9 11. ]
-    9.900000000000002
-    [ 9.9 11. ]
-    
-
-
-```python
-# INDEXING
-print(np_arr.shape)
-np_arr.shape = (2, 4)
-print(np_arr.shape)
-print(np_arr)
-```
-
-    (8,)
-    (2, 4)
-    [[ 3.3  4.4  5.5  6.6]
-     [ 7.7  8.8  9.9 11. ]]
-    
-
-
-```python
-# INDEXING
-print(np_arr[1])
-print(np_arr[1, 2])
-```
-
-    [ 7.7  8.8  9.9 11. ]
-    9.900000000000002
-    
-
-
-```python
-# INDEXING
-print(np.arange(4))
-np_arr_2 = np.arange(1, 8, 2)
-print(np_arr_2)
-print()
-
-index_arr = np.array([1, -1, 3])
-print(index_arr)
-print(np_arr_2[index_arr])
-# a np array can be used to select element
-print()
-
-index_arr_2 = np.array( [[1, 0], [3, 2]] )
-print(index_arr_2)
-print(np_arr_2[index_arr_2])
-print()
-# indexing np arrays which have more dimensions is more complicated,
-# read more in documentation
-```
-
-    [0 1 2 3]
-    [1 3 5 7]
-    
-    [ 1 -1  3]
-    [3 7 7]
-    
-    [[1 0]
-     [3 2]]
-    [[3 1]
-     [7 5]]
-    
-    
-
-
-```python
-# INDEXING
-np_arr_3 = np.arange(9)
-print(np_arr_3)
-index_arr_3 = np_arr_3 % 2 == 0
-print(index_arr_3)
-print(np_arr_3[index_arr_3])
-# in data science, filtering data is very important,
-# so this is a must-have tool
-```
-
-    [0 1 2 3 4 5 6 7 8]
-    [ True False  True False  True False  True False  True]
-    [0 2 4 6 8]
-    
-
-## 8.3. BROADCASTING
-
-
-```python
-# BROADCASTING
-# the term broadcasting describes how np treats arrays 
-# with different shapes during arithmetic operations
-np_arr_a = np.array([6, 8, 9])
-print(np_arr_a)
-np_arr_b = np.ones(3, dtype = np.int8)
-print(np_arr_b)
-print(np_arr_a + np_arr_b)
-```
-
-    [6 8 9]
-    [1 1 1]
-    [ 7  9 10]
-    
-
-
-```python
-# BROADCASTING
-print(np_arr_a + 1)
-# read more about general broadcasting rules for 
-# more-dimensional-arrays in the documentation
-```
-
-    [ 7  9 10]
-    
-
-## 8.4. STRUCTURED ARRAYS
-
-
-```python
-# STRUCTURED ARRAYS
-# there are a lot of concepts for this type of array,
-# the following is only a simple example
-struct_arr = np.array([('Alan', 19, 169.2), ('Paul', 21, 172.3)],
-                      dtype = [('name', 'U10'), ('age', 'i4'), ('height', 'f4')]
-                      )
-print(struct_arr)
-```
-
-    [('Alan', 19, 169.2) ('Paul', 21, 172.3)]
-    
