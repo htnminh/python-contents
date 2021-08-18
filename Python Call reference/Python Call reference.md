@@ -1598,7 +1598,7 @@ $$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      $$ | \_/ $$ | $$$$$$  |$$$$$$$  |$$
 # 7. Data model (Dunder or magic methods)
 Doc: <https://docs.python.org/3/reference/datamodel.html>
 
-This section is of a table form to avoid confusion and... tiredness.
+This section is of table form to avoid confusion and... tiredness.
 
 | This dunder method... | Means |
 |-----------------------|-------|
