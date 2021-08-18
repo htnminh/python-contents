@@ -1,0 +1,956 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10; $$$$$$\   $$$$$$\  $$\   $$\ $$$$$$$$\ $$$$$$$$\ $$\   $$\ $$$$$$$$\  $$$$$$\  &#10;$$  __$$\ $$  __$$\ $$$\  $$ |\__$$  __|$$  _____|$$$\  $$ |\__$$  __|$$  __$$\ &#10;$$ /  \__|$$ /  $$ |$$$$\ $$ |   $$ |   $$ |      $$$$\ $$ |   $$ |   $$ /  \__|&#10;$$ |      $$ |  $$ |$$ $$\$$ |   $$ |   $$$$$\    $$ $$\$$ |   $$ |   \$$$$$$\  &#10;$$ |      $$ |  $$ |$$ \$$$$ |   $$ |   $$  __|   $$ \$$$$ |   $$ |    \____$$\ &#10;$$ |  $$\ $$ |  $$ |$$ |\$$$ |   $$ |   $$ |      $$ |\$$$ |   $$ |   $$\   $$ |&#10;\$$$$$$  | $$$$$$  |$$ | \$$ |   $$ |   $$$$$$$$\ $$ | \$$ |   $$ |   \$$$$$$  |&#10; \______/  \______/ \__|  \__|   \__|   \________|\__|  \__|   \__|    \______/ &#10;                                     &#10;-->
+<ul>
+<li><a href="#1-python-call-reference">1. PYTHON CALL REFERENCE</a></li>
+<li><a href="#2-built-in-functions">2. Built-in Functions</a>
+<ul>
+<li><a href="#21-abs">2.1. <code>abs()</code></a></li>
+<li><a href="#22-bin">2.2. <code>bin()</code></a></li>
+<li><a href="#23-complex">2.3. <code>complex()</code></a></li>
+<li><a href="#24-dict">2.4. <code>dict()</code></a></li>
+<li><a href="#25-dir">2.5. <code>dir()</code></a></li>
+<li><a href="#26-divmod">2.6. <code>divmod()</code></a></li>
+<li><a href="#27-enumerate">2.7. <code>enumerate()</code></a></li>
+<li><a href="#28-eval">2.8. <code>eval()</code></a></li>
+<li><a href="#29-float">2.9. <code>float()</code></a></li>
+<li><a href="#210-format">2.10. <code>format()</code></a></li>
+<li><a href="#211-frozenset">2.11. <code>frozenset()</code></a></li>
+<li><a href="#212-help">2.12. <code>help()</code></a></li>
+<li><a href="#213-hex">2.13. <code>hex()</code></a></li>
+<li><a href="#214-input">2.14. <code>input()</code></a></li>
+<li><a href="#215-int">2.15. <code>int()</code></a></li>
+<li><a href="#216-isinstance">2.16. <code>isinstance()</code></a></li>
+<li><a href="#217-issubclass">2.17. <code>issubclass()</code></a></li>
+<li><a href="#218-len">2.18. <code>len()</code></a></li>
+<li><a href="#219-list">2.19. <code>list()</code></a></li>
+<li><a href="#220-map">2.20. <code>map()</code></a></li>
+<li><a href="#221-max">2.21. <code>max()</code></a></li>
+<li><a href="#222-min">2.22. <code>min()</code></a></li>
+<li><a href="#223-oct">2.23. <code>oct()</code></a></li>
+<li><a href="#224-open">2.24. <code>open()</code></a></li>
+<li><a href="#225-ord">2.25. <code>ord()</code></a></li>
+<li><a href="#226-pow">2.26. <code>pow()</code></a></li>
+<li><a href="#227-print">2.27. <code>print()</code></a></li>
+<li><a href="#228-range">2.28. <code>range()</code></a></li>
+<li><a href="#229-reversed">2.29. <code>reversed()</code></a></li>
+<li><a href="#230-round">2.30. <code>round()</code></a></li>
+<li><a href="#231-class">2.31. <code>class()</code></a></li>
+<li><a href="#232-slice">2.32. <code>slice()</code></a></li>
+<li><a href="#233-sorted">2.33. <code>sorted()</code></a></li>
+<li><a href="#234-str">2.34. <code>str()</code></a></li>
+<li><a href="#235-sum">2.35. <code>sum()</code></a></li>
+<li><a href="#236-super">2.36. <code>super()</code></a></li>
+<li><a href="#237-tuple">2.37. <code>tuple()</code></a></li>
+<li><a href="#238-type">2.38. <code>type()</code></a></li>
+<li><a href="#239-zip">2.39. <code>zip()</code></a></li>
+</ul>
+</li>
+<li><a href="#3-built-in-types">3. Built-in Types</a>
+<ul>
+<li><a href="#31-strings">3.1. Strings</a>
+<ul>
+<li><a href="#311-capitalize">3.1.1. <code>capitalize()</code></a></li>
+<li><a href="#312-center">3.1.2. <code>center()</code></a></li>
+<li><a href="#313-count">3.1.3. <code>count()</code></a></li>
+<li><a href="#314-endswith">3.1.4. <code>endswith()</code></a></li>
+<li><a href="#315-find">3.1.5. <code>find()</code></a></li>
+<li><a href="#316-index">3.1.6. <code>index()</code></a></li>
+<li><a href="#317-join">3.1.7. <code>join()</code></a></li>
+<li><a href="#318-lower">3.1.8. <code>lower()</code></a></li>
+<li><a href="#319-lstrip">3.1.9. <code>lstrip()</code></a></li>
+<li><a href="#3110-replace">3.1.10. <code>replace()</code></a></li>
+<li><a href="#3111-rfind">3.1.11. <code>rfind()</code></a></li>
+<li><a href="#3112-rindex">3.1.12. <code>rindex()</code></a></li>
+<li><a href="#3113-rstrip">3.1.13. <code>rstrip()</code></a></li>
+<li><a href="#3114-split">3.1.14. <code>split()</code></a></li>
+<li><a href="#3115-splitlines">3.1.15. <code>splitlines()</code></a></li>
+<li><a href="#3116-startswith">3.1.16. <code>startswith()</code></a></li>
+<li><a href="#3117-strip">3.1.17. <code>strip()</code></a></li>
+<li><a href="#3118-title">3.1.18. <code>title()</code></a></li>
+<li><a href="#3119-upper">3.1.19. <code>upper()</code></a></li>
+</ul>
+</li>
+<li><a href="#32-sets">3.2. Sets</a>
+<ul>
+<li><a href="#321-issubset">3.2.1. <code>issubset()</code></a></li>
+<li><a href="#322-issuperset">3.2.2. <code>issuperset()</code></a></li>
+<li><a href="#323-union">3.2.3. <code>union()</code></a></li>
+<li><a href="#324-intersection">3.2.4. <code>intersection()</code></a></li>
+<li><a href="#325-difference">3.2.5. <code>difference()</code></a></li>
+<li><a href="#326-symmetric_difference">3.2.6. <code>symmetric_difference()</code></a></li>
+<li><a href="#327-copy">3.2.7. <code>copy()</code></a></li>
+<li><a href="#328-update">3.2.8. <code>update()</code></a></li>
+<li><a href="#329-intersection_update">3.2.9. <code>intersection_update()</code></a></li>
+<li><a href="#3210-difference_update">3.2.10. <code>difference_update()</code></a></li>
+<li><a href="#3211-symmetric_difference_update">3.2.11. <code>symmetric_difference_update()</code></a></li>
+<li><a href="#3212-add">3.2.12. <code>add()</code></a></li>
+<li><a href="#3213-remove">3.2.13. <code>remove()</code></a></li>
+<li><a href="#3214-discard">3.2.14. <code>discard()</code></a></li>
+<li><a href="#3215-pop">3.2.15. <code>pop()</code></a></li>
+</ul>
+</li>
+<li><a href="#33-tuples">3.3. Tuples</a>
+<ul>
+<li><a href="#331-count">3.3.1. <code>count()</code></a></li>
+<li><a href="#332-index">3.3.2. <code>index()</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-data-structures">4. Data Structures</a>
+<ul>
+<li><a href="#41-lists">4.1. Lists</a>
+<ul>
+<li><a href="#411-append">4.1.1. <code>append()</code></a></li>
+<li><a href="#412-extend">4.1.2. <code>extend()</code></a></li>
+<li><a href="#413-insert">4.1.3. <code>insert()</code></a></li>
+<li><a href="#414-remove">4.1.4. <code>remove()</code></a></li>
+<li><a href="#415-pop">4.1.5. <code>pop()</code></a></li>
+<li><a href="#416-index">4.1.6. <code>index()</code></a></li>
+<li><a href="#417-count">4.1.7. <code>count()</code></a></li>
+<li><a href="#418-sort">4.1.8. <code>sort()</code></a></li>
+<li><a href="#419-reverse">4.1.9. <code>reverse()</code></a></li>
+<li><a href="#4110-copy">4.1.10. <code>copy()</code></a></li>
+</ul>
+</li>
+<li><a href="#42-dictionaries">4.2. Dictionaries</a>
+<ul>
+<li><a href="#421-iter">4.2.1. <code>iter()</code></a></li>
+<li><a href="#422-copy">4.2.2. <code>copy()</code></a></li>
+<li><a href="#423-get">4.2.3. <code>get()</code></a></li>
+<li><a href="#424-items">4.2.4. <code>items()</code></a></li>
+<li><a href="#425-keys">4.2.5. <code>keys()</code></a></li>
+<li><a href="#426-pop">4.2.6. <code>pop()</code></a></li>
+<li><a href="#427-popitem">4.2.7. <code>popitem()</code></a></li>
+<li><a href="#428-setdefault">4.2.8. <code>setdefault()</code></a></li>
+<li><a href="#429-update">4.2.9. <code>update()</code></a></li>
+<li><a href="#4210-values">4.2.10. <code>values()</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-modules">5. Modules</a>
+<ul>
+<li><a href="#51-pickle">5.1. <code>pickle</code></a>
+<ul>
+<li><a href="#511-dump">5.1.1. <code>dump()</code></a></li>
+<li><a href="#512-load">5.1.2. <code>load()</code></a></li>
+</ul>
+</li>
+<li><a href="#52-random">5.2. <code>random</code></a>
+<ul>
+<li><a href="#521-randrange">5.2.1. <code>randrange()</code></a></li>
+<li><a href="#522-choice">5.2.2. <code>choice()</code></a></li>
+<li><a href="#523-choices">5.2.3. <code>choices()</code></a></li>
+<li><a href="#524-sample">5.2.4. <code>sample()</code></a></li>
+<li><a href="#525-random">5.2.5. <code>random()</code></a></li>
+<li><a href="#526-uniform">5.2.6. <code>uniform()</code></a></li>
+</ul>
+</li>
+<li><a href="#53-time">5.3. <code>time</code></a>
+<ul>
+<li><a href="#531-sleep">5.3.1. <code>sleep()</code></a></li>
+<li><a href="#532-time">5.3.2. <code>time()</code></a></li>
+</ul>
+</li>
+<li><a href="#54-math">5.4. <code>math</code></a>
+<ul>
+<li><a href="#541-ceil">5.4.1. <code>ceil()</code></a></li>
+<li><a href="#542-floor">5.4.2. <code>floor()</code></a></li>
+<li><a href="#543-gcd">5.4.3. <code>gcd()</code></a></li>
+<li><a href="#544-isclose">5.4.4. <code>isclose()</code></a></li>
+<li><a href="#545-trunc">5.4.5. <code>trunc()</code></a></li>
+<li><a href="#546-exp">5.4.6. <code>exp()</code></a></li>
+<li><a href="#547-log">5.4.7. <code>log()</code></a></li>
+<li><a href="#548-pow">5.4.8. <code>pow()</code></a></li>
+<li><a href="#549-sqrt">5.4.9. <code>sqrt()</code></a></li>
+<li><a href="#5410-sin">5.4.10. <code>sin()</code></a></li>
+<li><a href="#5411-cos">5.4.11. <code>cos()</code></a></li>
+<li><a href="#5412-tan">5.4.12. <code>tan()</code></a></li>
+<li><a href="#5413-acos">5.4.13. <code>acos()</code></a></li>
+<li><a href="#5414-asin">5.4.14. <code>asin()</code></a></li>
+<li><a href="#5415-atan">5.4.15. <code>atan()</code></a></li>
+<li><a href="#5416-degrees">5.4.16. <code>degrees()</code></a></li>
+<li><a href="#5417-radians">5.4.17. <code>radians()</code></a></li>
+</ul>
+</li>
+<li><a href="#55-numpy">5.5. <code>numpy</code></a>
+<ul>
+<li><a href="#551-numpyarray">5.5.1. <code>numpy.array</code></a></li>
+<li><a href="#552-numpyarange">5.5.2. <code>numpy.arange</code></a></li>
+<li><a href="#553-numpylinspace">5.5.3. <code>numpy.linspace</code></a></li>
+<li><a href="#554-numpyeye">5.5.4. <code>numpy.eye</code></a></li>
+<li><a href="#555-numpydiag">5.5.5. <code>numpy.diag</code></a></li>
+<li><a href="#556-numpyzeros">5.5.6. <code>numpy.zeros</code></a></li>
+<li><a href="#557-numpyones">5.5.7. <code>numpy.ones</code></a></li>
+<li><a href="#558-numpyndarrayshape">5.5.8. <code>numpy.ndarray.shape</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#6-files">6. Files</a>
+<ul>
+<li><a href="#61-read">6.1. <code>read()</code></a></li>
+<li><a href="#62-write">6.2. <code>write()</code></a></li>
+<li><a href="#63-tell">6.3. <code>tell()</code></a></li>
+<li><a href="#64-seek">6.4. <code>seek()</code></a></li>
+</ul>
+</li>
+<li><a href="#7-data-model-dunder-or-magic-methods">7. Data model (Dunder or magic methods)</a></li>
+</ul>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$\  $$$$$$$$\ $$$$$$$$\ $$$$$$$$\ $$$$$$$\  $$$$$$$$\ $$\   $$\  $$$$$$\  $$$$$$$$\ &#10;$$  __$$\ $$  _____|$$  _____|$$  _____|$$  __$$\ $$  _____|$$$\  $$ |$$  __$$\ $$  _____|&#10;$$ |  $$ |$$ |      $$ |      $$ |      $$ |  $$ |$$ |      $$$$\ $$ |$$ /  \__|$$ |      &#10;$$$$$$$  |$$$$$\    $$$$$\    $$$$$\    $$$$$$$  |$$$$$\    $$ $$\$$ |$$ |      $$$$$\    &#10;$$  __$$&lt; $$  __|   $$  __|   $$  __|   $$  __$$&lt; $$  __|   $$ \$$$$ |$$ |      $$  __|   &#10;$$ |  $$ |$$ |      $$ |      $$ |      $$ |  $$ |$$ |      $$ |\$$$ |$$ |  $$\ $$ |      &#10;$$ |  $$ |$$$$$$$$\ $$ |      $$$$$$$$\ $$ |  $$ |$$$$$$$$\ $$ | \$$ |\$$$$$$  |$$$$$$$$\ &#10;\__|  \__|\________|\__|      \________|\__|  \__|\________|\__|  \__| \______/ \________|&#10;&#10;-->
+<h1 id="python-call-reference">1. PYTHON CALL REFERENCE</h1>
+<p><strong>Quick reference to some common classes, functions and methods of Python and its popular modules, without examples.</strong></p>
+<p>For quick reference, each description only has one sentence, see the documentations provided for more details.</p>
+<p>Some sections does not fully explain all the parameters provided.</p>
+<p><em><strong>Written by Hoang Tran Nhat Minh,</strong></em></p>
+<p>Hanoi University of Science and Technology,</p>
+<p>Data Science and Artificial Intelligence - K65.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$$\ $$\   $$\ $$\   $$\  $$$$$$\ $$$$$$$$\ $$$$$$\  $$$$$$\  $$\   $$\  $$$$$$\  &#10;$$  _____|$$ |  $$ |$$$\  $$ |$$  __$$\\__$$  __|\_$$  _|$$  __$$\ $$$\  $$ |$$  __$$\ &#10;$$ |      $$ |  $$ |$$$$\ $$ |$$ /  \__|  $$ |     $$ |  $$ /  $$ |$$$$\ $$ |$$ /  \__|&#10;$$$$$\    $$ |  $$ |$$ $$\$$ |$$ |        $$ |     $$ |  $$ |  $$ |$$ $$\$$ |\$$$$$$\  &#10;$$  __|   $$ |  $$ |$$ \$$$$ |$$ |        $$ |     $$ |  $$ |  $$ |$$ \$$$$ | \____$$\ &#10;$$ |      $$ |  $$ |$$ |\$$$ |$$ |  $$\   $$ |     $$ |  $$ |  $$ |$$ |\$$$ |$$\   $$ |&#10;$$ |      \$$$$$$  |$$ | \$$ |\$$$$$$  |  $$ |   $$$$$$\  $$$$$$  |$$ | \$$ |\$$$$$$  |&#10;\__|       \______/ \__|  \__| \______/   \__|   \______| \______/ \__|  \__| \______/ &#10;                                                                                       &#10;-->
+<h1 id="built-in-functions">2. Built-in Functions</h1>
+<p><strong>Doc: <a href="https://docs.python.org/3/library/functions.html">https://docs.python.org/3/library/functions.html</a></strong></p>
+<h2 id="abs">2.1. <code>abs()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">abs</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the absolute value of a number.</p>
+<h2 id="bin">2.2. <code>bin()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">bin</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Convert an integer number to a binary string prefixed with “<code>0b</code>”.</p>
+<h2 id="complex">2.3. <code>complex()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">complex</span><span class="token punctuation">(</span><span class="token punctuation">[</span>real<span class="token punctuation">[</span><span class="token punctuation">,</span> imag<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a complex number with the value <code>real</code> + <code>imag</code>*1j or convert a string or number to a complex number.</p>
+<h2 id="dict">2.4. <code>dict()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">dict</span><span class="token punctuation">(</span><span class="token operator">**</span>kwarg<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">dict</span><span class="token punctuation">(</span>mapping<span class="token punctuation">,</span> <span class="token operator">**</span>kwarg<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">dict</span><span class="token punctuation">(</span>iterable<span class="token punctuation">,</span> <span class="token operator">**</span>kwarg<span class="token punctuation">)</span>
+</code></pre>
+<p>Create a new dictionary.</p>
+<h2 id="dir">2.5. <code>dir()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">dir</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">object</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>With an argument, attempt to return a list of valid attributes for that <code>object</code>.</p>
+<h2 id="divmod">2.6. <code>divmod()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">divmod</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+</code></pre>
+<p>Take two (non complex) numbers as arguments and return a pair of numbers consisting of their quotient and remainder when using integer division.</p>
+<h2 id="enumerate">2.7. <code>enumerate()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">enumerate</span><span class="token punctuation">(</span>iterable<span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return an enumerate object.</p>
+<h2 id="eval">2.8. <code>eval()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">eval</span><span class="token punctuation">(</span>expression<span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token builtin">globals</span><span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token builtin">locals</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>The expression argument is parsed and evaluated as a Python expression (technically speaking, a condition list) using the globals and locals dictionaries as global and local namespace.</p>
+<h2 id="float">2.9. <code>float()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">float</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a floating point number constructed from a number or string <code>x</code>.</p>
+<h2 id="format">2.10. <code>format()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">format</span><span class="token punctuation">(</span>value<span class="token punctuation">[</span><span class="token punctuation">,</span> format_spec<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Convert a value to a “formatted” representation, as controlled by <code>format_spec</code>.</p>
+<h2 id="frozenset">2.11. <code>frozenset()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">frozenset</span><span class="token punctuation">(</span><span class="token punctuation">[</span>iterable<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a new <code>frozenset</code> object, optionally with elements taken from <code>iterable</code>.</p>
+<h2 id="help">2.12. <code>help()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">help</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">object</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Invoke the built-in help system.</p>
+<h2 id="hex">2.13. <code>hex()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">hex</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Convert an integer number to a lowercase hexadecimal string prefixed with “<code>0x</code>”.</p>
+<h2 id="input">2.14. <code>input()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">[</span>prompt<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>The function reads a line from input, converts it to a string (stripping a trailing newline), and returns that.</p>
+<h2 id="int">2.15. <code>int()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">int</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">int</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> base<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return an integer object constructed from a number or string <code>x</code>, or return <code>0</code> if no arguments are given.</p>
+<h2 id="isinstance">2.16. <code>isinstance()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">isinstance</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">,</span> classinfo<span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>True</code> if the <code>object</code> argument is an instance of the <code>classinfo</code> argument, or of a (direct, indirect or virtual) subclass thereof.</p>
+<h2 id="issubclass">2.17. <code>issubclass()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">issubclass</span><span class="token punctuation">(</span><span class="token keyword">class</span><span class="token punctuation">,</span> classinfo<span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>True</code> if <code>class</code> is a subclass (direct, indirect or virtual) of <code>classinfo</code>.</p>
+<h2 id="len">2.18. <code>len()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the length (the number of items) of an object.</p>
+<h2 id="list">2.19. <code>list()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">list</span><span class="token punctuation">(</span><span class="token punctuation">[</span>iterable<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Rather than being a function, <code>list</code> is actually a mutable sequence type.</p>
+<h2 id="map">2.20. <code>map()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">map</span><span class="token punctuation">(</span>function<span class="token punctuation">,</span> iterable<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return an iterator that applies <code>function</code> to every item of <code>iterable</code>, yielding the results.</p>
+<h2 id="max">2.21. <code>max()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">max</span><span class="token punctuation">(</span>iterable<span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">max</span><span class="token punctuation">(</span>arg1<span class="token punctuation">,</span> arg2<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">[</span><span class="token punctuation">,</span> key<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return the largest item in an iterable or the largest of two or more arguments.</p>
+<h2 id="min">2.22. <code>min()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">min</span><span class="token punctuation">(</span>iterable<span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">[</span><span class="token punctuation">,</span> key<span class="token punctuation">,</span> default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">min</span><span class="token punctuation">(</span>arg1<span class="token punctuation">,</span> arg2<span class="token punctuation">,</span> <span class="token operator">*</span>args<span class="token punctuation">[</span><span class="token punctuation">,</span> key<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="oct">2.23. <code>oct()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">oct</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Convert an integer number to an octal string prefixed with “<code>0o</code>”.</p>
+<h2 id="open">2.24. <code>open()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span> mode<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span> buffering<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> errors<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> newline<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> closefd<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> opener<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Open <code>file</code> and return a corresponding file object.</p>
+<h2 id="ord">2.25. <code>ord()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+</code></pre>
+<p>Given a string representing one Unicode character, return an integer representing the Unicode code point of that character.</p>
+<h2 id="pow">2.26. <code>pow()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">pow</span><span class="token punctuation">(</span>base<span class="token punctuation">,</span> exp<span class="token punctuation">[</span><span class="token punctuation">,</span> mod<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>base</code> to the power <code>exp</code>; if mod is present, return base to the power exp, modulo <code>mod</code> (computed more efficiently than <code>pow(base, exp) % mod</code>).</p>
+<h2 id="print">2.27. <code>print()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token operator">*</span>objects<span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">' '</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">'\n'</span><span class="token punctuation">,</span> <span class="token builtin">file</span><span class="token operator">=</span>sys<span class="token punctuation">.</span>stdout<span class="token punctuation">,</span> flush<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Print <code>objects</code> to the text stream <code>file</code>, separated by <code>sep</code> and followed by <code>end</code>.</p>
+<h2 id="range">2.28. <code>range()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">range</span><span class="token punctuation">(</span>stop<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">range</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> stop<span class="token punctuation">[</span><span class="token punctuation">,</span> step<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Rather than being a function, <code>range</code> is actually an immutable sequence type.</p>
+<h2 id="reversed">2.29. <code>reversed()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">reversed</span><span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+</code></pre>
+<p>Return a reverse iterator.</p>
+<h2 id="round">2.30. <code>round()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">round</span><span class="token punctuation">(</span>number<span class="token punctuation">[</span><span class="token punctuation">,</span> ndigits<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>number</code> rounded to <code>ndigits</code> precision after the decimal point.</p>
+<h2 id="class">2.31. <code>class()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span>iterable<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a new <code>set</code> object, optionally with elements taken from <code>iterable</code>.</p>
+<h2 id="slice">2.32. <code>slice()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">slice</span><span class="token punctuation">(</span>stop<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> stop<span class="token punctuation">[</span><span class="token punctuation">,</span> step<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a slice object representing the set of indices specified by <code>range(start, stop, step)</code>.</p>
+<h2 id="sorted">2.33. <code>sorted()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">sorted</span><span class="token punctuation">(</span>iterable<span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a new sorted list from the items in <code>iterable</code>.</p>
+<h2 id="str">2.34. <code>str()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">str</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">str</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token operator">=</span>b<span class="token string">''</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">,</span> errors<span class="token operator">=</span><span class="token string">'strict'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a <code>str</code> version of <code>object</code>.</p>
+<h2 id="sum">2.35. <code>sum()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">sum</span><span class="token punctuation">(</span>iterable<span class="token punctuation">,</span> <span class="token operator">/</span><span class="token punctuation">,</span> start<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Sums <code>start</code> and the items of an <code>iterable</code> from left to right and returns the total.</p>
+<h2 id="super">2.36. <code>super()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">type</span><span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token builtin">object</span><span class="token operator">-</span><span class="token operator">or</span><span class="token operator">-</span><span class="token builtin">type</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a proxy object that delegates method calls to a parent or sibling class of type, useful for accessing inherited methods that have been overridden in a class.</p>
+<h2 id="tuple">2.37. <code>tuple()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">tuple</span><span class="token punctuation">(</span><span class="token punctuation">[</span>iterable<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Rather than being a function, <code>tuple</code> is actually an immutable sequence type.</p>
+<h2 id="type">2.38. <code>type()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">type</span><span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">class</span> <span class="token class-name">type</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> bases<span class="token punctuation">,</span> <span class="token builtin">dict</span><span class="token punctuation">,</span> <span class="token operator">**</span>kwds<span class="token punctuation">)</span>
+</code></pre>
+<p>With one argument, return the type of an object.</p>
+<h2 id="zip">2.39. <code>zip()</code></h2>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">zip</span><span class="token punctuation">(</span><span class="token operator">*</span>iterables<span class="token punctuation">)</span>
+</code></pre>
+<p>Make an iterator that aggregates elements from each of the iterables.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$$\ $$\     $$\ $$$$$$$\  $$$$$$$$\  $$$$$$\  &#10;\__$$  __|\$$\   $$  |$$  __$$\ $$  _____|$$  __$$\ &#10;   $$ |    \$$\ $$  / $$ |  $$ |$$ |      $$ /  \__|&#10;   $$ |     \$$$$  /  $$$$$$$  |$$$$$\    \$$$$$$\  &#10;   $$ |      \$$  /   $$  ____/ $$  __|    \____$$\ &#10;   $$ |       $$ |    $$ |      $$ |      $$\   $$ |&#10;   $$ |       $$ |    $$ |      $$$$$$$$\ \$$$$$$  |&#10;   \__|       \__|    \__|      \________| \______/ &#10;                                                    &#10;&#10;-->
+<h1 id="built-in-types">3. Built-in Types</h1>
+<p><strong>Doc: <a href="https://docs.python.org/3/library/stdtypes.html">https://docs.python.org/3/library/stdtypes.html</a></strong></p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10; $$$$$$\    $$\               $$\                               &#10;$$  __$$\   $$ |              \__|                              &#10;$$ /  \__|$$$$$$\    $$$$$$\  $$\ $$$$$$$\   $$$$$$\   $$$$$$$\ &#10;\$$$$$$\  \_$$  _|  $$  __$$\ $$ |$$  __$$\ $$  __$$\ $$  _____|&#10; \____$$\   $$ |    $$ |  \__|$$ |$$ |  $$ |$$ /  $$ |\$$$$$$\  &#10;$$\   $$ |  $$ |$$\ $$ |      $$ |$$ |  $$ |$$ |  $$ | \____$$\ &#10;\$$$$$$  |  \$$$$  |$$ |      $$ |$$ |  $$ |\$$$$$$$ |$$$$$$$  |&#10; \______/    \____/ \__|      \__|\__|  \__| \____$$ |\_______/ &#10;                                            $$\   $$ |          &#10;                                            \$$$$$$  |          &#10;                                             \______/           &#10;-->
+<h2 id="strings">3.1. Strings</h2>
+<h3 id="capitalize">3.1.1. <code>capitalize()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>capitalize<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with its first character capitalized and the rest lowercased.</p>
+<h3 id="center">3.1.2. <code>center()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>center<span class="token punctuation">(</span>width<span class="token punctuation">[</span><span class="token punctuation">,</span> fillchar<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return centered in a string of length <code>width</code>.</p>
+<h3 id="count">3.1.3. <code>count()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span>sub<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return the number of non-overlapping occurrences of substring <code>sub</code> in the range [<code>start</code>, <code>end</code>].</p>
+<h3 id="endswith">3.1.4. <code>endswith()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>endswith<span class="token punctuation">(</span>suffix<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>True</code> if the string ends with the specified <code>suffix</code>, otherwise return <code>False</code>.</p>
+<h3 id="find">3.1.5. <code>find()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span>sub<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return the lowest index in the string where substring <code>sub</code> is found within the slice <code>s[start:end]</code>, else return <code>-1</code>.</p>
+<h3 id="index">3.1.6. <code>index()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>index<span class="token punctuation">(</span>sub<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Like <code>find()</code>, but raise <code>ValueError</code> when the substring is not found.</p>
+<h3 id="join">3.1.7. <code>join()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>iterable<span class="token punctuation">)</span>
+</code></pre>
+<p>Return a string which is the concatenation of the strings in <code>iterable</code>.</p>
+<h3 id="lower">3.1.8. <code>lower()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with all the cased characters converted to lowercase.</p>
+<h3 id="lstrip">3.1.9. <code>lstrip()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>lstrip<span class="token punctuation">(</span><span class="token punctuation">[</span>chars<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with leading characters removed.</p>
+<h3 id="replace">3.1.10. <code>replace()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span>old<span class="token punctuation">,</span> new<span class="token punctuation">[</span><span class="token punctuation">,</span> count<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with all occurrences of substring <code>old</code> replaced by <code>new</code>.</p>
+<h3 id="rfind">3.1.11. <code>rfind()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>rfind<span class="token punctuation">(</span>sub<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return the highest index in the string where substring <code>sub</code> is found, such that <code>sub</code> is contained within <code>s[start:end]</code>.</p>
+<h3 id="rindex">3.1.12. <code>rindex()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>rindex<span class="token punctuation">(</span>sub<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Like <code>rfind()</code> but raises <code>ValueError</code> when the substring <code>sub</code> is not found.</p>
+<h3 id="rstrip">3.1.13. <code>rstrip()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>rstrip<span class="token punctuation">(</span><span class="token punctuation">[</span>chars<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with trailing characters removed.</p>
+<h3 id="split">3.1.14. <code>split()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span>sep<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> maxsplit<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a list of the words in the string, using <code>sep</code> as the delimiter string.</p>
+<h3 id="splitlines">3.1.15. <code>splitlines()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>splitlines<span class="token punctuation">(</span><span class="token punctuation">[</span>keepends<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a list of the lines in the string, breaking at line boundaries.</p>
+<h3 id="startswith">3.1.16. <code>startswith()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>startswith<span class="token punctuation">(</span>prefix<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>True</code> if string starts with the <code>prefix</code>, otherwise return <code>False</code>.</p>
+<h3 id="strip">3.1.17. <code>strip()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">[</span>chars<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with the leading and trailing characters removed.</p>
+<h3 id="title">3.1.18. <code>title()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a titlecased version of the string where words start with an uppercase character and the remaining characters are lowercase.</p>
+<h3 id="upper">3.1.19. <code>upper()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">str</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a copy of the string with all the cased characters converted to uppercase.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10; $$$$$$\             $$\               &#10;$$  __$$\            $$ |              &#10;$$ /  \__| $$$$$$\ $$$$$$\    $$$$$$$\ &#10;\$$$$$$\  $$  __$$\\_$$  _|  $$  _____|&#10; \____$$\ $$$$$$$$ | $$ |    \$$$$$$\  &#10;$$\   $$ |$$   ____| $$ |$$\  \____$$\ &#10;\$$$$$$  |\$$$$$$$\  \$$$$  |$$$$$$$  |&#10; \______/  \_______|  \____/ \_______/ &#10;                                       &#10;                                       &#10;-->
+<h2 id="sets">3.2. Sets</h2>
+<h3 id="issubset">3.2.1. <code>issubset()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">issubset<span class="token punctuation">(</span>other<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">&lt;=</span> other
+</code></pre>
+<p>Test whether every element in the set is in other.</p>
+<h3 id="issuperset">3.2.2. <code>issuperset()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">issuperset<span class="token punctuation">(</span>other<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">&gt;=</span> other
+</code></pre>
+<p>Test whether every element in other is in the set.</p>
+<h3 id="union">3.2.3. <code>union()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">union<span class="token punctuation">(</span><span class="token operator">*</span>others<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">|</span> other <span class="token operator">|</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>Return a new set with elements from the set and all others.</p>
+<h3 id="intersection">3.2.4. <code>intersection()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">intersection<span class="token punctuation">(</span><span class="token operator">*</span>others<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">&amp;</span> other <span class="token operator">&amp;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>Return a new set with elements common to the set and all others.</p>
+<h3 id="difference">3.2.5. <code>difference()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">difference<span class="token punctuation">(</span><span class="token operator">*</span>others<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">-</span> other <span class="token operator">-</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>Return a new set with elements in the set that are not in the others.</p>
+<h3 id="symmetric_difference">3.2.6. <code>symmetric_difference()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">symmetric_difference<span class="token punctuation">(</span>other<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">^</span> other
+</code></pre>
+<p>Return a new set with elements in either the set or other but not both.</p>
+<h3 id="copy">3.2.7. <code>copy()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a shallow copy of the set.</p>
+<h3 id="update">3.2.8. <code>update()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">update<span class="token punctuation">(</span><span class="token operator">*</span>others<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">|</span><span class="token operator">=</span> other <span class="token operator">|</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>Update the set, adding elements from all others.</p>
+<h3 id="intersection_update">3.2.9. <code>intersection_update()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">intersection_update<span class="token punctuation">(</span><span class="token operator">*</span>others<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">&amp;</span><span class="token operator">=</span> other <span class="token operator">&amp;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>Update the set, keeping only elements found in it and all others.</p>
+<h3 id="difference_update">3.2.10. <code>difference_update()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">difference_update<span class="token punctuation">(</span><span class="token operator">*</span>others<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">-=</span> other <span class="token operator">|</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>Update the set, removing elements found in others.</p>
+<h3 id="symmetric_difference_update">3.2.11. <code>symmetric_difference_update()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">symmetric_difference_update<span class="token punctuation">(</span>other<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">set</span> <span class="token operator">^</span><span class="token operator">=</span> other
+</code></pre>
+<p>Update the set, keeping only elements found in either set, but not in both.</p>
+<h3 id="add">3.2.12. <code>add()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">add<span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+</code></pre>
+<p>Add element <code>elem</code> to the set.</p>
+<h3 id="remove">3.2.13. <code>remove()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">remove<span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+</code></pre>
+<p>Remove element <code>elem</code> from the set or raise <code>KeyError</code> if <code>elem</code> is not contained in the set.</p>
+<h3 id="discard">3.2.14. <code>discard()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">discard<span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+</code></pre>
+<p>Remove element <code>elem</code> from the set if it is present.</p>
+<h3 id="pop">3.2.15. <code>pop()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Remove and return an arbitrary element from the set or raises <code>KeyError</code> if the set is empty.</p>
+<!--&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$$\                  $$\                     &#10;\__$$  __|                 $$ |                    &#10;   $$ |$$\   $$\  $$$$$$\  $$ | $$$$$$\   $$$$$$$\ &#10;   $$ |$$ |  $$ |$$  __$$\ $$ |$$  __$$\ $$  _____|&#10;   $$ |$$ |  $$ |$$ /  $$ |$$ |$$$$$$$$ |\$$$$$$\  &#10;   $$ |$$ |  $$ |$$ |  $$ |$$ |$$   ____| \____$$\ &#10;   $$ |\$$$$$$  |$$$$$$$  |$$ |\$$$$$$$\ $$$$$$$  |&#10;   \__| \______/ $$  ____/ \__| \_______|\_______/ &#10;                 $$ |                              &#10;                 $$ |                              &#10;                 \__|                              &#10;-->
+<h2 id="tuples">3.3. Tuples</h2>
+<h3 id="count-1">3.3.1. <code>count()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">count<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Total number of occurrences of <code>x</code>.</p>
+<h3 id="index-1">3.3.2. <code>index()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">index<span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token punctuation">,</span> i<span class="token punctuation">[</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Index of the first occurrence of <code>x</code> (at or after index <code>i</code> and before index <code>j</code>)</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$\   $$$$$$\ $$$$$$$$\  $$$$$$\         $$$$$$\ $$$$$$$$\ $$$$$$$\  $$\   $$\  $$$$$$\ $$$$$$$$\ &#10;$$  __$$\ $$  __$$\\__$$  __|$$  __$$\       $$  __$$\\__$$  __|$$  __$$\ $$ |  $$ |$$  __$$\\__$$  __|&#10;$$ |  $$ |$$ /  $$ |  $$ |   $$ /  $$ |      $$ /  \__|  $$ |   $$ |  $$ |$$ |  $$ |$$ /  \__|  $$ |   &#10;$$ |  $$ |$$$$$$$$ |  $$ |   $$$$$$$$ |      \$$$$$$\    $$ |   $$$$$$$  |$$ |  $$ |$$ |        $$ |   &#10;$$ |  $$ |$$  __$$ |  $$ |   $$  __$$ |       \____$$\   $$ |   $$  __$$&lt; $$ |  $$ |$$ |        $$ |   &#10;$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$ |      $$\   $$ |  $$ |   $$ |  $$ |$$ |  $$ |$$ |  $$\   $$ |   &#10;$$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      \$$$$$$  |  $$ |   $$ |  $$ |\$$$$$$  |\$$$$$$  |  $$ |   &#10;\_______/ \__|  \__|  \__|   \__|  \__|       \______/   \__|   \__|  \__| \______/  \______/   \__|   &#10;                                                                                                       &#10;-->
+<h1 id="data-structures">4. Data Structures</h1>
+<p><strong>Doc: <a href="https://docs.python.org/3/tutorial/datastructures.html">https://docs.python.org/3/tutorial/datastructures.html</a></strong></p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$\       $$\             $$\               &#10;$$ |      \__|            $$ |              &#10;$$ |      $$\  $$$$$$$\ $$$$$$\    $$$$$$$\ &#10;$$ |      $$ |$$  _____|\_$$  _|  $$  _____|&#10;$$ |      $$ |\$$$$$$\    $$ |    \$$$$$$\  &#10;$$ |      $$ | \____$$\   $$ |$$\  \____$$\ &#10;$$$$$$$$\ $$ |$$$$$$$  |  \$$$$  |$$$$$$$  |&#10;\________|\__|\_______/    \____/ \_______/ &#10;&#10;-->
+<h2 id="lists">4.1. Lists</h2>
+<h3 id="append">4.1.1. <code>append()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Add an item to the end of the list.</p>
+<h3 id="extend">4.1.2. <code>extend()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>extend<span class="token punctuation">(</span>iterable<span class="token punctuation">)</span>
+</code></pre>
+<p>Extend the list by appending all the items from the iterable.</p>
+<h3 id="insert">4.1.3. <code>insert()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>insert<span class="token punctuation">(</span>i<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
+</code></pre>
+<p>Insert an item at a given position.</p>
+<h3 id="remove-1">4.1.4. <code>remove()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>remove<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Remove the first item from the list whose value is equal to <code>x</code>.</p>
+<h3 id="pop-1">4.1.5. <code>pop()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Remove the item at the given position in the list, and return it; if no index is specified, it will be the last item in the list.</p>
+<h3 id="index-2">4.1.6. <code>index()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>index<span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token punctuation">,</span> start<span class="token punctuation">[</span><span class="token punctuation">,</span> end<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return zero-based index in the list of the first item whose value is equal to <code>x</code> or raise a <code>ValueError</code> if there is no such item.</p>
+<h3 id="count-2">4.1.7. <code>count()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>count<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the number of times x appears in the list.</p>
+<h3 id="sort">4.1.8. <code>sort()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> reverse<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Sort the items of the list in place.</p>
+<h3 id="reverse">4.1.9. <code>reverse()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>reverse<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Reverse the elements of the list in place.</p>
+<h3 id="copy-1">4.1.10. <code>copy()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">list</span><span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a shallow copy of the list.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$\  $$\             $$\     $$\                                         $$\                     &#10;$$  __$$\ \__|            $$ |    \__|                                        \__|                    &#10;$$ |  $$ |$$\  $$$$$$$\ $$$$$$\   $$\  $$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\  $$\  $$$$$$\   $$$$$$$\ &#10;$$ |  $$ |$$ |$$  _____|\_$$  _|  $$ |$$  __$$\ $$  __$$\  \____$$\ $$  __$$\ $$ |$$  __$$\ $$  _____|&#10;$$ |  $$ |$$ |$$ /        $$ |    $$ |$$ /  $$ |$$ |  $$ | $$$$$$$ |$$ |  \__|$$ |$$$$$$$$ |\$$$$$$\  &#10;$$ |  $$ |$$ |$$ |        $$ |$$\ $$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ |      $$ |$$   ____| \____$$\ &#10;$$$$$$$  |$$ |\$$$$$$$\   \$$$$  |$$ |\$$$$$$  |$$ |  $$ |\$$$$$$$ |$$ |      $$ |\$$$$$$$\ $$$$$$$  |&#10;\_______/ \__| \_______|   \____/ \__| \______/ \__|  \__| \_______|\__|      \__| \_______|\_______/ &#10;                                                                                                                                                                 &#10; -->
+<h2 id="dictionaries">4.2. Dictionaries</h2>
+<h3 id="iter">4.2.1. <code>iter()</code></h3>
+<pre class=" language-py"><code class="prism  language-py"><span class="token builtin">iter</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+</code></pre>
+<p>Return an iterator over the keys of the dictionary, which is a shortcut for <code>iter(d.keys())</code>.</p>
+<h3 id="copy-2">4.2.2. <code>copy()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a shallow copy of the dictionary.</p>
+<h3 id="get">4.2.3. <code>get()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">get<span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token punctuation">,</span> default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return the value for <code>key</code> if <code>key</code> is in the dictionary, else <code>default</code>; if <code>default</code> is not given, it defaults to None, so that this method never raises a <code>KeyError</code>.</p>
+<h3 id="items">4.2.4. <code>items()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">items<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a new view of the dictionary’s items (<code>(key, value)</code> pairs).</p>
+<h3 id="keys">4.2.5. <code>keys()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">keys<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a new view of the dictionary’s keys.</p>
+<h3 id="pop-2">4.2.6. <code>pop()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">pop<span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token punctuation">,</span> default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>If <code>key</code> is in the dictionary, remove it and return its value, else return <code>default</code>; if <code>default</code> is not given and <code>key</code> is not in the dictionary, a <code>KeyError</code> is raised.</p>
+<h3 id="popitem">4.2.7. <code>popitem()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">popitem<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Remove and return a <code>(key, value)</code> pair from the dictionary, pairs are returned in LIFO (last-in, first-out) order.</p>
+<blockquote>
+<p><em>Changed in version 3.7</em>: LIFO order is now guaranteed. In prior versions, popitem() would return an arbitrary key/value pair.</p>
+</blockquote>
+<h3 id="setdefault">4.2.8. <code>setdefault()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">setdefault<span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token punctuation">,</span> default<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>If <code>key</code> is in the dictionary, return its value. If not, insert <code>key</code> with a value of <code>default</code> and return <code>default</code>. <code>default</code> defaults to None.</p>
+<h3 id="update-1">4.2.9. <code>update()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">update<span class="token punctuation">(</span><span class="token punctuation">[</span>other<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Update the dictionary with the key/value pairs from <code>other</code>, overwriting existing keys, then return <code>None</code>.</p>
+<h3 id="values">4.2.10. <code>values()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">values<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a new view of the dictionary’s values.</p>
+<!--&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$\      $$\  $$$$$$\  $$$$$$$\  $$\   $$\ $$\       $$$$$$$$\  $$$$$$\  &#10;$$$\    $$$ |$$  __$$\ $$  __$$\ $$ |  $$ |$$ |      $$  _____|$$  __$$\ &#10;$$$$\  $$$$ |$$ /  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |      $$ /  \__|&#10;$$\$$\$$ $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$$$$\    \$$$$$$\  &#10;$$ \$$$  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$  __|    \____$$\ &#10;$$ |\$  /$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |      $$\   $$ |&#10;$$ | \_/ $$ | $$$$$$  |$$$$$$$  |\$$$$$$  |$$$$$$$$\ $$$$$$$$\ \$$$$$$  |&#10;\__|     \__| \______/ \_______/  \______/ \________|\________| \______/ &#10;                                                                         &#10;-->
+<h1 id="modules">5. Modules</h1>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;          $$\           $$\       $$\           &#10;          \__|          $$ |      $$ |          &#10; $$$$$$\  $$\  $$$$$$$\ $$ |  $$\ $$ | $$$$$$\  &#10;$$  __$$\ $$ |$$  _____|$$ | $$  |$$ |$$  __$$\ &#10;$$ /  $$ |$$ |$$ /      $$$$$$  / $$ |$$$$$$$$ |&#10;$$ |  $$ |$$ |$$ |      $$  _$$&lt;  $$ |$$   ____|&#10;$$$$$$$  |$$ |\$$$$$$$\ $$ | \$$\ $$ |\$$$$$$$\ &#10;$$  ____/ \__| \_______|\__|  \__|\__| \_______|&#10;$$ |                                            &#10;$$ |                                            &#10;\__|                                            &#10;&#10;-->
+<h2 id="pickle">5.1. <code>pickle</code></h2>
+<p>Doc: <a href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a></p>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">import</span> pickle
+</code></pre>
+<h3 id="dump">5.1.1. <code>dump()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">pickle<span class="token punctuation">.</span>dump<span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token builtin">file</span><span class="token punctuation">,</span> protocol<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> fix_imports<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> buffer_callback<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Write the pickled representation of the object <code>obj</code> to the open file object <code>file</code>.</p>
+<h3 id="load">5.1.2. <code>load()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">pickle<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> fix_imports<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"ASCII"</span><span class="token punctuation">,</span> errors<span class="token operator">=</span><span class="token string">"strict"</span><span class="token punctuation">,</span> buffers<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Read the pickled representation of an object from the open file object <code>file</code> and return the reconstituted object hierarchy specified therein.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;                                   $$\                         &#10;                                   $$ |                        &#10; $$$$$$\  $$$$$$\  $$$$$$$\   $$$$$$$ | $$$$$$\  $$$$$$\$$$$\  &#10;$$  __$$\ \____$$\ $$  __$$\ $$  __$$ |$$  __$$\ $$  _$$  _$$\ &#10;$$ |  \__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |$$ / $$ / $$ |&#10;$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ | $$ | $$ |&#10;$$ |     \$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$ | $$ | $$ |&#10;\__|      \_______|\__|  \__| \_______| \______/ \__| \__| \__|&#10;                                                               &#10;-->
+<h2 id="random">5.2. <code>random</code></h2>
+<p>Doc: <a href="https://docs.python.org/3/library/random.html">https://docs.python.org/3/library/random.html</a></p>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">import</span> random
+</code></pre>
+<h3 id="randrange">5.2.1. <code>randrange()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>randrange<span class="token punctuation">(</span>stop<span class="token punctuation">)</span>
+</code></pre>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>randrange<span class="token punctuation">(</span>start<span class="token punctuation">,</span> stop<span class="token punctuation">[</span><span class="token punctuation">,</span> step<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a randomly selected element from <code>range(start, stop, step)</code>, which is equivalent to <code>choice(range(start, stop, step))</code>, but doesn’t actually build a range object; the positional argument pattern matches that of <code>range()</code>.</p>
+<h3 id="choice">5.2.2. <code>choice()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>seq<span class="token punctuation">)</span>
+</code></pre>
+<p>Return a random element from the non-empty sequence <code>seq</code>; if <code>seq</code> is empty, raises <code>IndexError</code>.</p>
+<h3 id="choices">5.2.3. <code>choices()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>choices<span class="token punctuation">(</span>population<span class="token punctuation">,</span> weights<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> cum_weights<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a <code>k</code> sized list of elements chosen from the <code>population</code> with replacement; if the <code>population</code> is empty, raises IndexError.</p>
+<h3 id="sample">5.2.4. <code>sample()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>sample<span class="token punctuation">(</span>population<span class="token punctuation">,</span> k<span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> counts<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a <code>k</code> length list of unique elements chosen from the <code>population</code> sequence or set.</p>
+<h3 id="random-1">5.2.5. <code>random()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>random<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return the next random floating point number in the range [0.0, 1.0).</p>
+<h3 id="uniform">5.2.6. <code>uniform()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">random<span class="token punctuation">.</span>uniform<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+</code></pre>
+<p>Return a random floating point number <code>N</code> such that <code>a &lt;= N &lt;= b</code> for <code>a &lt;= b</code> and <code>b &lt;= N &lt;= a</code> for <code>b &lt; a</code>; the end-point value <code>b</code> may or may not be included.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;  $$\     $$\                         &#10;  $$ |    \__|                        &#10;$$$$$$\   $$\ $$$$$$\$$$$\   $$$$$$\  &#10;\_$$  _|  $$ |$$  _$$  _$$\ $$  __$$\ &#10;  $$ |    $$ |$$ / $$ / $$ |$$$$$$$$ |&#10;  $$ |$$\ $$ |$$ | $$ | $$ |$$   ____|&#10;  \$$$$  |$$ |$$ | $$ | $$ |\$$$$$$$\ &#10;   \____/ \__|\__| \__| \__| \_______|&#10;                                        &#10;-->
+<h2 id="time">5.3. <code>time</code></h2>
+<p>Doc: <a href="https://docs.python.org/3/library/time.html">https://docs.python.org/3/library/time.html</a></p>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">import</span> time
+</code></pre>
+<h3 id="sleep">5.3.1. <code>sleep()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span>secs<span class="token punctuation">)</span>
+</code></pre>
+<p>Suspend execution of the calling thread for the given number of seconds.</p>
+<h3 id="time-1">5.3.2. <code>time()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> → <span class="token builtin">float</span>
+</code></pre>
+<p>Return the time in seconds since the epoch as a floating point number.</p>
+<!-- &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;                         $$\     $$\       &#10;                         $$ |    $$ |      &#10;$$$$$$\$$$$\   $$$$$$\ $$$$$$\   $$$$$$$\  &#10;$$  _$$  _$$\  \____$$\\_$$  _|  $$  __$$\ &#10;$$ / $$ / $$ | $$$$$$$ | $$ |    $$ |  $$ |&#10;$$ | $$ | $$ |$$  __$$ | $$ |$$\ $$ |  $$ |&#10;$$ | $$ | $$ |\$$$$$$$ | \$$$$  |$$ |  $$ |&#10;\__| \__| \__| \_______|  \____/ \__|  \__|&#10;&#10;-->
+<h2 id="math">5.4. <code>math</code></h2>
+<p>Doc: <a href="https://docs.python.org/3/library/math.html">https://docs.python.org/3/library/math.html</a></p>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">import</span> math
+</code></pre>
+<h3 id="ceil">5.4.1. <code>ceil()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>ceil<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the ceiling of <code>x</code>, the smallest integer greater than or equal to <code>x</code>.</p>
+<h3 id="floor">5.4.2. <code>floor()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>floor<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the floor of <code>x</code>, the largest integer less than or equal to <code>x</code>.</p>
+<h3 id="gcd">5.4.3. <code>gcd()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>gcd<span class="token punctuation">(</span><span class="token operator">*</span>integers<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the greatest common divisor of the specified integer arguments.</p>
+<h3 id="isclose">5.4.4. <code>isclose()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>isclose<span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> rel_tol<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">09</span><span class="token punctuation">,</span> abs_tol<span class="token operator">=</span><span class="token number">0.0</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>True</code> if the values <code>a</code> and <code>b</code> are close to each other and <code>False</code> otherwise.</p>
+<h3 id="trunc">5.4.5. <code>trunc()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>trunc<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the <code>Real</code> value <code>x</code> truncated to an <code>Integral</code> (usually an integer).</p>
+<h3 id="exp">5.4.6. <code>exp()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>exp<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>e</code> raised to the power <code>x</code>, where <code>e</code> = 2.718281… is the base of natural logarithms.</p>
+<h3 id="log">5.4.7. <code>log()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>log<span class="token punctuation">(</span>x<span class="token punctuation">[</span><span class="token punctuation">,</span> base<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>With one argument, return the natural logarithm of <code>x</code> (to base <code>e</code>); with two arguments, return the logarithm of <code>x</code> to the given <code>base</code>.</p>
+<h3 id="pow-1">5.4.8. <code>pow()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span><span class="token builtin">pow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span>
+</code></pre>
+<p>Return <code>x</code> raised to the power <code>y</code>.</p>
+<h3 id="sqrt">5.4.9. <code>sqrt()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the square root of x.</p>
+<h3 id="sin">5.4.10. <code>sin()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the sine of <code>x</code> radians.</p>
+<h3 id="cos">5.4.11. <code>cos()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the cosine of <code>x</code> radians.</p>
+<h3 id="tan">5.4.12. <code>tan()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>tan<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the tangent of <code>x</code> radians.</p>
+<h3 id="acos">5.4.13. <code>acos()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>acos<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the arc cosine of <code>x</code>, in radians.</p>
+<h3 id="asin">5.4.14. <code>asin()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>asin<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the arc sine of <code>x</code>, in radians.</p>
+<h3 id="atan">5.4.15. <code>atan()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>atan<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Return the arc tangent of x, in radians.</p>
+<h3 id="degrees">5.4.16. <code>degrees()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>degrees<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Convert angle <code>x</code> from radians to degrees.</p>
+<h3 id="radians">5.4.17. <code>radians()</code></h3>
+<pre class=" language-py"><code class="prism  language-py">math<span class="token punctuation">.</span>radians<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+</code></pre>
+<p>Convert angle <code>x</code> from degrees to radians.</p>
+<!--&#10;                                     &#10; &#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;                                    &#10;$$$$$$$\  $$\   $$\ $$$$$$\$$$$\   $$$$$$\  $$\   $$\ &#10;$$  __$$\ $$ |  $$ |$$  _$$  _$$\ $$  __$$\ $$ |  $$ |&#10;$$ |  $$ |$$ |  $$ |$$ / $$ / $$ |$$ /  $$ |$$ |  $$ |&#10;$$ |  $$ |$$ |  $$ |$$ | $$ | $$ |$$ |  $$ |$$ |  $$ |&#10;$$ |  $$ |\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |\$$$$$$$ |&#10;\__|  \__| \______/ \__| \__| \__|$$  ____/  \____$$ |&#10;                                  $$ |      $$\   $$ |&#10;                                  $$ |      \$$$$$$  |&#10;                                  \__|       \______/ &#10;&#10;-->
+<h2 id="numpy">5.5. <code>numpy</code></h2>
+<p>Doc: <a href="https://numpy.org/doc/stable/">https://numpy.org/doc/stable/</a></p>
+<p>I will not copy their documentation here, I will explain things myself instead. In my opinion, the doc of <code>numpy</code> is a bit long but it is really clear and specific, and you will have to seek for help on their doc as long as you work on data related fields.</p>
+<pre class=" language-py"><code class="prism  language-py"><span class="token keyword">import</span> numpy
+</code></pre>
+<h3 id="numpy.array">5.5.1. <code>numpy.array</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token builtin">object</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> copy<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> order<span class="token operator">=</span><span class="token string">'K'</span><span class="token punctuation">,</span> subok<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> ndmin<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> like<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return a <code>ndarray</code> object, a list/tuple of lists/tuples of… is allowed for <code>object</code>.</p>
+<h3 id="numpy.arange">5.5.2. <code>numpy.arange</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token punctuation">[</span>start<span class="token punctuation">,</span> <span class="token punctuation">]</span>stop<span class="token punctuation">,</span> <span class="token punctuation">[</span>step<span class="token punctuation">,</span> <span class="token punctuation">]</span>dtype<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> like<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Works like <code>range</code>, but floats are allowed.</p>
+<h3 id="numpy.linspace">5.5.3. <code>numpy.linspace</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span>start<span class="token punctuation">,</span> stop<span class="token punctuation">,</span> num<span class="token operator">=</span><span class="token number">50</span><span class="token punctuation">,</span> endpoint<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> retstep<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> axis<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Array with a specified number of elements, and spaced equally between the specified beginning and end values.</p>
+<h3 id="numpy.eye">5.5.4. <code>numpy.eye</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>eye<span class="token punctuation">(</span>N<span class="token punctuation">,</span> M<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token string">'float'</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> order<span class="token operator">=</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> like<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Identity-matrix-like <code>ndarray</code>.</p>
+<h3 id="numpy.diag">5.5.5. <code>numpy.diag</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>diag<span class="token punctuation">(</span>v<span class="token punctuation">,</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Diagonal-matrix-like <code>ndarray</code>.</p>
+<h3 id="numpy.zeros">5.5.6. <code>numpy.zeros</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>shape<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token builtin">float</span><span class="token punctuation">,</span> order<span class="token operator">=</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> like<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Initialize a <code>ndarray</code> with full of <code>0</code>s.</p>
+<h3 id="numpy.ones">5.5.7. <code>numpy.ones</code></h3>
+<pre class=" language-py"><code class="prism  language-py">numpy<span class="token punctuation">.</span>ones<span class="token punctuation">(</span>shape<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">,</span> order<span class="token operator">=</span><span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token punctuation">,</span> like<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Initialize a <code>ndarray</code> with full of <code>1</code>s.</p>
+<h3 id="numpy.ndarray.shape">5.5.8. <code>numpy.ndarray.shape</code></h3>
+<pre class=" language-py"><code class="prism  language-py">ndarray<span class="token punctuation">.</span>shape
+</code></pre>
+<p>The shape of a <code>ndarray</code> a.k.a how many “rows” are there in each dimension, in tuple form.</p>
+<!--&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$$\ $$$$$$\ $$\       $$$$$$$$\  $$$$$$\  &#10;$$  _____|\_$$  _|$$ |      $$  _____|$$  __$$\ &#10;$$ |        $$ |  $$ |      $$ |      $$ /  \__|&#10;$$$$$\      $$ |  $$ |      $$$$$\    \$$$$$$\  &#10;$$  __|     $$ |  $$ |      $$  __|    \____$$\ &#10;$$ |        $$ |  $$ |      $$ |      $$\   $$ |&#10;$$ |      $$$$$$\ $$$$$$$$\ $$$$$$$$\ \$$$$$$  |&#10;\__|      \______|\________|\________| \______/ &#10;                                                                                 &#10;-->
+<h1 id="files">6. Files</h1>
+<p>Doc: <a href="https://docs.python.org/3/tutorial/inputoutput.html">https://docs.python.org/3/tutorial/inputoutput.html</a></p>
+<h2 id="read">6.1. <code>read()</code></h2>
+<pre class=" language-py"><code class="prism  language-py">f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">[</span>size<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Read a file’s contents, return it as a string (in text mode) or bytes object (in binary mode); when <code>size</code> is omitted or negative, the entire contents of the file will be read and returned.</p>
+<h2 id="write">6.2. <code>write()</code></h2>
+<pre class=" language-py"><code class="prism  language-py">f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+</code></pre>
+<p>Write the contents of <code>string</code> to the file, return the number of characters written.</p>
+<h2 id="tell">6.3. <code>tell()</code></h2>
+<pre class=" language-py"><code class="prism  language-py">f<span class="token punctuation">.</span>tell<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Return an integer giving the file object’s current position in the file represented as number of bytes from the beginning of the file when in binary mode and an opaque number when in text mode.</p>
+<h2 id="seek">6.4. <code>seek()</code></h2>
+<pre class=" language-py"><code class="prism  language-py">f<span class="token punctuation">.</span>seek<span class="token punctuation">(</span>offset<span class="token punctuation">[</span><span class="token punctuation">,</span> whence<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Change the file object’s position; the position is computed from adding <code>offset</code> to a reference point; the reference point is selected by the <code>whence</code> argument; a <code>whence</code> value of 0 measures from the beginning of the file, 1 uses the current file position, and 2 uses the end of the file as the reference point; <code>whence</code> can be omitted and defaults to 0.</p>
+<!--&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;$$$$$$$\   $$$$$$\ $$$$$$$$\  $$$$$$\        $$\      $$\  $$$$$$\  $$$$$$$\  $$$$$$$$\ $$\       &#10;$$  __$$\ $$  __$$\\__$$  __|$$  __$$\       $$$\    $$$ |$$  __$$\ $$  __$$\ $$  _____|$$ |      &#10;$$ |  $$ |$$ /  $$ |  $$ |   $$ /  $$ |      $$$$\  $$$$ |$$ /  $$ |$$ |  $$ |$$ |      $$ |      &#10;$$ |  $$ |$$$$$$$$ |  $$ |   $$$$$$$$ |      $$\$$\$$ $$ |$$ |  $$ |$$ |  $$ |$$$$$\    $$ |      &#10;$$ |  $$ |$$  __$$ |  $$ |   $$  __$$ |      $$ \$$$  $$ |$$ |  $$ |$$ |  $$ |$$  __|   $$ |      &#10;$$ |  $$ |$$ |  $$ |  $$ |   $$ |  $$ |      $$ |\$  /$$ |$$ |  $$ |$$ |  $$ |$$ |      $$ |      &#10;$$$$$$$  |$$ |  $$ |  $$ |   $$ |  $$ |      $$ | \_/ $$ | $$$$$$  |$$$$$$$  |$$$$$$$$\ $$$$$$$$\ &#10;\_______/ \__|  \__|  \__|   \__|  \__|      \__|     \__| \______/ \_______/ \________|\________|&#10;&#10;-->
+<h1 id="data-model-dunder-or-magic-methods">7. Data model (Dunder or magic methods)</h1>
+<p>Doc: <a href="https://docs.python.org/3/reference/datamodel.html">https://docs.python.org/3/reference/datamodel.html</a></p>
+<p>This section is of a table form to avoid confusion and… tiredness.</p>
+
+<table>
+<thead>
+<tr>
+<th>This dunder method…</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>object.__doc__</code></td>
+<td>docstring</td>
+</tr>
+<tr>
+<td><code>object.__name__</code></td>
+<td>name</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>object.__lt__</code></td>
+<td><code>&lt;</code></td>
+</tr>
+<tr>
+<td><code>object.__le__</code></td>
+<td><code>&lt;=</code></td>
+</tr>
+<tr>
+<td><code>object.__ne__</code></td>
+<td><code>!=</code></td>
+</tr>
+<tr>
+<td><code>object.__gt__</code></td>
+<td><code>&gt;</code></td>
+</tr>
+<tr>
+<td><code>object.__ge__</code></td>
+<td><code>&gt;=</code></td>
+</tr>
+<tr>
+<td><code>object.__dir__</code></td>
+<td><code>dir()</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>object.__add__(self, other)</code></td>
+<td><code>+</code></td>
+</tr>
+<tr>
+<td><code>object.__sub__(self, other)</code></td>
+<td><code>-</code></td>
+</tr>
+<tr>
+<td><code>object.__mul__(self, other)</code></td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td><code>object.__truediv__(self, other)</code></td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td><code>object.__floordiv__(self, other)</code></td>
+<td><code>//</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>object.__mod__(self, other)</code></td>
+<td><code>%</code></td>
+</tr>
+<tr>
+<td><code>object.__divmod__(self, other)</code></td>
+<td><code>divmod()</code></td>
+</tr>
+<tr>
+<td><code>object.__pow__(self, other[, modulo])</code></td>
+<td><code>pow()</code>, <code>**</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>object.__and__(self, other)</code></td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td><code>object.__xor__(self, other)</code></td>
+<td><code>^</code></td>
+</tr>
+<tr>
+<td><code>object.__or__(self, other)</code></td>
+<td><code>\|</code></td>
+</tr>
+</tbody>
+</table></div>
+</body>
+
+</html>
