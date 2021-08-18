@@ -1,10 +1,11 @@
 # [Python Call reference](https://github.com/htnminh/pdf-python-books-docs/tree/main/Python%20Call%20reference)
 ## Quick reference to some common classes, functions and methods of [Python](https://github.com/python) and its popular modules, without examples.
-[HTML, PDF and Markdown files](https://github.com/htnminh/pdf-python-books-docs/tree/main/Python%20Call%20reference)
+
+[Other files](https://github.com/htnminh/pdf-python-books-docs/tree/main/Python%20Call%20reference)
 
 *(Markdown view by GitHub is highly recommended, since clickable links in HTML and PDF files are not working properly)*
 
-### Chapters:
+### [Chapters](https://github.com/htnminh/pdf-python-books-docs/blob/2c3fa42b1ec39dad698d48d4ebe7cca5cdf13787/Python%20Call%20reference/Python%20Call%20reference.md):
 #### - [Built-in Functions](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md#2-built-in-functions)
 #### - [Built-in Types](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md#3-built-in-types)
 #### - [Data Structures](https://github.com/htnminh/pdf-python-books-docs/blob/main/Python%20Call%20reference/Python%20Call%20reference.md#4-data-structures)
