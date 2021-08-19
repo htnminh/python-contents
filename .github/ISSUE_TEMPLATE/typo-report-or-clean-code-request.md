@@ -19,7 +19,7 @@ assignees: ''
 
 # The issue
 ## Code to reproduce
-> Copy and paste the code below
+> Copy and paste the code below, between two ` ``` `
 ```
 
 ```
