@@ -1,5 +1,5 @@
 # pdf-python-books-docs
-All of my public contents in PDF files.
+Summary of all repositories for my public contents, in PDF files.
 
 ## [Introduction to Python](https://github.com/htnminh/introduction-to-python)
 The most basic concepts of [Python](https://github.com/python) programming language, in easy-to-understand examples.
