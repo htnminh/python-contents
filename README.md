@@ -1,7 +1,7 @@
 # My Python contents
 Summary of all repositories for my public contents, mostly Python, in Jupyter Notebooks, PDFs, Markdowns, and more!
 
-![https://github.com/htnminh/python-contents/blob/dd055e320a69dfdec04b49ff57678e11519757ee/docs/preview.jpeg]()
+![](https://github.com/htnminh/python-contents/blob/dd055e320a69dfdec04b49ff57678e11519757ee/docs/preview.jpeg)
 
 ## [Introduction to Programming (Python)](https://github.com/htnminh/python-introduction)
 The most basic concepts of Python programming language, in easy-to-understand examples.
