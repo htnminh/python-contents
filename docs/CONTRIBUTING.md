@@ -1,1 +1,1 @@
-Test
+It's simple. If you want to contribute, like add new contents, fix some bugs, adjust conventions or fix some typos, freely to create a pull request or create an issue. I'm always willing to listen!
