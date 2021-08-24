@@ -10,6 +10,7 @@ The most basic concepts of Python programming language, in easy-to-understand ex
 ## [Python Call reference](https://github.com/htnminh/python-call-reference)
 
 
-Quick reference to some common classes, functions and methods of [Python](https://github.com/python) and its popular modules, without examples.
-## [Prac5 REAL ESTATE REGRESSION](https://github.com/htnminh/pdf-python-books-docs/tree/main/Prac5%20REAL%20ESTATE%20REGRESSION)
-Plot differences between Real values and Predicted values using `matplotlib`, based on pre-written codes in Introduction to Programming course.
+Quick reference to some common classes, functions and methods of Python and its popular modules.
+
+## [Prac5 REAL ESTATE REGRESSION](https://github.com/htnminh/python-contents/tree/main/files/Prac5%20REAL%20ESTATE%20REGRESSION)
+Plot differences between Real values and Predicted values using `matplotlib`, based on pre-written codes in [Introduction to Programming course](https://github.com/htnminh/python-introduction).
