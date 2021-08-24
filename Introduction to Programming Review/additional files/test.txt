@@ -1,3 +1,0 @@
-this is line 1
-this is the second line
-last line
